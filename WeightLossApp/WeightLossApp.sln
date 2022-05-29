@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightLossApp", "WeightLossApp\WeightLossApp.csproj", "{BB23DCDE-AD70-4E02-8C7B-F4236AAD2E5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB23DCDE-AD70-4E02-8C7B-F4236AAD2E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB23DCDE-AD70-4E02-8C7B-F4236AAD2E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB23DCDE-AD70-4E02-8C7B-F4236AAD2E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB23DCDE-AD70-4E02-8C7B-F4236AAD2E5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7078E79E-D042-4F54-80AA-8797D78E1661}
+	EndGlobalSection
+EndGlobal
