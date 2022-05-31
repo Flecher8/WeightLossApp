@@ -7,7 +7,14 @@ export class IngridientsData extends Component {
         super(props);
 
         this.state = {
-            ingridientsData:[]
+            ingridientsData:[],
+            modalTitle:"",
+            itemID:0,
+            itemName:"",
+            itemCalories:0,
+            itemProteins:0,
+            itemCarbohydrates:0,
+            itemFats:0,
         }
     }
 
@@ -19,6 +26,18 @@ export class IngridientsData extends Component {
         });
     }
 
+    addClick() {
+        this.setState({
+            modalTitle:"Adding new Ingridient",
+            itemID:0,
+            itemName:"",
+            itemCalories:0,
+            itemProteins:0,
+            itemCarbohydrates:0,
+            itemFats:0,
+        });
+    }
+
     componentDidMount() {
         this.refreshList();
     }
@@ -27,11 +46,18 @@ export class IngridientsData extends Component {
     render() {
 
         const {
-            ingridientsData
+            ingridientsData,
+            modalTitle,
+            itemID,
+            itemName,
+            itemCalories,
+            itemProteins,
+            itemCarbohydrates,
+            itemFats,
         } = this.state;
 
         return (
-            <div>
+            <div style={{width:80 + 'vw'}}>
                 <h3 className='m-5'>This is Ingridients page</h3>
                 <table className='table table-striped'>
                     <thead>
@@ -62,6 +88,51 @@ export class IngridientsData extends Component {
                         )}
                     </tbody>
                 </table>
+
+                <button type='button' className='btn btn-dark m-2 float-end' data-bs-toggle='modal'
+                data-bs-target='#exampleModal' onClick={() => this.addClick()}>Add ingridient data</button>
+
+
+
+                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
+                <div className="modal-dialog modal-lg modal-dialog-centered">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title">{modalTitle}</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    ></button>
+                </div>
+
+                <div className="modal-body">
+                    <div className="input-group mb-3">
+                        <span className="input-group-text">Ingridient Name</span>
+                        <input type="text" className="form-control"
+                        value={itemName}
+                        //onChange={this.changeDepartmentName}
+                        />
+                    </div>
+
+                        {itemID === 0?
+                        <button type="button"
+                        className="btn btn-primary float-start"
+                        onClick={()=>this.createClick()}
+                        >Create</button>
+                        :null}
+
+                        {itemID !== 0?
+                        <button type="button"
+                        className="btn btn-primary float-start"
+                        onClick={()=>this.updateClick()}
+                        >Update</button>
+                        :null}
+
+                </div>
+                </div>
+                </div> 
+                </div>
+
+
+
             </div>
                 
         )

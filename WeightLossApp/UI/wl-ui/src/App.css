@@ -1,10 +1,16 @@
 .App {
   text-align: center;
+  display: grid;
+  justify-items: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.navbar {
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
