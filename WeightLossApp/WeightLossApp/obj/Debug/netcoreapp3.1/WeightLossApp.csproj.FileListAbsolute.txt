@@ -34,3 +34,7 @@ C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\n
 C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.pdb
 C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.genruntimeconfig.cache
 C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.csproj.CopyComplete
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
