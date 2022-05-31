@@ -22,3 +22,8 @@ C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\n
 C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\net6.0\ref\WeightLossApp.dll
 C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\net6.0\WeightLossApp.pdb
 C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\net6.0\WeightLossApp.genruntimeconfig.cache
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\vmlf\Source\Repos\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\net6.0\WeightLossApp.csproj.CopyComplete

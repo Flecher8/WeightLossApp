@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "5wgLcbh6vvi1BnNmaULnvlJ8A2jgF0kzixHZX3iP57U627IEju+8EpOGZgGOb6EJQms2c8qwJvyexbqP6VReEA==",
+  "dgSpecHash": "4TG6pmToXTuyman/mFpWNVBQDY5cMEY2CEy4UOwoLCtU9plYM9FgQVXPyXzxaily6YhaDJFXV0s+24j8L/bi/Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vmlf\\source\\repos\\WeightLossApp\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\vmlf\\Source\\Repos\\WeightLossApp\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vmlf\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.25\\microsoft.aspnetcore.jsonpatch.3.1.25.nupkg.sha512",
+    "C:\\Users\\vmlf\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.25\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.25.nupkg.sha512",
+    "C:\\Users\\vmlf\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\vmlf\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\vmlf\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
