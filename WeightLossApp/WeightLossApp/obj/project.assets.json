@@ -1,43 +1,43 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    ".NETCoreApp,Version=v3.1": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": []
+    ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Vl\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\vmlf\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
+      "projectUniqueName": "C:\\Users\\vmlf\\source\\repos\\WeightLossApp\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
       "projectName": "WeightLossApp",
-      "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
-      "packagesPath": "C:\\Users\\Vl\\.nuget\\packages\\",
-      "outputPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\obj\\",
+      "projectPath": "C:\\Users\\vmlf\\source\\repos\\WeightLossApp\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
+      "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vmlf\\source\\repos\\WeightLossApp\\WeightLossApp\\WeightLossApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vl\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\vmlf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -48,8 +48,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
