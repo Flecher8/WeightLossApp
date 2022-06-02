@@ -78,3 +78,9 @@ D:\NURE\assistant\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLoss
 D:\NURE\assistant\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.dll
 D:\NURE\assistant\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.pdb
 D:\NURE\assistant\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.genruntimeconfig.cache
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll

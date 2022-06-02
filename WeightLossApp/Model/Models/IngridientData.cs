@@ -1,17 +1,23 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace WeightLossApp.Models
+namespace Model.Models
 {
-    public class IngridientData
+    public partial class IngridientData
     {
-        [Key]
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public float Calories { get; set; }
-        public float Proteins { get; set; }
-        public float Carbohydrates { get; set; }
-        public float Fats { get; set; }
+        public IngridientData()
+        {
+            IngridientCategory = new HashSet<IngridientCategory>();
+        }
 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double? Calories { get; set; }
+        public double? Proteins { get; set; }
+        public double? Carbohydrates { get; set; }
+        public double? Fats { get; set; }
+
+        public virtual Ingridient Ingridient { get; set; }
+        public virtual ICollection<IngridientCategory> IngridientCategory { get; set; }
     }
 }
