@@ -11,22 +11,25 @@ namespace WeightLossApp.Controllers
     [ApiController]
     public class IngridientDataController : ControllerBase
     {
-        //private readonly IConfiguration _configuration;
+        // DataBase context
         private readonly FitnessAssistantContext _context;
-
 
         public IngridientDataController(FitnessAssistantContext context)
         {
-            //_configuration = configuration;
             _context = context;
         }
 
+        // --- HTTP Request handl methods ---
+        #region HTTP
+
+        // Retrieves all data about ingridients and sends it as response
         [HttpGet]
         public JsonResult Get()
         {
             return new JsonResult(_context.IngridientData);
         }
 
+        // Used to add new records to DB, input - json 
         [HttpPost]
         public JsonResult Post(IngridientData item)
         {
@@ -36,6 +39,7 @@ namespace WeightLossApp.Controllers
             return new JsonResult("Succes!!");
         }
 
+        // Used to update existing DB records, input - json 
         [HttpPut]
         public JsonResult Put(IngridientData item)
         {
@@ -45,6 +49,7 @@ namespace WeightLossApp.Controllers
             return new JsonResult("Succes!!");
         }
 
+        // Deletes records using id 
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
@@ -54,5 +59,6 @@ namespace WeightLossApp.Controllers
 
             return new JsonResult("Deleted");
         }
+        #endregion
     }
 }
