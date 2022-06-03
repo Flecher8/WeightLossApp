@@ -16,42 +16,116 @@ namespace WeightLossApp.Controllers
         {
             _configuration = configuration;
         }
-
         [HttpGet]
         public JsonResult Get()
         {
-            List<IngridientData> res = new List<IngridientData>
+            string query = @"
+                            select ID, Name, Calories, Proteins, Carbohydrates, Fats
+                            FROM dbo.IngridientData
+                            ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("DbConnection");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
-                new IngridientData
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    ID = 100,
-                    Name = "Potato",
-                    Calories = 100f,
-                    Proteins = 10f,
-                    Carbohydrates = 10f,
-                    Fats = 0
-                },
-                new IngridientData
-                {
-                    ID = 101,
-                    Name = "Tomato",
-                    Calories = 80f,
-                    Proteins = 12f,
-                    Carbohydrates = 15f,
-                    Fats = 2f
-                },
-                new IngridientData
-                {
-                    ID = 102,
-                    Name = "Chicken",
-                    Calories = 300f,
-                    Proteins = 50f,
-                    Carbohydrates = 10f,
-                    Fats = 15f
-                },
-            };
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
 
-            return new JsonResult(res);
+            return new JsonResult(table);
+        }
+        [HttpPost]
+        public JsonResult Post(IngridientData ingridientData)
+        {
+            string query = @"
+                            insert into dbo.IngridientData 
+                            values (@Name, @Calories, @Proteins, @Carbohydrates, @Fats)
+                            ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("DbConnection");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@Name", ingridientData.Name);
+                    myCommand.Parameters.AddWithValue("@Calories", ingridientData.Calories);
+                    myCommand.Parameters.AddWithValue("@Proteins", ingridientData.Proteins);
+                    myCommand.Parameters.AddWithValue("@Carbohydrates", ingridientData.Carbohydrates);
+                    myCommand.Parameters.AddWithValue("@Fats", ingridientData.Fats);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Added successfully");
+        }
+
+        [HttpPut]
+        public JsonResult Put(IngridientData ingridientData)
+        {
+            string query = @"
+                            update dbo.IngridientData 
+                            set Name = @Name, Calories = @Calories, Proteins = @Proteins, Carbohydrates = @Carbohydrates, Fats = @Fats
+                            where ID=@ID
+                            ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("DbConnection");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@ID", ingridientData.ID);
+                    myCommand.Parameters.AddWithValue("@Name", ingridientData.Name);
+                    myCommand.Parameters.AddWithValue("@Calories", ingridientData.Calories);
+                    myCommand.Parameters.AddWithValue("@Proteins", ingridientData.Proteins);
+                    myCommand.Parameters.AddWithValue("@Carbohydrates", ingridientData.Carbohydrates);
+                    myCommand.Parameters.AddWithValue("@Fats", ingridientData.Fats);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Updated successfully");
+        }
+
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            string query = @"
+                            delete from dbo.IngridientData 
+                            where ID=@ID
+                            ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("DbConnection");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myCommand.Parameters.AddWithValue("@ID", id);
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader);
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
         }
     }
 }
