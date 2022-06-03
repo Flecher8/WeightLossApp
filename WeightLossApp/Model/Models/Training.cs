@@ -7,7 +7,7 @@ namespace Model.Models
     {
         public Training()
         {
-            Exercise = new HashSet<Exercise>();
+            TrainingExercise = new HashSet<TrainingExercise>();
         }
 
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace Model.Models
         public string Complexity { get; set; }
 
         public virtual SectionTraining SectionTraining { get; set; }
-        public virtual ICollection<Exercise> Exercise { get; set; }
+        public virtual ICollection<TrainingExercise> TrainingExercise { get; set; }
     }
 }

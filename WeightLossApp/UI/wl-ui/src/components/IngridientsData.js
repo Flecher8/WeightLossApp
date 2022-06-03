@@ -35,7 +35,7 @@ export class IngridientsData extends Component {
         this.setState({
             modalTitle:"Adding new Ingridient",
             itemID:0,
-            itemName:"asd",
+            itemName:"",
             itemCalories:0,
             itemProteins:0,
             itemCarbohydrates:0,

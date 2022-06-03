@@ -5,6 +5,11 @@ namespace Model.Models
 {
     public partial class Exercise
     {
+        public Exercise()
+        {
+            TrainingExercise = new HashSet<TrainingExercise>();
+        }
+
         public int Id { get; set; }
         public string Section { get; set; }
         public string Name { get; set; }
@@ -16,5 +21,6 @@ namespace Model.Models
         public int TrainingId { get; set; }
 
         public virtual Training Training { get; set; }
+        public virtual ICollection<TrainingExercise> TrainingExercise { get; set; }
     }
 }

@@ -41,6 +41,7 @@ namespace Model.Models
         public virtual DbSet<Training> Training { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserMedicine> UserMedicine { get; set; }
+        public virtual DbSet<TrainingExercise> TrainingExercise { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -209,11 +210,10 @@ namespace Model.Models
 
                 entity.Property(e => e.TrainingId).HasColumnName("Training_ID");
 
-                entity.HasOne(d => d.Training)
-                    .WithMany(p => p.Exercise)
-                    .HasForeignKey(d => d.TrainingId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Exercise_Training");
+                entity.HasMany(a => a.TrainingExercise)
+                    .WithOne(p => p.Exercise)
+                    .HasForeignKey(a => a.ExerciseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Ingridient>(entity =>
@@ -484,6 +484,11 @@ namespace Model.Models
                     .HasForeignKey(d => d.SectionTrainingId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Training_SectionTraining");
+
+                entity.HasMany(a => a.TrainingExercise)
+                    .WithOne(p => p.Training)
+                    .HasForeignKey(a => a.TrainingId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -530,6 +535,25 @@ namespace Model.Models
                     .HasForeignKey(d => d.ProfileId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserMedicine_Profile");
+            });
+
+            modelBuilder.Entity<TrainingExercise>(entity => 
+            {
+                entity.HasKey(e => new { e.ExerciseId, e.TrainingId });
+
+                entity.Property(e => e.ExerciseId).HasColumnName("Exercise_ID");
+
+                entity.Property(e => e.TrainingId).HasColumnName("Training_ID");
+
+                entity.HasOne(d => d.Training)
+                    .WithMany(p => p.TrainingExercise)
+                    .HasForeignKey(d => d.TrainingId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Exercise)
+                    .WithMany(p => p.TrainingExercise)
+                    .HasForeignKey(d => d.ExerciseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             OnModelCreatingPartial(modelBuilder);
