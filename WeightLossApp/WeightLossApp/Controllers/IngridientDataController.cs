@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using WeightLossApp.Models;
 using System.Collections.Generic;
+using Model.Models;
 
 namespace WeightLossApp.Controllers
 {
@@ -10,48 +11,54 @@ namespace WeightLossApp.Controllers
     [ApiController]
     public class IngridientDataController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
+        // DataBase context
+        private readonly FitnessAssistantContext _context;
 
-        public IngridientDataController(IConfiguration configuration)
+        public IngridientDataController(FitnessAssistantContext context)
         {
-            _configuration = configuration;
+            _context = context;
         }
 
+        // --- HTTP Request handl methods ---
+        #region HTTP
+
+        // Retrieves all data about ingridients and sends it as response
         [HttpGet]
         public JsonResult Get()
         {
-            List<IngridientData> res = new List<IngridientData>
-            {
-                new IngridientData
-                {
-                    ID = 100,
-                    Name = "Potato",
-                    Calories = 100f,
-                    Proteins = 10f,
-                    Carbohydrates = 10f,
-                    Fats = 0
-                },
-                new IngridientData
-                {
-                    ID = 101,
-                    Name = "Tomato",
-                    Calories = 80f,
-                    Proteins = 12f,
-                    Carbohydrates = 15f,
-                    Fats = 2f
-                },
-                new IngridientData
-                {
-                    ID = 102,
-                    Name = "Chicken",
-                    Calories = 300f,
-                    Proteins = 50f,
-                    Carbohydrates = 10f,
-                    Fats = 15f
-                },
-            };
-
-            return new JsonResult(res);
+            return new JsonResult(_context.IngridientData);
         }
+
+        // Used to add new records to DB, input - json 
+        [HttpPost]
+        public JsonResult Post(IngridientData item)
+        {
+            _context.IngridientData.Add(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Succes!!");
+        }
+
+        // Used to update existing DB records, input - json 
+        [HttpPut]
+        public JsonResult Put(IngridientData item)
+        {
+            _context.IngridientData.Update(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Succes!!");
+        }
+
+        // Deletes records using id 
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            IngridientData item = _context.Find<IngridientData>(id);
+            _context.IngridientData.Remove(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Deleted");
+        }
+        #endregion
     }
 }

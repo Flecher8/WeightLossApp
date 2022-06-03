@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WeightLossApp
 {
@@ -33,6 +35,9 @@ namespace WeightLossApp
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+
+            services.AddDbContext<FitnessAssistantContext>(opts =>
+                opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
 
             //JSON Serializer

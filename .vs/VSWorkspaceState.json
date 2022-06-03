@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WeightLossApp"
   ],
-  "SelectedNode": "\\WeightLossApp.sln",
+  "SelectedNode": "\\WeightLossApp\\WeightLossApp.sln",
   "PreviewInSolutionExplorer": false
 }
