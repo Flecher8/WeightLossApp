@@ -27,5 +27,25 @@ namespace WeightLossApp.Controllers
         {
             return new JsonResult(_context.DesignThemeData);
         }
+
+        // Used to add new records to DB, input - json 
+        [HttpPost]
+        public JsonResult PostPremium(PremiumSubscription item)
+        {
+            _context.PremiumSubscription.Add(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Success!!");
+        }
+
+        // Used to add new records to DB, input - json 
+        [HttpPost]
+        public JsonResult PostDesignThemeData(DesignThemeData item)
+        {
+            _context.DesignThemeData.Add(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Success!!");
+        }
     }
 }
