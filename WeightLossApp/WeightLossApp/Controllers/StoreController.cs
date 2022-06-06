@@ -67,5 +67,27 @@ namespace WeightLossApp.Controllers
 
             return new JsonResult("Success!!");
         }
+
+        // Deletes records using id 
+        [HttpDelete("{id}")]
+        public JsonResult DeletePremium(int id)
+        {
+            PremiumSubscription item = _context.Find<PremiumSubscription>(id);
+            _context.PremiumSubscription.Remove(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Deleted");
+        }
+
+        // Deletes records using id 
+        [HttpDelete("{id}")]
+        public JsonResult DeleteDesignThemeData(int id)
+        {
+            DesignThemeData item = _context.Find<DesignThemeData>(id);
+            _context.DesignThemeData.Remove(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Deleted");
+        }
     }
 }
