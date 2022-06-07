@@ -3,6 +3,7 @@ import { constants } from "../../Constants";
 import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter, numberFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { MultiSelect } from "react-multi-select-component";
 
 // Component for IngridientData page
 export class IngridientsData extends Component {
@@ -15,6 +16,7 @@ export class IngridientsData extends Component {
 		this.state = {
 			// List of data to be displayed
 			ingridientsData: [],
+			categories: [],
 			// Title of the modal window
 			modalTitle: "",
 			// Data of the selected item
@@ -24,7 +26,12 @@ export class IngridientsData extends Component {
 			itemCalories: 0,
 			itemProteins: 0,
 			itemCarbohydrates: 0,
-			itemFats: 0
+			itemFats: 0,
+			itemCategories: [],
+			// Options for multiselect
+			selectOptions: [],
+			// Data to display as multiselect selected
+			categoryNames: [], 
 		};
 	}
 
@@ -38,12 +45,22 @@ export class IngridientsData extends Component {
 			itemCalories: 0,
 			itemProteins: 0,
 			itemCarbohydrates: 0,
-			itemFats: 0
+			itemFats: 0,
+			itemCategories: [],
+			selectOptions: this.getMultiSelectOptions(),
+			categoryNames: [], 
 		});
 	}
 
 	// Called when create button is clicked
 	createClick() {
+
+		let ingridientCategories = [];
+
+		for (let category of this.state.itemCategories) {
+			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
+		}
+
 		// Sending HTTP POST request to the server
 		// with data from state
 		fetch(constants.API_URL + "IngridientData", {
@@ -59,9 +76,9 @@ export class IngridientsData extends Component {
 				Calories: this.state.itemCalories,
 				Proteins: this.state.itemProteins,
 				Carbohydrates: this.state.itemCarbohydrates,
-				Fats: this.state.itemFats
-			})
-		})
+				Fats: this.state.itemFats,
+				ingridientCategory: ingridientCategories,
+		})})
 			.then(res => res.json())
 			.then(
 				result => {
@@ -76,6 +93,14 @@ export class IngridientsData extends Component {
 
 	// Called when update button is clicked
 	updateClick() {
+		let ingridientCategories = [];
+
+		for (let category of this.state.itemCategories) {
+			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
+		}
+
+		console.log(ingridientCategories);
+
 		// Sending HTTP PUT request to the server
 		// with data from state
 		fetch(constants.API_URL + "IngridientData", {
@@ -89,7 +114,8 @@ export class IngridientsData extends Component {
 				Calories: this.state.itemCalories,
 				Proteins: this.state.itemProteins,
 				Carbohydrates: this.state.itemCarbohydrates,
-				Fats: this.state.itemFats
+				Fats: this.state.itemFats,
+				ingridientCategory: ingridientCategories,
 			})
 		})
 			.then(res => res.json())
@@ -134,6 +160,12 @@ export class IngridientsData extends Component {
 			.then(data => {
 				this.setState({ ingridientsData: data });
 			});
+
+		fetch(constants.API_URL + "Category")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({ categories: data });
+			});
 	}
 
 	// Don't exactly know what is it :)
@@ -165,6 +197,24 @@ export class IngridientsData extends Component {
 		this.setState({ itemProteins: e.target.value });
 	};
 
+	changeCategory = e => {
+		this.setState({ 
+			itemCategories: e,
+			categoryNames: e.map(e => e.label),
+		});
+
+	};
+
+	getMultiSelectOptions() {
+		let res = [];
+
+		for (let category of this.state.categories) {
+			res.push({label: category.Name, value: category.Id });
+		}
+
+		return res;
+	}
+
 	// Possibly main function of the component
 	// Return statement of this function describes what
 	// will be displayed in place where this component is used
@@ -175,6 +225,14 @@ export class IngridientsData extends Component {
 			clickToSelect: true,
 			style: { backgroundColor: "#f6f6f6" },
 			onSelect: (row, isSelect, rowIndex, e) => {
+				let rowCategories = this.state.ingridientsData.find(i => i.Id == row.Id)
+					.IngridientCategory.map(i => i.Category);
+				let temp = []
+
+				for(let category of rowCategories) {
+					temp.push({ label: category.Name, value: category.Id });
+				}
+
 				this.setState({
 					modalTitle: "Editing Ingridient",
 					itemID: row.Id,
@@ -182,7 +240,10 @@ export class IngridientsData extends Component {
 					itemCalories: row.Calories,
 					itemProteins: row.Proteins,
 					itemCarbohydrates: row.Carbohydrates,
-					itemFats: row.Fats
+					itemFats: row.Fats,
+					itemCategories: temp,
+					selectOptions: this.getMultiSelectOptions(),
+					categoryNames: rowCategories.map(i => i.Name),
 				});
 			}
 		};
@@ -237,6 +298,25 @@ export class IngridientsData extends Component {
 			}
 		];
 
+		const expandRow = {
+			renderer: row => (
+			  	<div className="container">
+				  	<div className="row">
+						{row.IngridientCategory.map(c => 
+							<div className="mx-4 col bg-light border border-dark border-2 rounded">
+								<h6>Category: {c.Category.Name}</h6>
+								<p>Id: {c.Category.Id}</p>
+								<p>Type: {c.Category.Type}</p>
+								<p>Danger: {c.Category.Danger}</p>
+							</div>
+						)}
+					</div>
+			  	</div>
+			),
+			showExpandColumn: true,
+			onlyOneExpanding: true,
+		  };
+
 		// This part describes what will be displayed
 		return (
 			<div className="container">
@@ -252,6 +332,7 @@ export class IngridientsData extends Component {
 						// Pagination divides table into pages
 						pagination={paginationFactory()}
 						selectRow={selectRow}
+						expandRow={ expandRow }
 					/>
 
 					{/* Three buttons to perform basic operations */}
@@ -271,7 +352,6 @@ export class IngridientsData extends Component {
 						className="btn btn-dark m-2 float-end"
 						data-bs-toggle="modal"
 						data-bs-target="#exampleModal"
-						onClick={() => this.editClick()}
 						// When there is no selected item,
 						// button should be disabled
 						disabled={this.state.itemID === 0}>
@@ -345,6 +425,24 @@ export class IngridientsData extends Component {
 											className="form-control"
 											value={this.state.itemProteins}
 											onChange={this.changeProteins}
+										/>
+									</div>
+									<div className="input-group mb-3">
+										{/* <span className="input-group-text">Ingridient Category</span> */}
+										
+										<MultiSelect
+											className="input-group-text"
+											options={this.state.selectOptions}
+											value={this.state.itemCategories}
+											onChange={this.changeCategory}
+											labelledBy="Ingridient Category"
+										/>
+										<input
+											type="text"
+											className="form-control"
+											value={JSON.stringify(this.state.categoryNames)}
+											onChange={this.changeProteins}
+											disabled="true"
 										/>
 									</div>
 

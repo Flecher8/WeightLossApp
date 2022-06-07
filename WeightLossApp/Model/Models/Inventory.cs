@@ -14,6 +14,7 @@ namespace Model.Models
         public int Id { get; set; }
         public int? PremiumStatusId { get; set; }
         public int? CurrentDesignThemeId { get; set; }
+        public string ImageName { get; set; }
 
         public virtual DesignThemeData CurrentDesignTheme { get; set; }
         public virtual PremiumStatus PremiumStatus { get; set; }

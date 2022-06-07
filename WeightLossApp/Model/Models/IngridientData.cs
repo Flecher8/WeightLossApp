@@ -16,6 +16,7 @@ namespace Model.Models
         public double? Proteins { get; set; }
         public double? Carbohydrates { get; set; }
         public double? Fats { get; set; }
+        public string ImageName { get; set; }
 
         public virtual Ingridient Ingridient { get; set; }
         public virtual ICollection<IngridientCategory> IngridientCategory { get; set; }

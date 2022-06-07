@@ -168,3 +168,4 @@ C:\Games\ХНУРЕ\1\4 семестр\ПрП\Project\WeightLossApp\WeightLossAp
 C:\Games\ХНУРЕ\1\4 семестр\ПрП\Project\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.dll
 C:\Games\ХНУРЕ\1\4 семестр\ПрП\Project\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.pdb
 C:\Games\ХНУРЕ\1\4 семестр\ПрП\Project\WeightLossApp\WeightLossApp\WeightLossApp\obj\Debug\netcoreapp3.1\WeightLossApp.genruntimeconfig.cache
+D:\NURE\Assistant\WeightLossApp\WeightLossApp\bin\Debug\netcoreapp3.1\WeightLossApp.StaticWebAssets.xml
