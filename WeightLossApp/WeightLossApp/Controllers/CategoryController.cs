@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Model.Models;
 using System.Linq;
+
+
 
 namespace WeightLossApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IngridientDataController : ControllerBase
+    public class CategoryController : ControllerBase
     {
         // DataBase context
         private readonly FitnessAssistantContext _context;
 
-        public IngridientDataController(FitnessAssistantContext context)
+        public CategoryController(FitnessAssistantContext context)
         {
             _context = context;
         }
@@ -26,12 +27,8 @@ namespace WeightLossApp.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            // Loading data that should appear in responce
-            var c = _context.IngridientCategory.ToList();
-            var b = _context.Category.ToList();
-
             // Sending responce
-            return new JsonResult(_context.IngridientData);
+            return new JsonResult(_context.Category);
         }
 
         // Used to add new records to DB, input - json 
@@ -82,29 +79,6 @@ namespace WeightLossApp.Controllers
         [HttpPut]
         public JsonResult Put(IngridientData item)
         {
-
-            IEnumerable<IngridientCategory> existing = _context.IngridientCategory.Where(i => i.IngridientId == item.Id);
-
-            // Iterating through existing categories to find what to delete
-            foreach (IngridientCategory element in existing)
-            {
-                // Deleting only if element not in new list
-                if (!item.IngridientCategory.Contains(element))
-                {
-                    _context.IngridientCategory.Remove(element);
-                }
-            }
-
-            // Iterating through newList to find what to add
-            foreach (IngridientCategory element in item.IngridientCategory)
-            {
-                // Adding only if element is new
-                if (!existing.Contains(element))
-                {
-                    _context.IngridientCategory.Add(element);
-                }
-            }
-
             _context.IngridientData.Update(item);
             _context.SaveChanges();
 
