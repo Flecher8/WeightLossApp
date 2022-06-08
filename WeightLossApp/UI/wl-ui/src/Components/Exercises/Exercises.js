@@ -53,6 +53,141 @@ function Exercises() {
 		});
 	}
 
+	// Show edit modal function
+	function editModalShow(exercise) {
+		editHandleShow();
+		setExercise(exercise);
+	}
+
+	// Delete item function
+	function deleteClick(id) {
+		if (window.confirm("Are you sure?")) {
+			fetch(constants.API_URL + `Exercise/${id}`, {
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json"
+				}
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						getExercises();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
+		}
+	}
+
+	// Sort functions
+	function sortBySection() {
+		if (filterParameters.Section) {
+			exercises.sort((a, b) => a.Section.localeCompare(b.Section));
+			setFilterParameters({
+				Section: false,
+				Name: filterParameters.Name,
+				Length: filterParameters.Length,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		} else {
+			exercises.sort((b, a) => a.Section.localeCompare(b.Section));
+			setFilterParameters({
+				Section: true,
+				Name: filterParameters.Name,
+				Length: filterParameters.Length,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		}
+	}
+	function sortByName() {
+		if (filterParameters.Name) {
+			exercises.sort((a, b) => a.Name.localeCompare(b.Name));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: false,
+				Length: filterParameters.Length,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		} else {
+			exercises.sort((b, a) => a.Name.localeCompare(b.Name));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: true,
+				Length: filterParameters.Length,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		}
+	}
+	function sortByLength() {
+		if (filterParameters.Length) {
+			exercises.sort((a, b) => (a.Length > b.Length ? 1 : b.Length > a.Length ? -1 : 0));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: filterParameters.Name,
+				Length: false,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		} else {
+			exercises.sort((a, b) => (a.Length < b.Length ? 1 : b.Length < a.Length ? -1 : 0));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: filterParameters.Name,
+				Length: true,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		}
+	}
+	function sortByBurntCalories() {
+		if (filterParameters.BurntCalories) {
+			exercises.sort((a, b) => (a.BurntCalories > b.BurntCalories ? 1 : b.BurntCalories > a.BurntCalories ? -1 : 0));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: filterParameters.Name,
+				Length: filterParameters.Length,
+				BurntCalories: false,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		} else {
+			exercises.sort((a, b) => (a.BurntCalories < b.BurntCalories ? 1 : b.BurntCalories < a.BurntCalories ? -1 : 0));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: filterParameters.Name,
+				Length: filterParameters.Length,
+				BurntCalories: true,
+				NumberOfReps: filterParameters.NumberOfReps
+			});
+		}
+	}
+	function sortByNumberOfReps() {
+		if (filterParameters.NumberOfReps) {
+			exercises.sort((a, b) => (a.NumberOfReps > b.NumberOfReps ? 1 : b.NumberOfReps > a.NumberOfReps ? -1 : 0));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: filterParameters.Name,
+				Length: filterParameters.Length,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: false
+			});
+		} else {
+			exercises.sort((a, b) => (a.NumberOfReps < b.NumberOfReps ? 1 : b.NumberOfReps < a.NumberOfReps ? -1 : 0));
+			setFilterParameters({
+				Section: filterParameters.Section,
+				Name: filterParameters.Name,
+				Length: filterParameters.Length,
+				BurntCalories: filterParameters.BurntCalories,
+				NumberOfReps: true
+			});
+		}
+	}
+
 	return (
 		<div className="Exercises container">
 			{/* Create new item button */}
@@ -72,6 +207,81 @@ function Exercises() {
 					title="Add new exercise"
 				/>
 			</Modal>
+			{/* Main table */}
+			<div className="container mt-5">
+				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
+					<thead>
+						<tr>
+							<th>
+								Section
+								<Button className="btn-light" onClick={() => sortBySection()}>
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								Name
+								<Button className="btn-light" onClick={() => sortByName()}>
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								Length
+								<Button className="btn-light" onClick={() => sortByLength()}>
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								Instructions
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								ImageName
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								BurntCalories
+								<Button className="btn-light" onClick={() => sortByBurntCalories()}>
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								NumberOfReps
+								<Button className="btn-light" onClick={() => sortByNumberOfReps()}>
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{exercises.map(e => (
+							<tr key={e.ID}>
+								<td>{e.Section}</td>
+								<td>{e.Name}</td>
+								<td>{e.Length}</td>
+								<td className="overflow-auto">{e.Instructions}</td>
+								<td>
+									<img src={e.ImageName} alt="img" width="100px" />
+								</td>
+								<td>{e.BurntCalories}</td>
+								<td>{e.NumberOfReps}</td>
+								<td>
+									<Button onClick={() => editModalShow(e)} variant="outline-dark">
+										Edit
+									</Button>
+									<Button onClick={() => deleteClick(e.ID)} variant="outline-danger">
+										Delete
+									</Button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</div>
 		</div>
 	);
 }
