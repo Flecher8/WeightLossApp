@@ -15,3 +15,7 @@ WeightLossApp/WeightLossApp/obj/WeightLossApp.csproj.nuget.dgspec.json
 WeightLossApp/WeightLossApp/obj/WeightLossApp.csproj.nuget.g.props
 WeightLossApp/WeightLossApp/obj/WeightLossApp.csproj.nuget.g.targets
 *.cache
+WeightLossApp/WeightLossApp/obj/
+WeightLossApp/WeightLossApp/bin/
+WeightLossApp/.vs/
+WeightLossApp/Model/obj/
