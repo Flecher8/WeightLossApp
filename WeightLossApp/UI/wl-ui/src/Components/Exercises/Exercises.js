@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
+import ChangeExercise from "../ChangeExercise/ChangeExercise";
 
 function Exercises() {
 	// Exercises data
@@ -60,6 +61,17 @@ function Exercises() {
 					Create new exercise
 				</Button>
 			</div>
+			{/* Create new item modal */}
+			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
+				<ChangeExercise
+					state={addHandleClose}
+					exercise={exercise}
+					setExercise={setExercise}
+					getExercises={getExercises}
+					method="POST"
+					title="Add new exercise"
+				/>
+			</Modal>
 		</div>
 	);
 }
