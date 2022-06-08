@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,13 @@ namespace WeightLossApp.Controllers
     [ApiController]
     public class SectionTrainingController : ControllerBase
     {
+        // DataBase context
+        private readonly FitnessAssistantContext _context;
+
+        public SectionTrainingController(FitnessAssistantContext context)
+        {
+            _context = context;
+        }
+
     }
 }
