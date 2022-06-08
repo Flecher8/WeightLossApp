@@ -36,6 +36,32 @@ function Exercises() {
 	useEffect(() => {
 		getExercises();
 	}, []);
+
+	// Show add modal function
+	function addModalShow() {
+		addHandleShow();
+		setExercise({
+			ID: undefined,
+			Section: "",
+			Name: "",
+			Length: 0,
+			Instructions: "",
+			ImageName: "",
+			BurntCalories: 0,
+			NumberOfReps: 0
+		});
+	}
+
+	return (
+		<div className="Exercises container">
+			{/* Create new item button */}
+			<div className="container mt-5" align="right">
+				<Button onClick={() => addModalShow()} variant="outline-primary">
+					Create new exercise
+				</Button>
+			</div>
+		</div>
+	);
 }
 
 export default Exercises;
