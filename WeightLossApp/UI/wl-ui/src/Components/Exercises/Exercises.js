@@ -81,6 +81,17 @@ function Exercises() {
 		}
 	}
 
+	// Seact by name
+	function searchName(name) {
+		let arr = [];
+		for (let i = 0; i < exercises.length; i++) {
+			if (exercises[i].Name.match(name)) {
+				arr.push(exercises[i]);
+			}
+		}
+		setExercises(arr);
+	}
+
 	// Sort functions
 	function sortBySection() {
 		if (filterParameters.Section) {
@@ -195,6 +206,20 @@ function Exercises() {
 				<Button onClick={() => addModalShow()} variant="outline-primary">
 					Create new exercise
 				</Button>
+			</div>
+			{/* Search */}
+			<div className="container mt-5">
+				<InputGroup className="mb-3">
+					<FormControl
+						aria-label="Default"
+						placeholder="Search"
+						value={search}
+						onChange={e => setSearch(e.target.value)}
+						aria-describedby="inputGroup-sizing-default"
+					/>
+					<Button onClick={() => searchName(search)}>Search</Button>
+					<Button onClick={() => getExercises()}>Cancel</Button>
+				</InputGroup>
 			</div>
 			{/* Create new item modal */}
 			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
