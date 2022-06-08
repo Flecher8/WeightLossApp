@@ -22,12 +22,22 @@ namespace WeightLossApp.Controllers
         // --- HTTP Request handl methods ---
         #region HTTP
 
-        // Retrieves all data about ingridients and sends it as response
+        // Retrieves all data about exercises and sends it as response
         [HttpGet]
         public JsonResult Get()
         {
             // Sending responce
             return new JsonResult(_context.Exercise);
+        }
+
+        // Used to add new records to DB, input - json 
+        [HttpPost]
+        public JsonResult Post(Exercise item)
+        {
+            _context.Exercise.Add(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Added successfully");
         }
 
         #endregion
