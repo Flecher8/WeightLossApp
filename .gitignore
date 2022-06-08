@@ -1,0 +1,13 @@
+
+*.cache
+*.v2
+WeightLossApp/.vs/WeightLossApp/v16/.suo
+*.editorconfig
+*.props
+*.targets
+*.cache
+WeightLossApp/WeightLossApp/obj/
+WeightLossApp/WeightLossApp/bin/
+WeightLossApp/.vs/
+WeightLossApp/Model/obj/
+WeightLossApp/Model/bin/
