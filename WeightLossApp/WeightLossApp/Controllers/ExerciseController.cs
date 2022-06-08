@@ -50,6 +50,17 @@ namespace WeightLossApp.Controllers
             return new JsonResult("Updated successfully");
         }
 
+
+        // Deletes records using id 
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            Exercise item = _context.Find<Exercise>(id);
+            _context.Exercise.Remove(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Deleted successfully");
+        }
         #endregion
     }
 }
