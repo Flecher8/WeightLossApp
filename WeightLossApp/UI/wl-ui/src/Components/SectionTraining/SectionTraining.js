@@ -32,6 +32,26 @@ function SectionTraining() {
 	useEffect(() => {
 		getSectionTraining();
 	}, []);
+
+	// Show add modal function
+	function addModalShow() {
+		addHandleShow();
+		setSectionTraining({
+			Id: undefined,
+			Type: ""
+		});
+	}
+
+	return (
+		<div className="Exercises container">
+			{/* Create new item button */}
+			<div className="container mt-5" align="right">
+				<Button onClick={() => addModalShow()} variant="outline-primary">
+					Create new exercise
+				</Button>
+			</div>
+		</div>
+	);
 }
 
 export default SectionTraining;
