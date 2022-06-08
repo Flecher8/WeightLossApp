@@ -1,0 +1,16 @@
+
+*.cache
+*.v2
+WeightLossApp/.vs/WeightLossApp/v16/.suo
+*.editorconfig
+*.props
+*.targets
+WeightLossApp/WeightLossApp/obj/Debug/netcoreapp3.1/apphost.exe
+WeightLossApp/WeightLossApp/obj/Debug/netcoreapp3.1/WeightLossApp.assets.cache
+WeightLossApp/WeightLossApp/obj/Debug/netcoreapp3.1/WeightLossApp.csproj.AssemblyReference.cache
+WeightLossApp/WeightLossApp/obj/Debug/netcoreapp3.1/WeightLossApp.GeneratedMSBuildEditorConfig.editorconfig
+WeightLossApp/WeightLossApp/obj/project.assets.json
+WeightLossApp/WeightLossApp/obj/project.nuget.cache
+WeightLossApp/WeightLossApp/obj/WeightLossApp.csproj.nuget.dgspec.json
+WeightLossApp/WeightLossApp/obj/WeightLossApp.csproj.nuget.g.props
+WeightLossApp/WeightLossApp/obj/WeightLossApp.csproj.nuget.g.targets
