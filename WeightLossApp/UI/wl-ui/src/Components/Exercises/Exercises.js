@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import variables from "../../Variables";
+import constants from "../../constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
-import ChangeExercise from "../ChangeExercise/ChangeExercise";
 
-function Exercises() {}
+function Exercises() {
+	// Exercises data
+	const [exercises, setExercises] = useState([]);
+	const [exercise, setExercise] = useState();
+}
 
 export default Exercises;
