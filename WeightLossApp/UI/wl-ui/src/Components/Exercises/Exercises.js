@@ -282,6 +282,17 @@ function Exercises() {
 					</tbody>
 				</Table>
 			</div>
+			{/* Edit item modal */}
+			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
+				<ChangeExercise
+					state={editHandleClose}
+					exercise={exercise}
+					setExercise={setExercise}
+					getExercises={getExercises}
+					method="PUT"
+					title="Edit exercise"
+				/>
+			</Modal>
 		</div>
 	);
 }
