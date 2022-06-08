@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
+import ChangeSectionTraining from "../ChangeSectionTraining/ChangeSectionTraining";
 
 function SectionTraining() {
 	// SectionTraining data
 	const [sectionTraining, setSectionTraining] = useState([]);
-	const [Section, setSection] = useState();
+	const [section, setSection] = useState();
 
 	const [addShow, setAddShow] = useState(false);
 	const addHandleClose = () => setAddShow(false);
@@ -36,7 +37,7 @@ function SectionTraining() {
 	// Show add modal function
 	function addModalShow() {
 		addHandleShow();
-		setSectionTraining({
+		setSection({
 			Id: undefined,
 			Type: ""
 		});
@@ -50,6 +51,17 @@ function SectionTraining() {
 					Create new exercise
 				</Button>
 			</div>
+			{/* Create new item modal */}
+			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
+				<ChangeSectionTraining
+					state={addHandleClose}
+					section={section}
+					setSection={setSection}
+					getSectionTraining={getSectionTraining}
+					method="POST"
+					title="Add new section"
+				/>
+			</Modal>
 		</div>
 	);
 }

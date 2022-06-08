@@ -20,7 +20,7 @@ function ChangeSectionTraining(props) {
 					"Content-Type": "application/json"
 				},
 
-				body: JSON.stringify(props.sectionTraining)
+				body: JSON.stringify(props.section)
 			})
 				.then(res => res.json())
 				.then(
@@ -56,10 +56,10 @@ function ChangeSectionTraining(props) {
 								type="text"
 								maxLength="50"
 								placeholder="Type"
-								value={props.sectionTraining.Type}
+								value={props.section.Type}
 								onChange={e =>
-									props.setSectionTraining({
-										Id: props.exercise.Id,
+									props.setSection({
+										Id: props.section.Id,
 										Type: e.target.value
 									})
 								}
