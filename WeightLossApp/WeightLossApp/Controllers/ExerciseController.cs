@@ -19,6 +19,7 @@ namespace WeightLossApp.Controllers
         {
             _context = context;
         }
+
         // --- HTTP Request handl methods ---
         #region HTTP
 
