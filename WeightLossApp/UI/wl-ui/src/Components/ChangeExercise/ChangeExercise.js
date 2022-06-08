@@ -20,7 +20,7 @@ function ChangeExercise(props) {
 			.then(res => res.json())
 			.then(data => {
 				props.setExercise({
-					ID: props.exercise.Id,
+					Id: props.exercise.Id,
 					Section: props.exercise.Section,
 					Name: props.exercise.Name,
 					Length: props.exercise.Length,
@@ -68,7 +68,7 @@ function ChangeExercise(props) {
 	};
 
 	return (
-		<div className="AddExercise">
+		<div className="ChangeExercise">
 			<Form noValidate validated={validated} onSubmit={handleSubmit}>
 				<Modal.Header closeButton>
 					<Modal.Title>{props.title}</Modal.Title>
