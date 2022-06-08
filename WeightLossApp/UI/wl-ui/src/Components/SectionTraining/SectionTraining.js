@@ -27,6 +27,11 @@ function SectionTraining() {
 			.then(res => res.json())
 			.then(data => setSectionTraining(data));
 	}
+
+	// onLoad function
+	useEffect(() => {
+		getSectionTraining();
+	}, []);
 }
 
 export default SectionTraining;
