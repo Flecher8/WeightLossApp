@@ -20,7 +20,7 @@ function ChangeExercise(props) {
 			.then(res => res.json())
 			.then(data => {
 				props.setExercise({
-					ID: props.exercise.ID,
+					ID: props.exercise.Id,
 					Section: props.exercise.Section,
 					Name: props.exercise.Name,
 					Length: props.exercise.Length,
@@ -86,7 +86,7 @@ function ChangeExercise(props) {
 								value={props.exercise.Section}
 								onChange={e =>
 									props.setExercise({
-										ID: props.exercise.ID,
+										Id: props.exercise.Id,
 										Section: e.target.value,
 										Name: props.exercise.Name,
 										Length: props.exercise.Length,
@@ -111,7 +111,7 @@ function ChangeExercise(props) {
 								value={props.exercise.Name}
 								onChange={e =>
 									props.setExercise({
-										ID: props.exercise.ID,
+										Id: props.exercise.Id,
 										Section: props.exercise.Section,
 										Name: e.target.value,
 										Length: props.exercise.Length,
@@ -135,7 +135,7 @@ function ChangeExercise(props) {
 								value={props.exercise.Length}
 								onChange={e =>
 									props.setExercise({
-										ID: props.exercise.ID,
+										Id: props.exercise.Id,
 										Section: props.exercise.Section,
 										Name: props.exercise.Name,
 										Length: e.target.value,
@@ -159,7 +159,7 @@ function ChangeExercise(props) {
 								value={props.exercise.Instructions}
 								onChange={e =>
 									props.setExercise({
-										ID: props.exercise.ID,
+										Id: props.exercise.Id,
 										Section: props.exercise.Section,
 										Name: props.exercise.Name,
 										Length: props.exercise.Length,
@@ -201,7 +201,7 @@ function ChangeExercise(props) {
 								value={props.exercise.BurntCalories}
 								onChange={e =>
 									props.setExercise({
-										ID: props.exercise.ID,
+										Id: props.exercise.Id,
 										Section: props.exercise.Section,
 										Name: props.exercise.Name,
 										Length: props.exercise.Length,
@@ -225,7 +225,7 @@ function ChangeExercise(props) {
 								value={props.exercise.NumberOfReps}
 								onChange={e =>
 									props.setExercise({
-										ID: props.exercise.ID,
+										Id: props.exercise.Id,
 										Section: props.exercise.Section,
 										Name: props.exercise.Name,
 										Length: props.exercise.Length,

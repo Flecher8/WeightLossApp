@@ -42,7 +42,7 @@ function Exercises() {
 	function addModalShow() {
 		addHandleShow();
 		setExercise({
-			ID: undefined,
+			Id: undefined,
 			Section: "",
 			Name: "",
 			Length: 0,
@@ -284,7 +284,7 @@ function Exercises() {
 					</thead>
 					<tbody>
 						{exercises.map(e => (
-							<tr key={e.ID}>
+							<tr key={e.Id}>
 								<td>{e.Section}</td>
 								<td>{e.Name}</td>
 								<td>{e.Length}</td>
@@ -298,7 +298,7 @@ function Exercises() {
 									<Button onClick={() => editModalShow(e)} variant="outline-dark">
 										Edit
 									</Button>
-									<Button onClick={() => deleteClick(e.ID)} variant="outline-danger">
+									<Button onClick={() => deleteClick(e.Id)} variant="outline-danger">
 										Delete
 									</Button>
 								</td>
