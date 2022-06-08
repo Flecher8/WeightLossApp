@@ -20,6 +20,13 @@ function SectionTraining() {
 	const [filterParameters, setFilterParameters] = useState({
 		Type: false
 	});
+
+	// Get SectionTraining data
+	function getSectionTraining() {
+		fetch(constants.API_URL + "SectionTraining")
+			.then(res => res.json())
+			.then(data => setSectionTraining(data));
+	}
 }
 
 export default SectionTraining;
