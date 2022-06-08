@@ -24,6 +24,13 @@ function Exercises() {
 		BurntCalories: false,
 		NumberOfReps: false
 	});
+
+	// Get exercises data
+	function getExercises() {
+		fetch(constants.API_URL + "Exercise")
+			.then(res => res.json())
+			.then(data => setExercises(data));
+	}
 }
 
 export default Exercises;
