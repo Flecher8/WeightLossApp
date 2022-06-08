@@ -82,6 +82,21 @@ function SectionTraining() {
 		setSectionTraining(arr);
 	}
 
+	// Sort functions
+	function sortByType() {
+		if (filterParameters.Type) {
+			sectionTraining.sort((a, b) => a.Type.localeCompare(b.Type));
+			setFilterParameters({
+				Type: false
+			});
+		} else {
+			sectionTraining.sort((b, a) => a.Type.localeCompare(b.Type));
+			setFilterParameters({
+				Type: true
+			});
+		}
+	}
+
 	return (
 		<div className="Exercises container">
 			{/* Create new item button */}
@@ -122,7 +137,7 @@ function SectionTraining() {
 						<tr>
 							<th>
 								Type
-								<Button className="btn-light">
+								<Button className="btn-light" onClick={() => sortByType()}>
 									<i className="fa-solid fa-arrows-up-down"></i>
 								</Button>
 							</th>
