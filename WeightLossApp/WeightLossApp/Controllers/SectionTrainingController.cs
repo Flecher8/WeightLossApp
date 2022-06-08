@@ -19,6 +19,18 @@ namespace WeightLossApp.Controllers
         {
             _context = context;
         }
+        // --- HTTP Request handl methods ---
+        #region HTTP
 
+        // Retrieves all data about exercises and sends it as response
+        [HttpGet]
+        public JsonResult Get()
+        {
+            // Sending responce
+            return new JsonResult(_context.SectionTraining);
+        }
+
+        
+        #endregion
     }
 }
