@@ -71,6 +71,17 @@ function SectionTraining() {
 		}
 	}
 
+	// Seact by name
+	function searchType(type) {
+		let arr = [];
+		for (let i = 0; i < sectionTraining.length; i++) {
+			if (sectionTraining[i].Type.match(type)) {
+				arr.push(sectionTraining[i]);
+			}
+		}
+		setSectionTraining(arr);
+	}
+
 	return (
 		<div className="Exercises container">
 			{/* Create new item button */}
@@ -78,6 +89,20 @@ function SectionTraining() {
 				<Button onClick={() => addModalShow()} variant="outline-primary">
 					Create new exercise
 				</Button>
+			</div>
+			{/* Search */}
+			<div className="container mt-5">
+				<InputGroup className="mb-3">
+					<FormControl
+						aria-label="Default"
+						placeholder="Search"
+						value={search}
+						onChange={e => setSearch(e.target.value)}
+						aria-describedby="inputGroup-sizing-default"
+					/>
+					<Button onClick={() => searchType(search)}>Search</Button>
+					<Button onClick={() => getSectionTraining()}>Cancel</Button>
+				</InputGroup>
 			</div>
 			{/* Create new item modal */}
 			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
