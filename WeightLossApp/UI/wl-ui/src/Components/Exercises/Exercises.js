@@ -31,6 +31,11 @@ function Exercises() {
 			.then(res => res.json())
 			.then(data => setExercises(data));
 	}
+
+	// onLoad function
+	useEffect(() => {
+		getExercises();
+	}, []);
 }
 
 export default Exercises;
