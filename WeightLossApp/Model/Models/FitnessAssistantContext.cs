@@ -286,8 +286,7 @@ namespace Model.Models
             modelBuilder.Entity<Medicine>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -435,8 +434,7 @@ namespace Model.Models
             modelBuilder.Entity<SectionTraining>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Type)
                     .IsRequired()
@@ -446,8 +444,7 @@ namespace Model.Models
             modelBuilder.Entity<SettingData>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -458,8 +455,7 @@ namespace Model.Models
             modelBuilder.Entity<Training>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Complexity)
                     .IsRequired()
