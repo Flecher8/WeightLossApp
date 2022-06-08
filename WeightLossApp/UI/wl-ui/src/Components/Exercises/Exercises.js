@@ -15,6 +15,15 @@ function Exercises() {
 	const [editShow, setEditShow] = useState(false);
 	const editHandleClose = () => setEditShow(false);
 	const editHandleShow = () => setEditShow(true);
+
+	const [search, setSearch] = useState("");
+	const [filterParameters, setFilterParameters] = useState({
+		Section: false,
+		Name: false,
+		Length: false,
+		BurntCalories: false,
+		NumberOfReps: false
+	});
 }
 
 export default Exercises;
