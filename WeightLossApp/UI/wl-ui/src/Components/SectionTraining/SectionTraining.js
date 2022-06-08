@@ -121,6 +121,17 @@ function SectionTraining() {
 					</tbody>
 				</Table>
 			</div>
+			{/* Edit item modal */}
+			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
+				<ChangeSectionTraining
+					state={editHandleClose}
+					section={section}
+					setSection={setSection}
+					getSectionTraining={getSectionTraining}
+					method="PUT"
+					title="Edit section"
+				/>
+			</Modal>
 		</div>
 	);
 }
