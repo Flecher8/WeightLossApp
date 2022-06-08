@@ -43,6 +43,34 @@ function SectionTraining() {
 		});
 	}
 
+	// Show edit modal function
+	function editModalShow(sect) {
+		editHandleShow();
+		setSection(sect);
+	}
+
+	// Delete item function
+	function deleteClick(id) {
+		if (window.confirm("Are you sure?")) {
+			fetch(constants.API_URL + `SectionTraining/${id}`, {
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json"
+				}
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						getSectionTraining();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
+		}
+	}
+
 	return (
 		<div className="Exercises container">
 			{/* Create new item button */}
@@ -62,6 +90,37 @@ function SectionTraining() {
 					title="Add new section"
 				/>
 			</Modal>
+			{/* Main table */}
+			<div className="container mt-5">
+				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
+					<thead>
+						<tr>
+							<th>
+								Type
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{sectionTraining.map(e => (
+							<tr key={e.Id}>
+								<td>{e.Type}</td>
+								<td>
+									<Button onClick={() => editModalShow(e)} variant="outline-dark">
+										Edit
+									</Button>
+									<Button onClick={() => deleteClick(e.Id)} variant="outline-danger">
+										Delete
+									</Button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</div>
 		</div>
 	);
 }
