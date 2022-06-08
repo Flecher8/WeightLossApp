@@ -15,6 +15,11 @@ function SectionTraining() {
 	const [editShow, setEditShow] = useState(false);
 	const editHandleClose = () => setEditShow(false);
 	const editHandleShow = () => setEditShow(true);
+
+	const [search, setSearch] = useState("");
+	const [filterParameters, setFilterParameters] = useState({
+		Type: false
+	});
 }
 
 export default SectionTraining;
