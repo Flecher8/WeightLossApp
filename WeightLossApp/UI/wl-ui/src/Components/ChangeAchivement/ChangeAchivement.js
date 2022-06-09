@@ -121,7 +121,7 @@ function ChangeAchivement(props) {
 							<Form.Label className="ms-1">RewardExperience</Form.Label>
 							<Form.Control
 								required
-								pattern="^[1-9]+$"
+								pattern="^[1-9][0-9]+$"
 								type="text"
 								maxLength="150"
 								placeholder="RewardExperience"

@@ -150,6 +150,17 @@ function AchivementData() {
 					</tbody>
 				</Table>
 			</div>
+			{/* Edit item modal */}
+			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
+				<ChangeAchivement
+					state={editHandleClose}
+					achivement={achivement}
+					setAchivement={setAchivement}
+					getAchivementData={getAchivementData}
+					method="PUT"
+					title="Edit achivement"
+				/>
+			</Modal>
 		</div>
 	);
 }
