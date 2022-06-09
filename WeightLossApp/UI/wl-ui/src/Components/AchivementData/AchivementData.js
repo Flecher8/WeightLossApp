@@ -35,6 +35,29 @@ function AchivementData() {
 	useEffect(() => {
 		getAchivementData();
 	}, []);
+
+	// Show add modal function
+	function addModalShow() {
+		addHandleShow();
+		setAchivementData({
+			Id: undefined,
+			Name: "",
+			Description: "",
+			RewardExperience: 0,
+			ImgName: ""
+		});
+	}
+
+	return (
+		<div className="AchivementData">
+			{/* Create new item button */}
+			<div className="container mt-5" align="right">
+				<Button onClick={() => addModalShow()} variant="outline-primary">
+					Create new achivement
+				</Button>
+			</div>
+		</div>
+	);
 }
 
 export default AchivementData;

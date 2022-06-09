@@ -6,6 +6,7 @@ import { IngridientsData } from "./Components/IngridientsData/IngridientsData";
 import Header from "./Components/Header/Header";
 import Exercises from "./Components/Exercises/Exercises";
 import SectionTraining from "./Components/SectionTraining/SectionTraining";
+import AchivementData from "./Components/AchivementData/AchivementData";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Entry point of application, adds App component to the index.html file
@@ -19,6 +20,7 @@ root.render(
 				<Route path="/IngridientsData" element={<IngridientsData />} />
 				<Route path="/Exercises" element={<Exercises />} />
 				<Route path="/SectionTraining" element={<SectionTraining />} />
+				<Route path="/AchivementData" element={<AchivementData />} />
 				{/* Default Router */}
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
