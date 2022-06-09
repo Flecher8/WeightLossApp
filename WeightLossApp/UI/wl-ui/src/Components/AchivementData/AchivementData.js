@@ -49,6 +49,34 @@ function AchivementData() {
 		});
 	}
 
+	// Show edit modal function
+	function editModalShow(achivement) {
+		editHandleShow();
+		setAchivement(achivement);
+	}
+
+	// Delete item function
+	function deleteClick(id) {
+		if (window.confirm("Are you sure?")) {
+			fetch(constants.API_URL + `AchivementData/${id}`, {
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json"
+				}
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						getAchivementData();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
+		}
+	}
+
 	return (
 		<div className="AchivementData">
 			{/* Create new item button */}
@@ -68,6 +96,60 @@ function AchivementData() {
 					title="Add new achivement"
 				/>
 			</Modal>
+			{/* Main table */}
+			<div className="container mt-5">
+				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
+					<thead>
+						<tr>
+							<th>
+								Name
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								Description
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								RewardExperience
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								ImgName
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{achivementData.map(e => (
+							<tr key={e.Id}>
+								<td>{e.Name}</td>
+								<td className="overflow-auto">{e.Description}</td>
+								<td>{e.RewardExperience}</td>
+								<td>
+									<img src={e.ImgName} alt="img" width="100px" />
+								</td>
+								<td>
+									<Button onClick={() => editModalShow(e)} variant="outline-dark">
+										Edit
+									</Button>
+									<Button onClick={() => deleteClick(e.Id)} variant="outline-danger">
+										Delete
+									</Button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</div>
 		</div>
 	);
 }
