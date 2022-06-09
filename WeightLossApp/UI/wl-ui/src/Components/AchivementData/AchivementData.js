@@ -30,6 +30,11 @@ function AchivementData() {
 			.then(res => res.json())
 			.then(data => setAchivementData(data));
 	}
+
+	// onLoad function
+	useEffect(() => {
+		getAchivementData();
+	}, []);
 }
 
 export default AchivementData;
