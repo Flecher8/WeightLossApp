@@ -19,6 +19,46 @@ namespace WeightLossApp.Controllers
         {
             _context = context;
         }
+        // --- HTTP Request handl methods ---
+        #region HTTP
 
+        // Retrieves all data about training and sends it as response
+        [HttpGet]
+        public JsonResult Get()
+        {
+            // Load training data
+            LoadTrainingData();
+
+            // Sending responce
+            return new JsonResult(_context.Training);
+        }
+        #endregion
+        private void LoadTrainingData()
+        {
+            LoadTrainingExerciseData();
+            LoadSectionTrainingData();
+        }
+        private void LoadTrainingExerciseData()
+        {
+            foreach (Training training in _context.Training)
+            {
+                List<TrainingExercise> res = _context.TrainingExercise.Where(trE => trE.TrainingId == training.Id).ToList();
+                foreach(var x in res)
+                {
+                    training.TrainingExercise.Add(x);
+                }
+            }
+        }
+        private void LoadSectionTrainingData()
+        {
+            foreach(Training training in _context.Training)
+            {
+                if(training.SectionTrainingId != null)
+                {
+                    List<SectionTraining> sectionTrainings = _context.SectionTraining.Where(x => x.Id == training.SectionTrainingId).ToList();
+                    training.SectionTraining = sectionTrainings.ElementAt(0);
+                }
+            }
+        }
     }
 }
