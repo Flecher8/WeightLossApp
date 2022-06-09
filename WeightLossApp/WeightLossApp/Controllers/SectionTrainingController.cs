@@ -54,6 +54,9 @@ namespace WeightLossApp.Controllers
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
+            // Cascade delete in other tables or set null
+            CascadeDelete(id);
+
             SectionTraining item = _context.Find<SectionTraining>(id);
             _context.SectionTraining.Remove(item);
             _context.SaveChanges();
@@ -61,5 +64,22 @@ namespace WeightLossApp.Controllers
             return new JsonResult("Deleted successfully");
         }
         #endregion
+
+        private void CascadeDelete(int id)
+        {
+            CascadeDeleteTraining(id);
+        }
+        private void CascadeDeleteTraining(int id)
+        {
+            foreach (Training training in _context.Training)
+            {
+                if (training.SectionTrainingId == id)
+                {
+                    training.SectionTrainingId = null;
+                    training.SectionTraining = null;
+                }
+            }
+            _context.SaveChanges();
+        }
     }
 }
