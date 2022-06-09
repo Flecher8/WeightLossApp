@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
-import ChangeSectionTraining from "../ChangeSectionTraining/ChangeSectionTraining";
+import ChangeSection from "../ChangeSection/ChangeSection";
 
 function SectionTraining() {
 	// SectionTraining data
@@ -121,7 +121,7 @@ function SectionTraining() {
 			</div>
 			{/* Create new item modal */}
 			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
-				<ChangeSectionTraining
+				<ChangeSection
 					state={addHandleClose}
 					section={section}
 					setSection={setSection}
@@ -163,7 +163,7 @@ function SectionTraining() {
 			</div>
 			{/* Edit item modal */}
 			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
-				<ChangeSectionTraining
+				<ChangeSection
 					state={editHandleClose}
 					section={section}
 					setSection={setSection}
