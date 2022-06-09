@@ -10,12 +10,12 @@ namespace WeightLossApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AchivementDataController : ControllerBase
+    public class AchievementDataController : ControllerBase
     {
         // DataBase context
         private readonly FitnessAssistantContext _context;
 
-        public AchivementDataController(FitnessAssistantContext context)
+        public AchievementDataController(FitnessAssistantContext context)
         {
             _context = context;
         }

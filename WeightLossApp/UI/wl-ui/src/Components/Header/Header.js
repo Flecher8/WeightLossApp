@@ -24,7 +24,7 @@ function Header() {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="nav-link" to={"/AchivementData"}>
+						<Link className="nav-link" to={"/AchievementData"}>
 							Features
 						</Link>
 					</li>

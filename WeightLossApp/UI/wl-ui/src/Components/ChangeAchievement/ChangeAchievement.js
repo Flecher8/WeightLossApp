@@ -2,7 +2,7 @@ import { useState } from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 
-function ChangeAchivement(props) {
+function ChangeAchievement(props) {
 	const [validated, setValidated] = useState(false);
 
 	// Save img in imgur and write img to object
@@ -19,12 +19,11 @@ function ChangeAchivement(props) {
 		})
 			.then(res => res.json())
 			.then(data => {
-				//console.log(data.data.link);
-				props.setAchivement({
-					Id: props.achivement.Id,
-					Name: props.achivement.Name,
-					Description: props.achivement.Description,
-					RewardExperience: props.achivement.RewardExperience,
+				props.setAchievement({
+					Id: props.achievement.Id,
+					Name: props.achievement.Name,
+					Description: props.achievement.Description,
+					RewardExperience: props.achievement.RewardExperience,
 					ImgName: data.data.link
 				});
 			});
@@ -38,20 +37,20 @@ function ChangeAchivement(props) {
 			event.stopPropagation();
 		} else {
 			event.preventDefault();
-			fetch(constants.API_URL + "AchivementData", {
+			fetch(constants.API_URL + "AchievementData", {
 				method: props.method,
 				headers: {
 					Accept: "application/json",
 					"Content-Type": "application/json"
 				},
 
-				body: JSON.stringify(props.achivement)
+				body: JSON.stringify(props.achievement)
 			})
 				.then(res => res.json())
 				.then(
 					result => {
 						// Update main table
-						props.getAchivementData();
+						props.getAchievementData();
 
 						// Close
 						props.state();
@@ -66,7 +65,7 @@ function ChangeAchivement(props) {
 	};
 
 	return (
-		<div className="ChangeAchivement">
+		<div className="ChangeAchievement">
 			<Form noValidate validated={validated} onSubmit={handleSubmit}>
 				<Modal.Header closeButton>
 					<Modal.Title>{props.title}</Modal.Title>
@@ -81,14 +80,14 @@ function ChangeAchivement(props) {
 								type="text"
 								maxLength="50"
 								placeholder="Name"
-								value={props.achivement.Name}
+								value={props.achievement.Name}
 								onChange={e =>
-									props.setAchivement({
-										Id: props.achivement.Id,
+									props.setAchievement({
+										Id: props.achievement.Id,
 										Name: e.target.value,
-										Description: props.achivement.Description,
-										RewardExperience: props.achivement.RewardExperience,
-										ImgName: props.achivement.ImgName
+										Description: props.achievement.Description,
+										RewardExperience: props.achievement.RewardExperience,
+										ImgName: props.achievement.ImgName
 									})
 								}
 							/>
@@ -103,14 +102,14 @@ function ChangeAchivement(props) {
 								type="text"
 								maxLength="150"
 								placeholder="Description"
-								value={props.achivement.Description}
+								value={props.achievement.Description}
 								onChange={e =>
-									props.setAchivement({
-										Id: props.achivement.Id,
-										Name: props.achivement.Name,
+									props.setAchievement({
+										Id: props.achievement.Id,
+										Name: props.achievement.Name,
 										Description: e.target.value,
-										RewardExperience: props.achivement.RewardExperience,
-										ImgName: props.achivement.ImgName
+										RewardExperience: props.achievement.RewardExperience,
+										ImgName: props.achievement.ImgName
 									})
 								}
 							/>
@@ -125,14 +124,14 @@ function ChangeAchivement(props) {
 								type="text"
 								maxLength="150"
 								placeholder="RewardExperience"
-								value={props.achivement.RewardExperience}
+								value={props.achievement.RewardExperience}
 								onChange={e =>
-									props.setAchivement({
-										Id: props.achivement.Id,
-										Name: props.achivement.Name,
-										Description: props.achivement.Description,
+									props.setAchievement({
+										Id: props.achievement.Id,
+										Name: props.achievement.Name,
+										Description: props.achievement.Description,
 										RewardExperience: e.target.value,
-										ImgName: props.achivement.ImgName
+										ImgName: props.achievement.ImgName
 									})
 								}
 							/>
@@ -143,7 +142,7 @@ function ChangeAchivement(props) {
 						{props.method === "PUT" && (
 							<div className="container border mb-3">
 								<p>Image now</p>
-								<img src={props.achivement.ImgName} alt="unloaded img" width="150px" />
+								<img src={props.achievement.ImgName} alt="unloaded img" width="150px" />
 							</div>
 						)}
 						<Form.Group as={Col} controlId="validationCustom04">
@@ -162,4 +161,4 @@ function ChangeAchivement(props) {
 	);
 }
 
-export default ChangeAchivement;
+export default ChangeAchievement;
