@@ -88,6 +88,50 @@ function AchivementData() {
 		setAchivementData(arr);
 	}
 
+	// Sort functions
+	function sortByName() {
+		if (filterParameters.Name) {
+			achivementData.sort((a, b) => a.Name.localeCompare(b.Name));
+			setFilterParameters({
+				Name: false,
+				Description: filterParameters.Description,
+				RewardExperience: filterParameters.RewardExperience,
+				ImgName: filterParameters.ImgName
+			});
+		} else {
+			achivementData.sort((b, a) => a.Name.localeCompare(b.Name));
+			setFilterParameters({
+				Name: true,
+				Description: filterParameters.Description,
+				RewardExperience: filterParameters.RewardExperience,
+				ImgName: filterParameters.ImgName
+			});
+		}
+	}
+	function sortByRewardExperience() {
+		if (filterParameters.RewardExperience) {
+			achivementData.sort((a, b) =>
+				a.RewardExperience > b.RewardExperience ? 1 : b.RewardExperience > a.RewardExperience ? -1 : 0
+			);
+			setFilterParameters({
+				Name: filterParameters.Name,
+				Description: filterParameters.Description,
+				RewardExperience: false,
+				ImgName: filterParameters.ImgName
+			});
+		} else {
+			achivementData.sort((a, b) =>
+				a.RewardExperience < b.RewardExperience ? 1 : b.RewardExperience < a.RewardExperience ? -1 : 0
+			);
+			setFilterParameters({
+				Name: filterParameters.Name,
+				Description: filterParameters.Description,
+				RewardExperience: true,
+				ImgName: filterParameters.ImgName
+			});
+		}
+	}
+
 	return (
 		<div className="AchivementData">
 			{/* Create new item button */}
@@ -128,7 +172,7 @@ function AchivementData() {
 						<tr>
 							<th>
 								Name
-								<Button className="btn-light">
+								<Button className="btn-light" onClick={() => sortByName()}>
 									<i className="fa-solid fa-arrows-up-down"></i>
 								</Button>
 							</th>
@@ -140,7 +184,7 @@ function AchivementData() {
 							</th>
 							<th>
 								RewardExperience
-								<Button className="btn-light">
+								<Button className="btn-light" onClick={() => sortByRewardExperience()}>
 									<i className="fa-solid fa-arrows-up-down"></i>
 								</Button>
 							</th>
