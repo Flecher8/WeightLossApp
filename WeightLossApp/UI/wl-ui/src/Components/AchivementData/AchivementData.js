@@ -23,6 +23,13 @@ function AchivementData() {
 		RewardExperience: false,
 		ImgName: false
 	});
+
+	// Get achivement data
+	function getAchivementData() {
+		fetch(constants.API_URL + "AchivementData")
+			.then(res => res.json())
+			.then(data => setAchivementData(data));
+	}
 }
 
 export default AchivementData;
