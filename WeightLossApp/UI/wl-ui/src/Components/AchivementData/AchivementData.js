@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
+import ChangeAchivement from "../ChangeAchivement/ChangeAchivement";
 
 function AchivementData() {
 	// AchivementData data
@@ -39,7 +40,7 @@ function AchivementData() {
 	// Show add modal function
 	function addModalShow() {
 		addHandleShow();
-		setAchivementData({
+		setAchivement({
 			Id: undefined,
 			Name: "",
 			Description: "",
@@ -56,6 +57,17 @@ function AchivementData() {
 					Create new achivement
 				</Button>
 			</div>
+			{/* Create new item modal */}
+			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
+				<ChangeAchivement
+					state={addHandleClose}
+					achivement={achivement}
+					setAchivement={setAchivement}
+					getAchivementData={getAchivementData}
+					method="POST"
+					title="Add new achivement"
+				/>
+			</Modal>
 		</div>
 	);
 }

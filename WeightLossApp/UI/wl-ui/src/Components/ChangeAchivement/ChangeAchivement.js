@@ -19,6 +19,7 @@ function ChangeAchivement(props) {
 		})
 			.then(res => res.json())
 			.then(data => {
+				//console.log(data.data.link);
 				props.setAchivement({
 					Id: props.achivement.Id,
 					Name: props.achivement.Name,
@@ -84,7 +85,7 @@ function ChangeAchivement(props) {
 								onChange={e =>
 									props.setAchivement({
 										Id: props.achivement.Id,
-										Name: props.achivement.Name,
+										Name: e.target.value,
 										Description: props.achivement.Description,
 										RewardExperience: props.achivement.RewardExperience,
 										ImgName: props.achivement.ImgName
@@ -107,7 +108,7 @@ function ChangeAchivement(props) {
 									props.setAchivement({
 										Id: props.achivement.Id,
 										Name: props.achivement.Name,
-										Description: props.achivement.Description,
+										Description: e.target.value,
 										RewardExperience: props.achivement.RewardExperience,
 										ImgName: props.achivement.ImgName
 									})
@@ -120,9 +121,9 @@ function ChangeAchivement(props) {
 							<Form.Label className="ms-1">RewardExperience</Form.Label>
 							<Form.Control
 								required
-								pattern="^[A-ZА-ЯЁ][a-zа-яё]*$"
+								pattern="^[1-9]+$"
 								type="text"
-								maxLength="15"
+								maxLength="150"
 								placeholder="RewardExperience"
 								value={props.achivement.RewardExperience}
 								onChange={e =>
@@ -130,7 +131,7 @@ function ChangeAchivement(props) {
 										Id: props.achivement.Id,
 										Name: props.achivement.Name,
 										Description: props.achivement.Description,
-										RewardExperience: props.achivement.RewardExperience,
+										RewardExperience: e.target.value,
 										ImgName: props.achivement.ImgName
 									})
 								}
@@ -147,12 +148,7 @@ function ChangeAchivement(props) {
 						)}
 						<Form.Group as={Col} controlId="validationCustom04">
 							<Form.Label className="ms-1">Image</Form.Label>
-							<Form.Control
-								type="file"
-								placeholder="ImgName"
-								value={props.achivement.ImgName}
-								onChange={e => saveImg(e)}
-							/>
+							<Form.Control type="file" placeholder="ImgName" onChange={e => saveImg(e)} />
 						</Form.Group>
 					</Row>
 				</Modal.Body>
