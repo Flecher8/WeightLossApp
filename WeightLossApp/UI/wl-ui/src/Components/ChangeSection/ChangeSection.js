@@ -2,7 +2,7 @@ import { useState } from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 
-function ChangeSectionTraining(props) {
+function ChangeSection(props) {
 	const [validated, setValidated] = useState(false);
 
 	// Fetch function
@@ -41,7 +41,7 @@ function ChangeSectionTraining(props) {
 	};
 
 	return (
-		<div className="ChangeSectionTraining">
+		<div className="ChangeSection">
 			<Form noValidate validated={validated} onSubmit={handleSubmit}>
 				<Modal.Header closeButton>
 					<Modal.Title>{props.title}</Modal.Title>
@@ -77,4 +77,4 @@ function ChangeSectionTraining(props) {
 	);
 }
 
-export default ChangeSectionTraining;
+export default ChangeSection;
