@@ -77,6 +77,17 @@ function AchivementData() {
 		}
 	}
 
+	// Seact by name
+	function searchName(name) {
+		let arr = [];
+		for (let i = 0; i < achivementData.length; i++) {
+			if (achivementData[i].Name.match(name)) {
+				arr.push(achivementData[i]);
+			}
+		}
+		setAchivementData(arr);
+	}
+
 	return (
 		<div className="AchivementData">
 			{/* Create new item button */}
@@ -84,6 +95,20 @@ function AchivementData() {
 				<Button onClick={() => addModalShow()} variant="outline-primary">
 					Create new achivement
 				</Button>
+			</div>
+			{/* Search */}
+			<div className="container mt-5">
+				<InputGroup className="mb-3">
+					<FormControl
+						aria-label="Default"
+						placeholder="Search"
+						value={search}
+						onChange={e => setSearch(e.target.value)}
+						aria-describedby="inputGroup-sizing-default"
+					/>
+					<Button onClick={() => searchName(search)}>Search</Button>
+					<Button onClick={() => getAchivementData()}>Cancel</Button>
+				</InputGroup>
 			</div>
 			{/* Create new item modal */}
 			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
