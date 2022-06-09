@@ -56,6 +56,8 @@ namespace WeightLossApp.Controllers
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
+            CascadeDelete(id);
+
             Exercise item = _context.Find<Exercise>(id);
             _context.Exercise.Remove(item);
             _context.SaveChanges();
@@ -63,5 +65,25 @@ namespace WeightLossApp.Controllers
             return new JsonResult("Deleted successfully");
         }
         #endregion
+
+        private void CascadeDelete(int id)
+        {
+            CascadeDeleteTrainingExercise(id);
+        }
+        
+        private void CascadeDeleteTrainingExercise(int id)
+        {
+            // If in TrainingExercise table column Exercise_ID equals id, delete this row 
+            foreach (TrainingExercise trainingExercise in _context.TrainingExercise)
+            {
+                if(trainingExercise.ExerciseId == id)
+                {
+                    _context.TrainingExercise.Remove(trainingExercise);
+                }
+            }
+
+            // Save data to database
+            _context.SaveChanges();
+        }
     }
 }
