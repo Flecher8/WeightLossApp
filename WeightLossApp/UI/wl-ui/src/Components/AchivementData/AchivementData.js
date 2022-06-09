@@ -7,6 +7,14 @@ function AchivementData() {
 	// AchivementData data
 	const [achivementData, setAchivementData] = useState([]);
 	const [achivement, setAchivement] = useState();
+
+	const [addShow, setAddShow] = useState(false);
+	const addHandleClose = () => setAddShow(false);
+	const addHandleShow = () => setAddShow(true);
+
+	const [editShow, setEditShow] = useState(false);
+	const editHandleClose = () => setEditShow(false);
+	const editHandleShow = () => setEditShow(true);
 }
 
 export default AchivementData;
