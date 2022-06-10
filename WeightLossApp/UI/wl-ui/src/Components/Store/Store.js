@@ -33,4 +33,31 @@ export class StoreData extends Component {
 			themeSecondaryColor: "",
 		};
 	}
+
+	// Called on Add Button click
+	addPremiumClick() {
+		// Clearing item data and saving current state
+		this.setState({
+			modalTitle: "Adding new premium subscription",
+
+			premiumID: 0,
+			premiumDays: 0,
+			premiumPrice: 0.0,
+
+		});
+	}
+
+	// Called on Add Button click
+	addThemeClick() {
+		// Clearing item data and saving current state
+		this.setState({
+			modalTitle: "Adding new design theme",
+
+			themeID: 0,
+			themeImage: "",
+			themeBaseColor: "",
+			themeAccentColor: "",
+			themeSecondaryColor: "",
+		});
+	}
 }
