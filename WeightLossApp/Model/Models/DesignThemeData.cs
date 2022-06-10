@@ -12,10 +12,10 @@ namespace Model.Models
         }
 
         public int Id { get; set; }
-        public byte[] IconImage { get; set; }
         public string BaseColor { get; set; }
         public string AccentColor { get; set; }
         public string SecondaryColor { get; set; }
+        public string IconImage { get; set; }
 
         public virtual ICollection<AvailableDesignTheme> AvailableDesignTheme { get; set; }
         public virtual ICollection<Inventory> Inventory { get; set; }

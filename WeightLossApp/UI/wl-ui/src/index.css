@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.input-group-text {
+  width: 30%;
+  text-align: left;
+}
+
+.dropdown-container {
+  width: 100%;
+}
