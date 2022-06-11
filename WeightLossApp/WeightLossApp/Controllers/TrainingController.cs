@@ -83,7 +83,17 @@ namespace WeightLossApp.Controllers
 
             return new JsonResult("Deleted successfully");
         }
+
+        // Deletes records using id 
+        [HttpDelete("TrainingExercise/{id}")]
+        public JsonResult DeleteTrainingExerciseByTrainingID(int id)
+        {
+            DeleteTrainingExercise(id);
+            _context.SaveChanges();
+            return new JsonResult("Deleted successfully");
+        }
         #endregion
+
         private void LoadTrainingData()
         {
             LoadTrainingExerciseData();
@@ -113,9 +123,9 @@ namespace WeightLossApp.Controllers
         }
         private void CascadeDelete(int id)
         {
-            CascadeDeleteTrainingExercise(id);
+            DeleteTrainingExercise(id);
         }
-        private void CascadeDeleteTrainingExercise(int id)
+        private void DeleteTrainingExercise(int id)
         {
             // If in TrainingExercise table column Training_ID equals id, delete this row 
             foreach (TrainingExercise trainingExercise in _context.TrainingExercise)
