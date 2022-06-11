@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { constants } from "../../Constants";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter, numberFilter } from "react-bootstrap-table2-filter";
-import paginationFactory from "react-bootstrap-table2-paginator";
 import { MultiSelect } from "react-multi-select-component";
+import { Button, Table} from "react-bootstrap";
 
 // Component for IngridientData page
 export class IngridientsData extends Component {
@@ -53,7 +51,7 @@ export class IngridientsData extends Component {
 	}
 
 	// Called when create button is clicked
-	createClick() {
+	createClick(ingridientsData) {
 
 		let ingridientCategories = [];
 
@@ -89,6 +87,29 @@ export class IngridientsData extends Component {
 					alert("Failed");
 				}
 			);
+	}
+
+	editClick(row) {
+		let rowCategories = this.state.ingridientsData.find(i => i.Id === row.Id)
+			.IngridientCategory.map(i => i.Category);
+		let temp = []
+
+		for(let category of rowCategories) {
+			temp.push({ label: category.Name, value: category.Id });
+		}
+
+		this.setState({
+			modalTitle: "Editing Ingridient",
+			itemID: row.Id,
+			itemName: row.Name,
+			itemCalories: row.Calories,
+			itemProteins: row.Proteins,
+			itemCarbohydrates: row.Carbohydrates,
+			itemFats: row.Fats,
+			itemCategories: temp,
+			selectOptions: this.getMultiSelectOptions(),
+			categoryNames: rowCategories.map(i => i.Name),
+		});
 	}
 
 	// Called when update button is clicked
@@ -219,121 +240,85 @@ export class IngridientsData extends Component {
 	// Return statement of this function describes what
 	// will be displayed in place where this component is used
 	render() {
-		// Object that describes selection of rows
-		const selectRow = {
-			mode: "radio",
-			clickToSelect: true,
-			style: { backgroundColor: "#f6f6f6" },
-			onSelect: (row, isSelect, rowIndex, e) => {
-				let rowCategories = this.state.ingridientsData.find(i => i.Id == row.Id)
-					.IngridientCategory.map(i => i.Category);
-				let temp = []
-
-				for(let category of rowCategories) {
-					temp.push({ label: category.Name, value: category.Id });
-				}
-
-				this.setState({
-					modalTitle: "Editing Ingridient",
-					itemID: row.Id,
-					itemName: row.Name,
-					itemCalories: row.Calories,
-					itemProteins: row.Proteins,
-					itemCarbohydrates: row.Carbohydrates,
-					itemFats: row.Fats,
-					itemCategories: temp,
-					selectOptions: this.getMultiSelectOptions(),
-					categoryNames: rowCategories.map(i => i.Name),
-				});
-			}
-		};
-
-		// Array of objects, that describes
-		// columns of the datatable
-		const columns = [
-			{
-				dataField: "Id",
-				sort: true,
-				text: "Ingridient ID",
-				headerAlign: "left"
-			},
-			{
-				// Data field name
-				dataField: "Name",
-				// Header
-				text: "Name",
-				// Sortable
-				sort: true,
-				// Filtrable, and which Filter uses
-				filter: textFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Calories",
-				text: "Calories",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Proteins",
-				text: "Proteins",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Carbohydrates",
-				text: "Carbohydrates",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Fats",
-				text: "Fats",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			}
-		];
-
-		const expandRow = {
-			renderer: row => (
-			  	<div className="container">
-				  	<div className="row">
-						{row.IngridientCategory.map(c => 
-							<div className="mx-4 col bg-light border border-dark border-2 rounded">
-								<h6>Category: {c.Category.Name}</h6>
-								<p>Id: {c.Category.Id}</p>
-								<p>Type: {c.Category.Type}</p>
-								<p>Danger: {c.Category.Danger}</p>
-							</div>
-						)}
-					</div>
-			  	</div>
-			),
-			showExpandColumn: true,
-			onlyOneExpanding: true,
-		  };
-
 		// This part describes what will be displayed
 		return (
 			<div className="container">
 				<div style={{ width: 80 + "vw" }}>
 					<h3 className="m-5">This is Ingridients page</h3>
 
-					<BootstrapTable
-						keyField="Id"
-						data={this.state.ingridientsData}
-						columns={columns}
-						filter={filterFactory()}
-						filterPosition="top"
-						// Pagination divides table into pages
-						pagination={paginationFactory()}
-						selectRow={selectRow}
-						expandRow={ expandRow }
-					/>
+					{/* Main table */}
+					<div className="container mt-5">
+						<Table 
+							className="table table-striped auto__table text-center" 
+							striped bordered hover size="lg">
+							<thead>
+								<tr>
+									<th>
+										ID
+										<Button className="btn-light">
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>
+										Name
+										<Button className="btn-light">
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>
+										Calories
+										<Button className="btn-light">
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>
+										Proteins
+										<Button className="btn-light">
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>
+										Fats
+										<Button className="btn-light">
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>
+										Carbohydrates
+										<Button className="btn-light">
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>Options</th>
+								</tr>
+							</thead>
+							<tbody>
+								{this.state.ingridientsData.map(e => (
+									<tr key={e.Id}>
+										<td>{e.Id}</td>
+										<td>{e.Name}</td>
+										<td>{e.Calories}</td>
+										<td>{e.Proteins}</td>
+										<td>{e.Fats}</td>
+										<td>{e.Carbohydrates}</td>
+										<td>
+											<Button 
+												className="m-2" 
+												variant="outline-dark"
+												onClick={() => this.editClick(e)}
+												data-bs-toggle="modal"
+												data-bs-target="#exampleModal">
+												Edit
+											</Button>
+											<Button className="m-2" onClick={() => this.deleteClick(e.Id)} variant="outline-danger">
+												Delete
+											</Button>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</Table>
+					</div>
 
 					{/* Three buttons to perform basic operations */}
 					<button
@@ -345,25 +330,6 @@ export class IngridientsData extends Component {
 						data-bs-target="#exampleModal"
 						onClick={() => this.addClick()}>
 						Add ingridient data
-					</button>
-
-					<button
-						type="button"
-						className="btn btn-dark m-2 float-end"
-						data-bs-toggle="modal"
-						data-bs-target="#exampleModal"
-						// When there is no selected item,
-						// button should be disabled
-						disabled={this.state.itemID === 0}>
-						Edit ingridient data
-					</button>
-
-					<button
-						type="button"
-						className="btn btn-dark m-2 float-end"
-						onClick={() => this.deleteClick(this.state.itemID)}
-						disabled={this.state.itemID === 0}>
-						Delete ingridient data
 					</button>
 
 					{/* Modal window component */}
@@ -442,7 +408,7 @@ export class IngridientsData extends Component {
 											className="form-control"
 											value={JSON.stringify(this.state.categoryNames)}
 											onChange={this.changeProteins}
-											disabled="true"
+											disabled={true}
 										/>
 									</div>
 
