@@ -56,7 +56,7 @@ function Trainings() {
 		addHandleShow();
 		setTraining({
 			Id: undefined,
-			Section: null,
+			SectionTrainingId: null,
 			Complexity: "",
 			TrainingExercise: []
 		});
@@ -92,9 +92,9 @@ function Trainings() {
 
 	// Get section name function
 	function getSectionType(id) {
-		for (let i = 0; i < sectionTraining.length; i++) {
-			if (sectionTraining[i].Id === id) {
-				return sectionTraining[i].Type;
+		for (let item of sectionTraining) {
+			if (item.Id === id) {
+				return item.Type;
 			}
 		}
 		return "NO SECTION TYPE";
@@ -113,6 +113,7 @@ function Trainings() {
 				<ChangeTraining
 					state={addHandleClose}
 					training={training}
+					trainings={trainings}
 					setTraining={setTraining}
 					getTrainings={getTrainings}
 					sectionTraining={sectionTraining}
@@ -126,6 +127,7 @@ function Trainings() {
 				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
 					<thead>
 						<tr>
+							<th></th>
 							<th>
 								ID
 								<Button className="btn-light">
@@ -147,11 +149,14 @@ function Trainings() {
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
-						{trainings.map(e => (
-							<tr key={e.Id}>
+					{trainings.map(e => (
+						<tbody key={e.Id}>
+							<tr>
+								<td>
+									<input type="checkbox" />
+								</td>
 								<td>{e.Id}</td>
-								<td>{getSectionType(e.Section)}</td>
+								<td>{getSectionType(e.SectionTrainingId)}</td>
 								<td>{e.Complexity}</td>
 								<td>
 									<Button onClick={() => editModalShow(e)} variant="outline-dark">
@@ -162,10 +167,27 @@ function Trainings() {
 									</Button>
 								</td>
 							</tr>
-						))}
-					</tbody>
+							<tr>
+								<td>123</td>
+							</tr>
+						</tbody>
+					))}
 				</Table>
 			</div>
+			{/* Edit item modal */}
+			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
+				<ChangeTraining
+					state={editHandleClose}
+					training={training}
+					trainings={trainings}
+					setTraining={setTraining}
+					getTrainings={getTrainings}
+					sectionTraining={sectionTraining}
+					exercises={exercises}
+					method="PUT"
+					title="Edit training"
+				/>
+			</Modal>
 		</div>
 	);
 }

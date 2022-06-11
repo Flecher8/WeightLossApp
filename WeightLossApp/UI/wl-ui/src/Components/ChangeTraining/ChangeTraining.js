@@ -14,6 +14,12 @@ function ChangeTraining(props) {
 		setMultipleSelected();
 	}, []);
 
+	useEffect(() => {
+		if (props.training.TrainingExercise[props.training.TrainingExercise.length - 1] == "Add") {
+			processTraining(props.training);
+		}
+	}, [props.training]);
+
 	// Set in useState options of exercises
 	function setMultipleOptions() {
 		let arr = [];
@@ -41,7 +47,102 @@ function ChangeTraining(props) {
 				value: e.ExerciseId
 			})
 		);
+
 		setSelected(arr);
+	}
+
+	function getTrainingId() {
+		return props.training.Id === undefined ? 1 : props.training.Id;
+	}
+
+	function setTrainingExerciseInTraining() {
+		let trainingId = getTrainingId();
+		let arr = [];
+		for (let item of selected) {
+			arr.push({
+				TrainingId: trainingId,
+				ExerciseId: Number(item.value)
+			});
+		}
+		arr.push("Add");
+		let object = {
+			Id: props.training.Id,
+			SectionTrainingId: props.training.SectionTrainingId,
+			Complexity: props.training.Complexity,
+			TrainingExercise: arr
+		};
+
+		return object;
+	}
+
+	function processTraining(param) {
+		param.TrainingExercise.pop();
+		fetch(constants.API_URL + "Training", {
+			method: props.method,
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json"
+			},
+
+			body: JSON.stringify(param)
+		})
+			.then(res => res.json())
+			.then(
+				result => {
+					// Update main table
+					props.getTrainings();
+					// Close
+					props.state();
+				},
+				error => {
+					alert("Failed");
+				}
+			);
+		if (param.Id != undefined) {
+			if (param.TrainingExercise.length === 0) {
+				fetch(constants.API_URL + `Training/TrainingExercise/${param.Id}`, {
+					method: "DELETE",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => res.json())
+					.then(
+						result => {
+							// Update main table
+							props.getTrainings();
+							// Close
+							props.state();
+						},
+						error => {
+							alert("Failed");
+						}
+					);
+			} else {
+				fetch(constants.API_URL + `Training/TrainingExercise`, {
+					method: "POST",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json"
+					},
+
+					body: JSON.stringify(param.TrainingExercise)
+				})
+					.then(res => res.json())
+					.then(
+						result => {
+							// Update main table
+							props.getTrainings();
+							// Close
+							props.state();
+						},
+						error => {
+							alert("Failed");
+						}
+					);
+			}
+		}
 	}
 
 	// Fetch function
@@ -52,54 +153,48 @@ function ChangeTraining(props) {
 			event.stopPropagation();
 		} else {
 			event.preventDefault();
-			// fetch(constants.API_URL + "Training", {
-			// 	method: props.method,
-			// 	headers: {
-			// 		Accept: "application/json",
-			// 		"Content-Type": "application/json"
-			// 	},
-
-			// 	body: JSON.stringify(props.training)
-			// })
-			// 	.then(res => res.json())
-			// 	.then(
-			// 		result => {
-			// 			// Update main table
-			// 			props.getTrainings();
-
-			// 			// Close
-			// 			props.state();
-			// 		},
-			// 		error => {
-			// 			alert("Failed");
-			// 		}
-			// 	);
-			console.log(selected);
+			props.setTraining(setTrainingExerciseInTraining());
 		}
 
 		setValidated(true);
 	};
 
+	// Get section name function
+	function getSectionType(id) {
+		for (let item of props.sectionTraining) {
+			if (item.Id === id) {
+				return item.Type;
+			}
+		}
+		return "NO SECTION TYPE";
+	}
+
 	return (
 		<div className="ChangeAchievement">
-			<Form noValidate validated={validated} onSubmit={handleSubmit}>
+			<Form
+				noValidate
+				validated={validated}
+				onSubmit={e => {
+					handleSubmit(e);
+				}}>
 				<Modal.Header closeButton>
 					<Modal.Title>{props.title}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Row className="mb-3">
 						<Form.Group as={Col} controlId="validationCustom01">
-							<Form.Label className="ms-1">Section</Form.Label>
+							<Form.Label className="ms-1">SectionId</Form.Label>
 							<Form.Select
 								onChange={e =>
 									props.setTraining({
 										Id: props.training.Id,
-										Section: e.target.value,
-										Complexity: props.training.Complexity
+										SectionTrainingId: Number(e.target.value),
+										Complexity: props.training.Complexity,
+										TrainingExercise: props.training.TrainingExercise
 									})
 								}>
-								<option key={0} value={props.Section}>
-									Default {props.Section}
+								<option key={0} value={props.training.SectionTrainingId}>
+									Default {getSectionType(props.training.SectionTrainingId)}
 								</option>
 								{props.sectionTraining.map(section => (
 									<option key={section.Id} value={section.Id}>
@@ -122,8 +217,9 @@ function ChangeTraining(props) {
 								onChange={e =>
 									props.setTraining({
 										Id: props.training.Id,
-										Section: props.training.Section,
-										Complexity: e.target.value
+										SectionTrainingId: props.training.SectionTrainingId,
+										Complexity: e.target.value,
+										TrainingExercise: props.training.TrainingExercise
 									})
 								}
 							/>

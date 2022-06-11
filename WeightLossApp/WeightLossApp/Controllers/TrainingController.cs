@@ -47,15 +47,25 @@ namespace WeightLossApp.Controllers
         {
             _context.Training.Add(item);
             _context.SaveChanges();
-
             return new JsonResult("Added successfully");
         }
 
         // Used to add new records to DB, input - json 
         [HttpPost("TrainingExercise")]
-        public JsonResult PostTrainingExercise(TrainingExercise item)
+        public JsonResult PostTrainingExercise(ICollection<TrainingExercise> item)
         {
-            _context.TrainingExercise.Add(item);
+            foreach(TrainingExercise trainingExercise in item)
+            {
+                DeleteTrainingExercise(trainingExercise.TrainingId);
+            }
+            
+            _context.SaveChanges();
+
+            foreach(TrainingExercise trainingExercise in item)
+            {
+                _context.TrainingExercise.Add(trainingExercise);
+            }
+
             _context.SaveChanges();
 
             return new JsonResult("Added successfully");
