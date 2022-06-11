@@ -188,8 +188,112 @@ export class PremiumSubscription extends Component {
 			}
 		];
 
-		return {
+		// This part describes what will be displayed
+		return (
+			<div className="container">
+				<div style={{ width: 80 + "vw" }}>
+					<h3 className="m-5">This is Premium subscription page</h3>
 
-		}
+					<BootstrapTable
+						keyField="Id"
+						data={this.state.premiumSubscription}
+						columns={columns}
+						filter={filterFactory()}
+						filterPosition="top"
+						// Pagination divides table into pages
+						pagination={paginationFactory()}
+						selectRow={selectRow}
+					/>
+
+					{/* Three buttons to perform basic operations */}
+					<button
+						type="button"
+						className="btn btn-dark m-2 float-end"
+						// Click will trigger modal
+						data-bs-toggle="modal"
+						// Id of modal to be triggered
+						data-bs-target="#exampleModal"
+						onClick={() => this.addClick()}>
+						Add subscription
+					</button>
+
+					<button
+						type="button"
+						className="btn btn-dark m-2 float-end"
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModal"
+						// When there is no selected item,
+						// button should be disabled
+						disabled={this.state.itemID === 0}>
+						Edit subscription 
+					</button>
+
+					<button
+						type="button"
+						className="btn btn-dark m-2 float-end"
+						onClick={() => this.deleteClick(this.state.itemID)}
+						disabled={this.state.itemID === 0}>
+						Delete subscription 
+					</button>
+
+					{/* Modal window component */}
+					<div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
+						<div className="modal-dialog modal-lg modal-dialog-centered">
+							<div className="modal-content">
+								<div className="modal-header">
+									<h5 className="modal-title">{this.state.modalTitle}</h5>
+									<button
+										type="button"
+										className="btn-close"
+										data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div className="modal-body">
+									{/* Inputs for item properties
+                                    value: assigns data from component state
+                                    onChange: calls specified function to update state */}
+									<div className="input-group mb-3">
+										<span className="input-group-text">Subscription duration in days</span>
+										<input
+											type="text"
+											className="form-control"
+											value={this.state.premiumDays}
+											onChange={this.changeDays}
+										/>
+									</div>
+									<div className="input-group mb-3">
+										<span className="input-group-text">Subscription price</span>
+										<input
+											type="text"
+											className="form-control"
+											value={this.state.premiumPrice}
+											onChange={this.changePrice}
+										/>
+									</div>
+									{/* If selected item id == 0 Than we need to add new item */}
+									{this.state.itemID === 0 ? (
+										<button
+											type="button"
+											className="btn btn-primary float-start"
+											onClick={() => this.createClick()}>
+											Create
+										</button>
+									) : null}
+									{/* If selected item id !== 0 Than we need to updating existing item */}
+									{this.state.itemID !== 0 ? (
+										<button
+											type="button"
+											className="btn btn-primary float-start"
+											onClick={() => this.updateClick()}>
+											Update
+										</button>
+									) : null}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
 	}
 }
