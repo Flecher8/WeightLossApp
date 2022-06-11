@@ -25,14 +25,20 @@ function Header() {
 					</li>
 					<li className="nav-item">
 						<Link className="nav-link" to={"/AchievementData"}>
-							Features
+							Achivements Data
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="nav-link" to={"/"}>
-							Pricing
+						<Link className="nav-link" to={"/SectionTraining"}>
+							Section Training
 						</Link>
 					</li>
+					<li className="nav-item">
+						<Link className="nav-link" to={"/Exercises"}>
+							Exercises
+						</Link>
+					</li>
+					
 				</ul>
 			</div>
 		</nav>
