@@ -132,7 +132,7 @@ export class PremiumSubscription extends Component {
 		this.refreshList();
 	}
 
-	// Next 5 functions called when user types
+	// Next 2 functions called when user types
 	// something in input fields of modal window.
 	// They are saving this data to specified state variables
 	changeDays = e => {
@@ -142,4 +142,25 @@ export class PremiumSubscription extends Component {
 	changePrice = e => {
 		this.setState({ premiumPrice: e.target.value });
 	};
+
+	render() {
+		// Object that describes selection of rows
+		const selectRow = {
+			mode: "radio",
+			clickToSelect: true,
+			style: { backgroundColor: "#f6f6f6" },
+			onSelect: (row, isSelect, rowIndex, e) => {
+				this.setState({
+					modalTitle: "Editing Ingridient",
+					premiumID: row.Id,
+					premiumDays: row.Days,
+					premiumPrice: row.Price,
+				});
+			}
+		};
+
+		return {
+
+		}
+	}
 }
