@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
+import React from "react";
 import { constants } from "../../Constants";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter, numberFilter } from "react-bootstrap-table2-filter";
-import paginationFactory from "react-bootstrap-table2-paginator";
+import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
 
 function DesignTheme() {
+    // Design theme data
+    const [designThemes, setExercises] = useState([]);
+    const [designTheme, setExercise] = useState();
 
 }
 
