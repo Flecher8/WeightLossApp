@@ -15,6 +15,18 @@ function Trainings() {
 	const [editShow, setEditShow] = useState(false);
 	const editHandleClose = () => setEditShow(false);
 	const editHandleShow = () => setEditShow(true);
+
+	// Get trainings data
+	function getTrainings() {
+		fetch(constants.API_URL + "Trainigs")
+			.then(res => res.json())
+			.then(data => setTrainings(data));
+	}
+
+	// onLoad function
+	useEffect(() => {
+		getTrainings();
+	}, []);
 }
 
 export default Trainings;
