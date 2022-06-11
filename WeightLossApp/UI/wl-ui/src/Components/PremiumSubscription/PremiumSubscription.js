@@ -125,4 +125,21 @@ export class PremiumSubscription extends Component {
 				this.setState({ premiumSubscription: data });
 			});
 	}
+
+	// Don't exactly know what is it :)
+	// Maybe it is called when component is rendered ¯\_(ツ)_/¯
+	componentDidMount() {
+		this.refreshList();
+	}
+
+	// Next 5 functions called when user types
+	// something in input fields of modal window.
+	// They are saving this data to specified state variables
+	changeDays = e => {
+		this.setState({ premiumDays: e.target.value });
+	};
+
+	changePrice = e => {
+		this.setState({ premiumPrice: e.target.value });
+	};
 }
