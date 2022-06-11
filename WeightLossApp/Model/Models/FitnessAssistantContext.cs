@@ -39,14 +39,15 @@ namespace Model.Models
         public virtual DbSet<SectionTraining> SectionTraining { get; set; }
         public virtual DbSet<SettingData> SettingData { get; set; }
         public virtual DbSet<Training> Training { get; set; }
+        public virtual DbSet<TrainingExercise> TrainingExercise { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserMedicine> UserMedicine { get; set; }
-        public virtual DbSet<TrainingExercise> TrainingExercise { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=46.39.79.3\\DEV;Initial Catalog=FitnessAssistant;User ID=user5;Password=5555;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
@@ -93,11 +94,7 @@ namespace Model.Models
 
             modelBuilder.Entity<Admin>(entity =>
             {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Login)
                     .IsRequired()
@@ -158,7 +155,7 @@ namespace Model.Models
 
                 entity.Property(e => e.IconImage)
                     .IsRequired()
-                    .HasColumnType("image");
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.SecondaryColor)
                     .IsRequired()
@@ -194,26 +191,13 @@ namespace Model.Models
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.ImageName).HasColumnType("image");
+                entity.Property(e => e.ImageName).HasMaxLength(150);
 
-                entity.Property(e => e.Instructions).HasMaxLength(50);
+                entity.Property(e => e.Instructions).HasMaxLength(250);
 
-                entity.Property(e => e.Length).HasColumnType("datetime");
+                entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Section)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.TrainingId).HasColumnName("Training_ID");
-
-                entity.HasMany(a => a.TrainingExercise)
-                    .WithOne(p => p.Exercise)
-                    .HasForeignKey(a => a.ExerciseId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.Property(e => e.Section).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Ingridient>(entity =>
@@ -250,19 +234,19 @@ namespace Model.Models
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.IngridientCategory)
                     .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_IngridientCategory_Category");
 
                 entity.HasOne(d => d.Ingridient)
                     .WithMany(p => p.IngridientCategory)
                     .HasForeignKey(d => d.IngridientId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_IngridientCategory_IngridientData");
             });
 
             modelBuilder.Entity<IngridientData>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.ImageName).HasMaxLength(150);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -274,6 +258,8 @@ namespace Model.Models
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CurrentDesignThemeId).HasColumnName("CurrentDesignTheme_ID");
+
+                entity.Property(e => e.ImageName).HasMaxLength(150);
 
                 entity.Property(e => e.PremiumStatusId).HasColumnName("PremiumStatus_ID");
 
@@ -300,8 +286,7 @@ namespace Model.Models
             modelBuilder.Entity<Medicine>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -383,6 +368,8 @@ namespace Model.Models
             modelBuilder.Entity<PremiumSubscription>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Price).HasColumnType("money");
             });
 
             modelBuilder.Entity<Profile>(entity =>
@@ -447,8 +434,7 @@ namespace Model.Models
             modelBuilder.Entity<SectionTraining>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Type)
                     .IsRequired()
@@ -458,8 +444,7 @@ namespace Model.Models
             modelBuilder.Entity<SettingData>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -470,8 +455,7 @@ namespace Model.Models
             modelBuilder.Entity<Training>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Complexity)
                     .IsRequired()
@@ -484,11 +468,27 @@ namespace Model.Models
                     .HasForeignKey(d => d.SectionTrainingId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Training_SectionTraining");
+            });
 
-                entity.HasMany(a => a.TrainingExercise)
-                    .WithOne(p => p.Training)
-                    .HasForeignKey(a => a.TrainingId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<TrainingExercise>(entity =>
+            {
+                entity.HasKey(e => new { e.TrainingId, e.ExerciseId });
+
+                entity.Property(e => e.TrainingId).HasColumnName("Training_id");
+
+                entity.Property(e => e.ExerciseId).HasColumnName("Exercise_id");
+
+                entity.HasOne(d => d.Exercise)
+                    .WithMany(p => p.TrainingExercise)
+                    .HasForeignKey(d => d.ExerciseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TrainingExercise_Exercise");
+
+                entity.HasOne(d => d.Training)
+                    .WithMany(p => p.TrainingExercise)
+                    .HasForeignKey(d => d.TrainingId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TrainingExercise_Training");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -535,25 +535,6 @@ namespace Model.Models
                     .HasForeignKey(d => d.ProfileId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserMedicine_Profile");
-            });
-
-            modelBuilder.Entity<TrainingExercise>(entity => 
-            {
-                entity.HasKey(e => new { e.ExerciseId, e.TrainingId });
-
-                entity.Property(e => e.ExerciseId).HasColumnName("Exercise_ID");
-
-                entity.Property(e => e.TrainingId).HasColumnName("Training_ID");
-
-                entity.HasOne(d => d.Training)
-                    .WithMany(p => p.TrainingExercise)
-                    .HasForeignKey(d => d.TrainingId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-
-                entity.HasOne(d => d.Exercise)
-                    .WithMany(p => p.TrainingExercise)
-                    .HasForeignKey(d => d.ExerciseId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             OnModelCreatingPartial(modelBuilder);

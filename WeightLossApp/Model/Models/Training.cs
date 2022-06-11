@@ -11,7 +11,7 @@ namespace Model.Models
         }
 
         public int Id { get; set; }
-        public int SectionTrainingId { get; set; }
+        public int? SectionTrainingId { get; set; }
         public string Complexity { get; set; }
 
         public virtual SectionTraining SectionTraining { get; set; }
