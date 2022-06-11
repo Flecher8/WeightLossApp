@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { constants } from "../../Constants";
 import { MultiSelect } from "react-multi-select-component";
-import { Button, Table} from "react-bootstrap";
+import { Button, Table, InputGroup, FormControl} from "react-bootstrap";
 
 // Component for IngridientData page
 export class IngridientsData extends Component {
@@ -39,7 +39,8 @@ export class IngridientsData extends Component {
 			selectOptions: [],
 			// Data to display as multiselect selected
 			categoryNames: [], 
-			HTTPMethod: ""
+			HTTPMethod: "",
+			searchLine: ""
 		};
 	}
 
@@ -131,44 +132,6 @@ export class IngridientsData extends Component {
 
 			console.log(this.state.itemImageName);
 	}
-	// Called when create button is clicked
-	createClick(ingridientsData) {
-
-		let ingridientCategories = [];
-
-		for (let category of this.state.itemCategories) {
-			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
-		}
-
-		// Sending HTTP POST request to the server
-		// with data from state
-		fetch(constants.API_URL + "IngridientData", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			// Content of the request, will be converted to
-			// the IngridientData instance on API side
-			// and passed to HTTP Post method
-			body: JSON.stringify({
-				Name: this.state.itemName,
-				Calories: this.state.itemCalories,
-				Proteins: this.state.itemProteins,
-				Carbohydrates: this.state.itemCarbohydrates,
-				Fats: this.state.itemFats,
-				ingridientCategory: ingridientCategories,
-		})})
-			.then(res => res.json())
-			.then(
-				result => {
-					// Refreshing data
-					this.refreshList();
-				},
-				error => {
-					alert("Failed");
-				}
-			);
-	}
 
 	editClick(row) {
 
@@ -194,44 +157,6 @@ export class IngridientsData extends Component {
 			categoryNames: rowCategories.map(i => i.Name),
 			HTTPMethod: "PUT"
 		});
-	}
-
-	// Called when update button is clicked
-	updateClick() {
-		let ingridientCategories = [];
-
-		for (let category of this.state.itemCategories) {
-			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
-		}
-
-		console.log(ingridientCategories);
-
-		// Sending HTTP PUT request to the server
-		// with data from state
-		fetch(constants.API_URL + "IngridientData", {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				Id: this.state.itemID,
-				Name: this.state.itemName,
-				Calories: this.state.itemCalories,
-				Proteins: this.state.itemProteins,
-				Carbohydrates: this.state.itemCarbohydrates,
-				Fats: this.state.itemFats,
-				ingridientCategory: ingridientCategories,
-			})
-		})
-			.then(res => res.json())
-			.then(
-				result => {
-					this.refreshList();
-				},
-				error => {
-					alert("Failed");
-				}
-			);
 	}
 
 	// Called when delete button is clicked
@@ -326,7 +251,6 @@ export class IngridientsData extends Component {
 			});
 		}
 	}
-
 	sortByName() {
 		let filterParameters = this.state.filterParameters;
 		if (filterParameters.Name) {
@@ -480,6 +404,22 @@ export class IngridientsData extends Component {
 
 					{/* Main table */}
 					<div className="container mt-5">
+						<InputGroup className="mb-3">
+							<FormControl
+								aria-label="Default"
+								placeholder="Search"
+								value={this.state.searchLine}
+								onChange={e => this.setState( { searchLine: e.target.value }) }
+								aria-describedby="inputGroup-sizing-default"
+							/>
+							<Button onClick={ () =>  { 
+								this.setState({
+									ingridientsData: this.state.ingridientsData
+										.filter(i => i.Name.includes(this.state.searchLine))
+								});
+							}}>Search</Button>
+							<Button onClick={() => this.refreshList()}>Cancel</Button>
+						</InputGroup>
 						<Table 
 							className="table table-striped table-bordered table-sm text-center" 
 							striped bordered hover size="lg"
@@ -582,7 +522,7 @@ export class IngridientsData extends Component {
 										aria-label="Close"></button>
 								</div>
 								<div className="modal-body">
-									<form class="needs-validation" id="modalForm" novalidate onSubmit={this.handleSubmit}>
+									<form class="needs-validation" id="modalForm" noValidate onSubmit={this.handleSubmit}>
 									{/* Inputs for item properties
                                     value: assigns data from component state
                                     onChange: calls specified function to update state */}
