@@ -86,6 +86,25 @@ function DesignThemeData() {
 		}
 		setDesignThemes(arr);
 	}
+
+    // Sort functions
+	function sortBySection() {
+		if (filterParameters.BaseColor) {
+			designThemes.sort((a, b) => a.BaseColor.localeCompare(b.BaseColor));
+			setFilterParameters({
+				BaseColor: false,
+				SecondaryColor: filterParameters.SecondaryColor,
+				AccentColor: filterParameters.AccentColor
+			});
+		} else {
+			designThemes.sort((b, a) => a.BaseColor.localeCompare(b.BaseColor));
+			setFilterParameters({
+				BaseColor: true,
+				SecondaryColor: filterParameters.SecondaryColor,
+				AccentColor: filterParameters.AccentColor
+			});
+		}
+	}
 }
 
 export default DesignThemeData;
