@@ -92,4 +92,27 @@ export class PremiumSubscription extends Component {
 				}
 			);
 	}
+
+	// Called when delete button is clicked
+	deleteClick(id) {
+		// Confirmation pop-up
+		if (window.confirm("Are you sure?")) {
+			// Sending request to delete item from DB with current id
+			fetch(constants.API_URL + "PremiumSubscription/" + id, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						this.refreshList();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
+		}
+	}
 }
