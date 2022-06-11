@@ -43,6 +43,15 @@ namespace WeightLossApp.Controllers
             return new JsonResult("Added successfully");
         }
 
+        // Used to update existing DB records, input - json 
+        [HttpPut]
+        public JsonResult Put(Training item)
+        {
+            _context.Training.Update(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Updated successfully");
+        }
         #endregion
         private void LoadTrainingData()
         {
