@@ -122,6 +122,23 @@ function DesignThemeData() {
 			});
 		}
 	}
+    function sortByAccentColor() {
+		if (filterParameters.Name) {
+			designThemes.sort((a, b) => a.AccentColor.localeCompare(b.AccentColor));
+			setFilterParameters({
+				BaseColor: filterParameters.BaseColor,
+				SecondaryColor: filterParameters.SecondaryColor,
+				AccentColor: false
+			});
+		} else {
+			designThemes.sort((b, a) => a.AccentColor.localeCompare(b.AccentColor));
+			setFilterParameters({
+				BaseColor: filterParameters.BaseColor,
+				SecondaryColor: filterParameters.SecondaryColor,
+				AccentColor: true
+			});
+		}
+	}
 }
 
 export default DesignThemeData;
