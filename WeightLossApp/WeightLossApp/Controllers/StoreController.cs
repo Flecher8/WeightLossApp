@@ -16,7 +16,7 @@ namespace WeightLossApp.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet()]
         public JsonResult GetPremiums()
         {
             return new JsonResult(_context.PremiumSubscription);

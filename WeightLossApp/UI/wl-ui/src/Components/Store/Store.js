@@ -23,14 +23,6 @@ export class StoreData extends Component {
 			premiumID: 0,
 			premiumDays: 0,
 			premiumPrice: 0.0,
-
-            // Data of the DesignThemeData item
-			// This data will be displayed in the modal window
-			themeID: 0,
-			themeImage: "",
-			themeBaseColor: "",
-			themeAccentColor: "",
-			themeSecondaryColor: "",
 		};
 	}
 
@@ -44,20 +36,6 @@ export class StoreData extends Component {
 			premiumDays: 0,
 			premiumPrice: 0.0,
 
-		});
-	}
-
-	// Called on Add Button click
-	addThemeClick() {
-		// Clearing item data and saving current state
-		this.setState({
-			modalTitle: "Adding new design theme",
-
-			themeID: 0,
-			themeImage: "",
-			themeBaseColor: "",
-			themeAccentColor: "",
-			themeSecondaryColor: "",
 		});
 	}
 }
