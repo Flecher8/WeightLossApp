@@ -34,6 +34,23 @@ function DesignThemeData() {
 	useEffect(() => {
 		getDesignThemes();
 	}, []);
+
+    // Show add modal function
+	function addModalShow() {
+		addHandleShow();
+		setDesignTheme({
+			Id: undefined,
+			BaseColor: "",
+			SecondaryColor: "",
+            AccentColor: ""
+		});
+	}
+
+    // Show edit modal function
+	function editModalShow(exercise) {
+		editHandleShow();
+		setDesignTheme(exercise);
+	}
 }
 
 export default DesignThemeData;
