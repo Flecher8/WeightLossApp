@@ -13,8 +13,8 @@ export class PremiumSubscription extends Component {
 		// Component state - properties of this component
 		this.state = {
 			// List of data to be displayed
-			PremiumSubscription: [],
-            DesignTheme: [],
+			premiumSubscription: [],
+
 			// Title of the modal window
 			modalTitle: "",
 
@@ -114,5 +114,15 @@ export class PremiumSubscription extends Component {
 					}
 				);
 		}
+	}
+
+	// HTTP GET request, retrieves data from server
+	// and saves it to the component state
+	refreshList() {
+		fetch(constants.API_URL + "PremiumSubscription")
+			.then(response => response.json())
+			.then(data => {
+				this.setState({ premiumSubscription: data });
+			});
 	}
 }
