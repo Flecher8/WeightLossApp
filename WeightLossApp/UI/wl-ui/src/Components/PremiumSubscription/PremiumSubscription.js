@@ -54,12 +54,37 @@ export class PremiumSubscription extends Component {
 			body: JSON.stringify({
 				PremiumDays: this.state.itemName,
 				PremiumPrice: this.state.itemCalories,
-				Proteins: this.state.itemProteins
 		})})
 			.then(res => res.json())
 			.then(
 				result => {
 					// Refreshing data
+					this.refreshList();
+				},
+				error => {
+					alert("Failed");
+				}
+			);
+	}
+
+	// Called when update button is clicked
+	updateClick() {
+		// Sending HTTP PUT request to the server
+		// with data from state
+		fetch(constants.API_URL + "PremiumSubscription", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				Id: this.state.itemID,
+				PremiumDays: this.state.itemName,
+				PremiumPrice: this.state.itemCalories,
+			})
+		})
+			.then(res => res.json())
+			.then(
+				result => {
 					this.refreshList();
 				},
 				error => {
