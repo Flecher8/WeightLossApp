@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { constants } from "../../Constants";
 import { MultiSelect } from "react-multi-select-component";
 import { Button, Table} from "react-bootstrap";
+import { toContainHTML } from "@testing-library/jest-dom/dist/matchers";
 
 // Component for IngridientData page
 export class IngridientsData extends Component {
@@ -15,6 +16,14 @@ export class IngridientsData extends Component {
 			// List of data to be displayed
 			ingridientsData: [],
 			categories: [],
+			filterParameters: {
+				ID: false,
+				Name: false,
+				Calories: false,
+				Proteins: false,
+				Carbohydrates: false,
+				Fats: false
+			},
 			// Title of the modal window
 			modalTitle: "",
 			// Data of the selected item
@@ -236,6 +245,178 @@ export class IngridientsData extends Component {
 		return res;
 	}
 
+	// Sort functions
+	sortById() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Id) {
+			this.state.ingridientsData.sort((a, b) => (a.Id > b.Id ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: false,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Id < b.Id ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: true,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+
+	sortByName() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Name) {
+			this.state.ingridientsData.sort((a, b) => a.Name.localeCompare(b.Name));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: false,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((b, a) => a.Name.localeCompare(b.Name));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: true,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByCalories() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Calories) {
+			this.state.ingridientsData.sort((a, b) => (a.Calories > b.Calories ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: false,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Calories < b.Calories ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: true,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByFats() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Fats) {
+			this.state.ingridientsData.sort((a, b) => (a.Fats > b.Fats ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: false,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Fats < b.Fats ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: true,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByProteins() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Proteins) {
+			this.state.ingridientsData.sort((a, b) => (a.Proteins > b.Proteins ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: false,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Proteins < b.Proteins ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: true,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+
+	sortByCarbohydrates() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Carbohydrates) {
+			this.state.ingridientsData.sort((a, b) => (a.Carbohydrates > b.Carbohydrates ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: false
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Carbohydrates < b.Carbohydrates ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: true
+				}
+			});
+		}
+	}
+
 	// Possibly main function of the component
 	// Return statement of this function describes what
 	// will be displayed in place where this component is used
@@ -249,47 +430,48 @@ export class IngridientsData extends Component {
 					{/* Main table */}
 					<div className="container mt-5">
 						<Table 
-							className="table table-striped auto__table text-center" 
-							striped bordered hover size="lg">
+							className="table table-striped table-bordered table-sm text-center" 
+							striped bordered hover size="lg"
+							id="dtBasicExample">
 							<thead>
 								<tr>
-									<th>
+									<th class="th-sm">
 										ID
-										<Button className="btn-light">
+										<Button className="btn-light" onClick={() => this.sortById()}>
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>
+									<th class="th-sm">
 										Name
-										<Button className="btn-light">
+										<Button className="btn-light" onClick={() => this.sortByName()}>
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>
+									<th class="th-sm">
 										Calories
-										<Button className="btn-light">
+										<Button className="btn-light" onClick={() => this.sortByCalories()}>
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>
+									<th class="th-sm">
 										Proteins
-										<Button className="btn-light">
+										<Button className="btn-light" onClick={() => this.sortByProteins()}>
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>
+									<th class="th-sm">
 										Fats
-										<Button className="btn-light">
+										<Button className="btn-light" onClick={() => this.sortByFats()}>
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>
+									<th class="th-sm">
 										Carbohydrates
-										<Button className="btn-light">
+										<Button className="btn-light" onClick={() => this.sortByCarbohydrates()}>
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>Options</th>
+									<th class="th-sm">Options</th>
 								</tr>
 							</thead>
 							<tbody>
