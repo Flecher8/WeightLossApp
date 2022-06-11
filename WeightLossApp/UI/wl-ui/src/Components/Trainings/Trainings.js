@@ -27,6 +27,27 @@ function Trainings() {
 	useEffect(() => {
 		getTrainings();
 	}, []);
+
+	// Show add modal function
+	function addModalShow() {
+		addHandleShow();
+		setTraining({
+			Id: undefined,
+			Section: 0,
+			Complexity: ""
+		});
+	}
+
+	return (
+		<div className="Trainings">
+			{/* Create new item button */}
+			<div className="container mt-5" align="right">
+				<Button onClick={() => addModalShow()} variant="outline-primary">
+					Create new training
+				</Button>
+			</div>
+		</div>
+	);
 }
 
 export default Trainings;
