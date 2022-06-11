@@ -51,6 +51,41 @@ function DesignThemeData() {
 		editHandleShow();
 		setDesignTheme(exercise);
 	}
+
+    // Delete item function
+	function deleteClick(id) {
+		if (window.confirm("Are you sure?")) {
+			fetch(constants.API_URL + `DesignThemeData/${id}`, {
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json"
+				}
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						getDesignThemes();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
+		}
+	}
+
+    // Seact by color
+	function searchColor(color) {
+		let arr = [];
+		for (let i = 0; i < designThemes.length; i++) {
+			if (designThemes[i].BaseColor.match(color)
+            || designThemes[i].SecondaryColor.match(color)
+            || designThemes[i].AccentColor.match(color)) {
+				arr.push(designThemes[i]);
+			}
+		}
+		setDesignThemes(arr);
+	}
 }
 
 export default DesignThemeData;
