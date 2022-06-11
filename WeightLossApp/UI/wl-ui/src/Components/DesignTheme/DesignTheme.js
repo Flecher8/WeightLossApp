@@ -75,7 +75,7 @@ function DesignThemeData() {
 	}
 
     // Seact by color
-	function searchColor(color) {
+	function searchByColor(color) {
 		let arr = [];
 		for (let i = 0; i < designThemes.length; i++) {
 			if (designThemes[i].BaseColor.match(color)
@@ -88,7 +88,7 @@ function DesignThemeData() {
 	}
 
     // Sort functions
-	function sortBySection() {
+	function sortByBaseColor() {
 		if (filterParameters.BaseColor) {
 			designThemes.sort((a, b) => a.BaseColor.localeCompare(b.BaseColor));
 			setFilterParameters({
@@ -102,6 +102,23 @@ function DesignThemeData() {
 				BaseColor: true,
 				SecondaryColor: filterParameters.SecondaryColor,
 				AccentColor: filterParameters.AccentColor
+			});
+		}
+	}
+    function sortBySecondaryColor() {
+		if (filterParameters.Name) {
+			designThemes.sort((a, b) => a.SecondaryColor.localeCompare(b.SecondaryColor));
+			setFilterParameters({
+				BaseColor: filterParameters.BaseColor,
+				SecondaryColor: false,
+				AccentColor: filterParameters.AccentColor,
+			});
+		} else {
+			designThemes.sort((b, a) => a.SecondaryColor.localeCompare(b.SecondaryColor));
+			setFilterParameters({
+				BaseColor: filterParameters.BaseColor,
+				SecondaryColor: true,
+				AccentColor: filterParameters.AccentColor,
 			});
 		}
 	}
