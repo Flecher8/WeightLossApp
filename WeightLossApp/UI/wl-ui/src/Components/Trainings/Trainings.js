@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
+import ChangeTraining from "../ChangeTraining/ChangeTraining";
 
 function Trainings() {
 	// Trainings data
@@ -10,6 +11,9 @@ function Trainings() {
 
 	// SectionTraining data
 	const [sectionTraining, setSectionTraining] = useState([]);
+
+	// Exercises data
+	const [exercises, setExercises] = useState([]);
 
 	const [addShow, setAddShow] = useState(false);
 	const addHandleClose = () => setAddShow(false);
@@ -33,10 +37,18 @@ function Trainings() {
 			.then(data => setSectionTraining(data));
 	}
 
+	// Get exercises data
+	function getExercises() {
+		fetch(constants.API_URL + "Exercise")
+			.then(res => res.json())
+			.then(data => setExercises(data));
+	}
+
 	// onLoad function
 	useEffect(() => {
 		getTrainings();
 		getSectionTraining();
+		getExercises();
 	}, []);
 
 	// Show add modal function
@@ -44,8 +56,9 @@ function Trainings() {
 		addHandleShow();
 		setTraining({
 			Id: undefined,
-			Section: 0,
-			Complexity: ""
+			Section: null,
+			Complexity: "",
+			TrainingExercise: []
 		});
 	}
 
@@ -95,6 +108,19 @@ function Trainings() {
 					Create new training
 				</Button>
 			</div>
+			{/* Create new item modal */}
+			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
+				<ChangeTraining
+					state={addHandleClose}
+					training={training}
+					setTraining={setTraining}
+					getTrainings={getTrainings}
+					sectionTraining={sectionTraining}
+					exercises={exercises}
+					method="POST"
+					title="Add new training"
+				/>
+			</Modal>
 			{/* Main table */}
 			<div className="container mt-5">
 				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
