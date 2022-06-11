@@ -18,6 +18,7 @@ function Header() {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul className="navbar-nav">
+				<ul className="navbar-nav">
 					<li className="nav-item">
 						<Link className="nav-link" to="/IngridientsData">
 							Ingridients Data
@@ -38,7 +39,11 @@ function Header() {
 							Exercises
 						</Link>
 					</li>
-					
+					<li className="nav-item">
+						<Link className="nav-link" to={"/Trainings"}>
+							Trainings
+						</Link>
+					</li>
 				</ul>
 			</div>
 		</nav>
