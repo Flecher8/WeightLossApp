@@ -8,6 +8,13 @@ function DesignTheme() {
     const [designThemes, setExercises] = useState([]);
     const [designTheme, setExercise] = useState();
 
+    const [addShow, setAddShow] = useState(false);
+	const addHandleClose = () => setAddShow(false);
+	const addHandleShow = () => setAddShow(true);
+
+    const [editShow, setEditShow] = useState(false);
+	const editHandleClose = () => setEditShow(false);
+	const editHandleShow = () => setEditShow(true);
 }
 
 export default DesignTheme;
