@@ -5,8 +5,8 @@ import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "r
 
 function DesignThemeData() {
     // Design theme data
-    const [designThemes, setExercises] = useState([]);
-    const [designTheme, setExercise] = useState();
+    const [designThemes, setDesignThemes] = useState([]);
+    const [designTheme, setDesignTheme] = useState();
 
     const [addShow, setAddShow] = useState(false);
 	const addHandleClose = () => setAddShow(false);
@@ -22,6 +22,18 @@ function DesignThemeData() {
 		SecondaryColor: false,
 		AccentColor: false
 	});
+
+    // Get exercises data
+	function getDesignThemes() {
+		fetch(constants.API_URL + "DesignThemeData")
+			.then(res => res.json())
+			.then(data => setDesignThemes(data));
+	}
+
+	// onLoad function
+	useEffect(() => {
+		getDesignThemes();
+	}, []);
 }
 
 export default DesignThemeData;
