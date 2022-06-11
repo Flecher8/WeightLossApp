@@ -52,8 +52,8 @@ export class PremiumSubscription extends Component {
 			// the PremiumSubscription instance on API side
 			// and passed to HTTP Post method
 			body: JSON.stringify({
-				PremiumDays: this.state.itemName,
-				PremiumPrice: this.state.itemCalories,
+				NumberOfDays: this.state.premiumDays,
+				Price: this.state.premiumPrice,
 		})})
 			.then(res => res.json())
 			.then(
@@ -77,9 +77,9 @@ export class PremiumSubscription extends Component {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				Id: this.state.itemID,
-				PremiumDays: this.state.itemName,
-				PremiumPrice: this.state.itemCalories,
+				Id: this.state.premiumID,
+				NumberOfDays: this.state.premiumDays,
+				Price: this.state.premiumPrice,
 			})
 		})
 			.then(res => res.json())
@@ -213,7 +213,7 @@ export class PremiumSubscription extends Component {
 						data-bs-toggle="modal"
 						// Id of modal to be triggered
 						data-bs-target="#exampleModal"
-						onClick={() => this.addClick()}>
+						onClick={() => this.addPremiumClick()}>
 						Add subscription
 					</button>
 
@@ -224,15 +224,15 @@ export class PremiumSubscription extends Component {
 						data-bs-target="#exampleModal"
 						// When there is no selected item,
 						// button should be disabled
-						disabled={this.state.itemID === 0}>
+						disabled={this.state.premiumID === 0}>
 						Edit subscription 
 					</button>
 
 					<button
 						type="button"
 						className="btn btn-dark m-2 float-end"
-						onClick={() => this.deleteClick(this.state.itemID)}
-						disabled={this.state.itemID === 0}>
+						onClick={() => this.deleteClick(this.state.premiumID)}
+						disabled={this.state.premiumID === 0}>
 						Delete subscription 
 					</button>
 
@@ -271,7 +271,7 @@ export class PremiumSubscription extends Component {
 										/>
 									</div>
 									{/* If selected item id == 0 Than we need to add new item */}
-									{this.state.itemID === 0 ? (
+									{this.state.premiumID === 0 ? (
 										<button
 											type="button"
 											className="btn btn-primary float-start"
@@ -280,7 +280,7 @@ export class PremiumSubscription extends Component {
 										</button>
 									) : null}
 									{/* If selected item id !== 0 Than we need to updating existing item */}
-									{this.state.itemID !== 0 ? (
+									{this.state.premiumID !== 0 ? (
 										<button
 											type="button"
 											className="btn btn-primary float-start"
