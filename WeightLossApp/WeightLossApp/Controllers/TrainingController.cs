@@ -41,6 +41,21 @@ namespace WeightLossApp.Controllers
             return new JsonResult(_context.TrainingExercise);
         }
 
+        // Retrieves all data about TrainingExercise and sends it as response
+        [HttpGet("Exercise")]
+        public JsonResult GetExercise()
+        {
+            Dictionary<int, Exercise> result = new Dictionary<int, Exercise>();
+
+            foreach(Exercise exercise in _context.Exercise)
+            {
+                result.Add(exercise.Id, exercise);
+            }
+
+            // Sending responce
+            return new JsonResult(result);
+        }
+
         // Used to add new records to DB, input - json 
         [HttpPost]
         public JsonResult Post(Training item)

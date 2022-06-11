@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
-import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
+import {
+	Modal,
+	Button,
+	Form,
+	Row,
+	Col,
+	Table,
+	InputGroup,
+	FormControl,
+	DropdownButton,
+	Dropdown
+} from "react-bootstrap";
 import ChangeTraining from "../ChangeTraining/ChangeTraining";
 
 function Trainings() {
@@ -14,6 +25,7 @@ function Trainings() {
 
 	// Exercises data
 	const [exercises, setExercises] = useState([]);
+	const [exercisesDrop, setExercisesDrop] = useState([]);
 
 	const [addShow, setAddShow] = useState(false);
 	const addHandleClose = () => setAddShow(false);
@@ -44,11 +56,19 @@ function Trainings() {
 			.then(data => setExercises(data));
 	}
 
+	// Get exercises drop info
+	function getExercisesDrop() {
+		fetch(constants.API_URL + "Training/Exercise")
+			.then(res => res.json())
+			.then(data => setExercisesDrop(data));
+	}
+
 	// onLoad function
 	useEffect(() => {
 		getTrainings();
 		getSectionTraining();
 		getExercises();
+		getExercisesDrop();
 	}, []);
 
 	// Show add modal function
@@ -153,7 +173,29 @@ function Trainings() {
 						<tbody key={e.Id}>
 							<tr>
 								<td>
-									<input type="checkbox" />
+									{/* Dropdown menu with exercises */}
+									<DropdownButton title="Exercises" id="dropdown-menu">
+										{e.TrainingExercise.map(a => (
+											<div key={a.ExerciseId}>
+												<Dropdown.Item eventKey="option-1">
+													{"Section: " + exercisesDrop[a.ExerciseId].Section}
+												</Dropdown.Item>
+												<Dropdown.Item eventKey="option-1">
+													{"Name: " + exercisesDrop[a.ExerciseId].Name}
+												</Dropdown.Item>
+												<Dropdown.Item eventKey="option-1">
+													{"Length: " + exercisesDrop[a.ExerciseId].Length}
+												</Dropdown.Item>
+												<Dropdown.Item eventKey="option-1">
+													{"BurntCalories: " + exercisesDrop[a.ExerciseId].BurntCalories}
+												</Dropdown.Item>
+												<Dropdown.Item eventKey="option-1">
+													{"NumberOfReps: " + exercisesDrop[a.ExerciseId].NumberOfReps}
+												</Dropdown.Item>
+												<Dropdown.Divider />
+											</div>
+										))}
+									</DropdownButton>
 								</td>
 								<td>{e.Id}</td>
 								<td>{getSectionType(e.SectionTrainingId)}</td>
@@ -166,9 +208,6 @@ function Trainings() {
 										Delete
 									</Button>
 								</td>
-							</tr>
-							<tr>
-								<td>123</td>
 							</tr>
 						</tbody>
 					))}
