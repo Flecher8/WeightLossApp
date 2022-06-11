@@ -33,6 +33,14 @@ namespace WeightLossApp.Controllers
             return new JsonResult(_context.Training);
         }
 
+        // Retrieves all data about TrainingExercise and sends it as response
+        [HttpGet("TrainingExercise")]
+        public JsonResult GetTrainingExercise()
+        {
+            // Sending responce
+            return new JsonResult(_context.TrainingExercise);
+        }
+
         // Used to add new records to DB, input - json 
         [HttpPost]
         public JsonResult Post(Training item)
@@ -51,6 +59,19 @@ namespace WeightLossApp.Controllers
             _context.SaveChanges();
 
             return new JsonResult("Updated successfully");
+        }
+
+        // Deletes records using id 
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            CascadeDelete(id);
+
+            Training item = _context.Find<Training>(id);
+            _context.Training.Remove(item);
+            _context.SaveChanges();
+
+            return new JsonResult("Deleted successfully");
         }
         #endregion
         private void LoadTrainingData()
@@ -79,6 +100,24 @@ namespace WeightLossApp.Controllers
                     training.SectionTraining = sectionTrainings.ElementAt(0);
                 }
             }
+        }
+        private void CascadeDelete(int id)
+        {
+            CascadeDeleteTrainingExercise(id);
+        }
+        private void CascadeDeleteTrainingExercise(int id)
+        {
+            // If in TrainingExercise table column Training_ID equals id, delete this row 
+            foreach (TrainingExercise trainingExercise in _context.TrainingExercise)
+            {
+                if (trainingExercise.TrainingId == id)
+                {
+                    _context.TrainingExercise.Remove(trainingExercise);
+                }
+            }
+
+            // Save data to database
+            _context.SaveChanges();
         }
     }
 }
