@@ -159,6 +159,35 @@ export class PremiumSubscription extends Component {
 			}
 		};
 
+		// Array of objects, that describes
+		// columns of the datatable
+		const columns = [
+			{
+				dataField: "Id",
+				sort: true,
+				text: "Ingridient ID",
+				headerAlign: "left"
+			},
+			{
+				// Data field name
+				dataField: "Days",
+				// Header
+				text: "Days",
+				// Sortable
+				sort: true,
+				// Filtrable, and which Filter uses
+				filter: numberFilter(),
+				headerAlign: "left"
+			},
+			{
+				dataField: "Price",
+				text: "Price",
+				sort: true,
+				filter: numberFilter(),
+				headerAlign: "left"
+			}
+		];
+
 		return {
 
 		}
