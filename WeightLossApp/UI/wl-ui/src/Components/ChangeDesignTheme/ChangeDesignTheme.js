@@ -137,6 +137,24 @@ function ChangeDesignTheme(props) {
 							/>
 						</Form.Group>
 					</Row>
+                    <Row className="mb-3">
+						{/* if the object is being edited - display an image */}
+						{props.method === "PUT" && (
+							<div className="container border mb-3">
+								<p>Image now</p>
+								<img src={props.designTheme.IconImage} alt="unloaded img" width="150px" />
+							</div>
+						)}
+						<Form.Group as={Col} controlId="validationCustom04">
+							<Form.Label className="ms-1">Image</Form.Label>
+							<Form.Control
+								type="file"
+								placeholder="IconImage"
+								value={props.designTheme.IconImage}
+								onChange={e => saveImg(e)}
+							/>
+						</Form.Group>
+					</Row>
                 </Modal.Body>
             </Form>
         </div>
