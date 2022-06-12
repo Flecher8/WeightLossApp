@@ -204,25 +204,25 @@ function Categories() {
                             <tr>
                                 <th>
                                     Id
-                                    <Button className="btn-light" onClick={() => sortByName()}>
-                                        <i className="fa-solid fa-arrows-up-down"></i>
-                                    </Button>
-                                </th>
-                                <th>
-                                    Name
-                                    <Button className="btn-light">
-                                        <i className="fa-solid fa-arrows-up-down"></i>
-                                    </Button>
-                                </th>
-                                <th>
-                                    Type
                                     <Button className="btn-light" onClick={() => sortById()}>
                                         <i className="fa-solid fa-arrows-up-down"></i>
                                     </Button>
                                 </th>
                                 <th>
+                                    Name
+                                    <Button className="btn-light" onClick={() => sortByName()}>
+                                        <i className="fa-solid fa-arrows-up-down"></i>
+                                    </Button>
+                                </th>
+                                <th>
+                                    Type
+                                    <Button className="btn-light" onClick={() => sortByType()}>
+                                        <i className="fa-solid fa-arrows-up-down"></i>
+                                    </Button>
+                                </th>
+                                <th>
                                     Danger
-                                    <Button className="btn-light">
+                                    <Button className="btn-light" onClick={() => sortByDanger()}>
                                         <i className="fa-solid fa-arrows-up-down"></i>
                                     </Button>
                                 </th>
@@ -249,7 +249,7 @@ function Categories() {
                         </tbody>
                     </Table>
                 </div>
-                <button
+                {/* <button
                     type="button"
                     className="btn btn-dark m-2 float-end"
                     // Click will trigger modal
@@ -258,7 +258,10 @@ function Categories() {
                     data-bs-target="#exampleModal"
                     onClick={() => this.addClick()}>
                     Add ingridient data
-                </button>
+                </button> */}
+				<button onClick={() => addModalShow()} type="button" className="btn btn-dark m-2 float-end">
+					Create new category
+				</button>
             </div>
         </div>
 	);

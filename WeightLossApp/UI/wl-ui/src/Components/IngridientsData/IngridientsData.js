@@ -626,7 +626,7 @@ export class IngridientsData extends Component {
 										{this.state.itemID === 0 ? (
 											<button
 												type="submit"
-												className="btn btn-primary float-start"
+												className="btn btn-dark float-end"
 												>
 												Create
 											</button>
@@ -636,7 +636,7 @@ export class IngridientsData extends Component {
 										{this.state.itemID !== 0 ? (
 											<button
 												type="submit"
-												className="btn btn-primary float-start"
+												className="btn btn-dark float-end"
 												>
 												Update
 											</button>
