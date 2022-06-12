@@ -186,6 +186,12 @@ function DesignThemeData() {
 								<i className="fa-solid fa-arrows-up-down"></i>
 							</Button>
 						</tr>
+						<th>
+							SecondaryColor
+							<Button className="btn-light" onClick={() => sortBySecondaryColor()}>
+								<i className="fa-solid fa-arrows-up-down"></i>
+							</Button>
+						</th>
 					</thead>
 				</Table>
 			</div>
