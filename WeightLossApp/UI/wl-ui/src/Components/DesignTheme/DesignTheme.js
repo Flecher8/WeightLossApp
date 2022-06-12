@@ -142,6 +142,7 @@ function DesignThemeData() {
 			});
 		}
 	}
+	
 	return (
 		<div className="DesignThemes container">
 			{/* Create new item button */}

@@ -9,6 +9,7 @@ import SectionTraining from "./Components/SectionTraining/SectionTraining";
 import AchievementData from "./Components/AchievementData/AchievementData";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { PremiumSubscription } from "./Components/PremiumSubscription/PremiumSubscription";
+import DesignThemeData from "./Components/DesignTheme/DesignTheme";
 
 // Entry point of application, adds App component to the index.html file
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +23,8 @@ root.render(
 				<Route path="/Exercises" element={<Exercises />} />
 				<Route path="/SectionTraining" element={<SectionTraining />} />
 				<Route path="/AchievementData" element={<AchievementData />} />
-				<Route path="/PremiumSubscription" element={<PremiumSubscription />} />
+				<Route path="/PremiumSubscriptions" element={<PremiumSubscription />} />
+				<Route path="/DesignThemes" element={<DesignThemeData />} />
 				{/* Default Router */}
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
