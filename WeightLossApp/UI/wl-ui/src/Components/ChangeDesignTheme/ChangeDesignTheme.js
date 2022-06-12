@@ -115,6 +115,28 @@ function ChangeDesignTheme(props) {
 							/>
 						</Form.Group>
 					</Row>
+                    <Row className="mb-3">
+						<Form.Group as={Col} controlId="validationCustom03">
+							<Form.Label className="ms-1">AccentColor Color</Form.Label>
+							<Form.Control
+								required
+								pattern="^#(?:[0-9a-fA-F]{3}){1,2}$"
+								type="text"
+								maxLength="7"
+								placeholder="Section"
+								value={props.designTheme.AccentColor}
+								onChange={e =>
+									props.setDesignTheme({
+										Id: props.designTheme.Id,
+										BaseColor: props.designTheme.BaseColor,
+										SecondaryColor: props.designTheme.SecondaryColor,
+										AccentColor: e.target.value,
+										IconImage: props.designTheme.IconImage
+									})
+								}
+							/>
+						</Form.Group>
+					</Row>
                 </Modal.Body>
             </Form>
         </div>
