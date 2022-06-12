@@ -192,6 +192,12 @@ function DesignThemeData() {
 								<i className="fa-solid fa-arrows-up-down"></i>
 							</Button>
 						</th>
+						<th>
+							AccentColor
+							<Button className="btn-light" onClick={() => sortByAccentColor()}>
+								<i className="fa-solid fa-arrows-up-down"></i>
+							</Button>
+						</th>
 					</thead>
 				</Table>
 			</div>
