@@ -205,6 +205,26 @@ function DesignThemeData() {
 							</Button>
 						</th>
 					</thead>
+					<tbody>
+						{designThemes.map(e => (
+							<tr key={e.Id}>
+								<td>{e.BaseColor}</td>
+								<td>{e.SecondaryColor}</td>
+								<td>{e.AccentColor}</td>
+								<td>
+									<img src={e.IconImage} alt="img" width="100px" />
+								</td>
+								<td>
+									<Button onClick={() => editModalShow(e)} variant="outline-dark">
+										Edit
+									</Button>
+									<Button onClick={() => deleteClick(e.Id)} variant="outline-danger">
+										Delete
+									</Button>
+								</td>
+							</tr>
+						))}
+					</tbody>
 				</Table>
 			</div>
 		</div>
