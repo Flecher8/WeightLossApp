@@ -165,3 +165,5 @@ function ChangeDesignTheme(props) {
         </div>
     )
 }
+
+export default ChangeDesignTheme;
