@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
+import ChangeExercise from "../ChangeDesignTheme/ChangeDesignTheme";
+import ChangeDesignTheme from "../ChangeDesignTheme/ChangeDesignTheme";
+
 
 function DesignThemeData() {
     // Design theme data
@@ -162,6 +165,17 @@ function DesignThemeData() {
 					<Button onClick={() => getDesignThemes()}>Cancel</Button>
 				</InputGroup>
 			</div>
+			{/* Create new item modal */}
+			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
+				<ChangeDesignTheme
+					state={addHandleClose}
+					designTheme={designTheme}
+					setDesignTheme={setDesignTheme}
+					getDesignThemes={getDesignThemes}
+					method="POST"
+					title="Add new design theme"
+				/>
+			</Modal>
 		</div>
 	)
 }
