@@ -156,6 +156,11 @@ function ChangeDesignTheme(props) {
 						</Form.Group>
 					</Row>
                 </Modal.Body>
+                <Modal.Footer>
+					<Button variant="primary" type="submit">
+						{props.title}
+					</Button>
+				</Modal.Footer>
             </Form>
         </div>
     )
