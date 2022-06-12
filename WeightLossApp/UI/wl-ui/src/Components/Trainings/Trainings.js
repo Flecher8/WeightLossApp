@@ -178,19 +178,7 @@ function Trainings() {
 										{e.TrainingExercise.map(a => (
 											<div key={a.ExerciseId}>
 												<Dropdown.Item eventKey="option-1">
-													{"Section: " + exercisesDrop[a.ExerciseId].Section}
-												</Dropdown.Item>
-												<Dropdown.Item eventKey="option-1">
 													{"Name: " + exercisesDrop[a.ExerciseId].Name}
-												</Dropdown.Item>
-												<Dropdown.Item eventKey="option-1">
-													{"Length: " + exercisesDrop[a.ExerciseId].Length}
-												</Dropdown.Item>
-												<Dropdown.Item eventKey="option-1">
-													{"BurntCalories: " + exercisesDrop[a.ExerciseId].BurntCalories}
-												</Dropdown.Item>
-												<Dropdown.Item eventKey="option-1">
-													{"NumberOfReps: " + exercisesDrop[a.ExerciseId].NumberOfReps}
 												</Dropdown.Item>
 												<Dropdown.Divider />
 											</div>

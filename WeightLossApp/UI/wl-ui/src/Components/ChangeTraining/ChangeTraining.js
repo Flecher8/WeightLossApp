@@ -39,6 +39,7 @@ function ChangeTraining(props) {
 		return "Nothing";
 	}
 
+	// Get selected options in Multiselect component of the form
 	function setMultipleSelected() {
 		let arr = [];
 		props.training.TrainingExercise.forEach(e =>
@@ -55,6 +56,7 @@ function ChangeTraining(props) {
 		return props.training.Id === undefined ? 1 : props.training.Id;
 	}
 
+	// Set rows in table TrainingsExercise
 	function setTrainingExerciseInTraining() {
 		let trainingId = getTrainingId();
 		let arr = [];
@@ -75,8 +77,11 @@ function ChangeTraining(props) {
 		return object;
 	}
 
+	//
 	function processTraining(param) {
+		// Get rid of 'Add' at the end of the array
 		param.TrainingExercise.pop();
+
 		fetch(constants.API_URL + "Training", {
 			method: props.method,
 			headers: {
@@ -98,6 +103,7 @@ function ChangeTraining(props) {
 					alert("Failed");
 				}
 			);
+
 		if (param.Id != undefined) {
 			if (param.TrainingExercise.length === 0) {
 				fetch(constants.API_URL + `Training/TrainingExercise/${param.Id}`, {
