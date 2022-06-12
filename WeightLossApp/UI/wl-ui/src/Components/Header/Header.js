@@ -24,6 +24,11 @@ function Header() {
 						</Link>
 					</li>
 					<li className="nav-item">
+						<Link className="nav-link" to={"/Categories"}>
+							Categories
+						</Link>
+					</li>
+					<li className="nav-item">
 						<Link className="nav-link" to={"/AchievementData"}>
 							Achivements Data
 						</Link>
