@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
-import ChangeAchievement from "../Modals/ChangeAchievement";
+import ChangeCategory from "../Modals/ChangeCategory";
 
-function AchievementData() {
+function Categories() {
 	// AchivementData data
-	const [achievementData, setAchievementData] = useState([]);
-	const [achievement, setAchievement] = useState();
+	const [categories, setCategories] = useState([]);
+	const [category, setCategory] = useState();
 
 	const [addShow, setAddShow] = useState(false);
 	const addHandleClose = () => setAddShow(false);
@@ -26,21 +26,21 @@ function AchievementData() {
 	});
 
 	// Get achivement data
-	function getAchievementData() {
-		fetch(constants.API_URL + "AchievementData")
+	function getCategories() {
+		fetch(constants.API_URL + "Categories")
 			.then(res => res.json())
-			.then(data => setAchievementData(data));
+			.then(data => setCategories(data));
 	}
 
 	// onLoad function
 	useEffect(() => {
-		getAchievementData();
+		getCategories();
 	}, []);
 
 	// Show add modal function
 	function addModalShow() {
 		addHandleShow();
-		setAchievement({
+		setCategory({
 			Id: undefined,
 			Name: "",
 			Description: "",
@@ -50,15 +50,15 @@ function AchievementData() {
 	}
 
 	// Show edit modal function
-	function editModalShow(achievement) {
+	function editModalShow(category) {
 		editHandleShow();
-		setAchievement(achievement);
+		setCategory(category);
 	}
 
 	// Delete item function
 	function deleteClick(id) {
 		if (window.confirm("Are you sure?")) {
-			fetch(constants.API_URL + `AchievementData/${id}`, {
+			fetch(constants.API_URL + `Categories/${id}`, {
 				method: "DELETE",
 				headers: {
 					Accept: "application/json",
@@ -68,7 +68,7 @@ function AchievementData() {
 				.then(res => res.json())
 				.then(
 					result => {
-						getAchievementData();
+						getCategories();
 					},
 					error => {
 						alert("Failed");
@@ -80,18 +80,18 @@ function AchievementData() {
 	// Seact by name
 	function searchName(name) {
 		let arr = [];
-		for (let i = 0; i < achievementData.length; i++) {
-			if (achievementData[i].Name.match(name)) {
-				arr.push(achievementData[i]);
+		for (let i = 0; i < categories.length; i++) {
+			if (categories[i].Name.match(name)) {
+				arr.push(categories[i]);
 			}
 		}
-		setAchievementData(arr);
+		setCategories(arr);
 	}
 
 	// Sort functions
 	function sortByName() {
 		if (filterParameters.Name) {
-			achievementData.sort((a, b) => a.Name.localeCompare(b.Name));
+			categories.sort((a, b) => a.Name.localeCompare(b.Name));
 			setFilterParameters({
 				Name: false,
 				Description: filterParameters.Description,
@@ -99,7 +99,7 @@ function AchievementData() {
 				ImgName: filterParameters.ImgName
 			});
 		} else {
-			achievementData.sort((b, a) => a.Name.localeCompare(b.Name));
+			categories.sort((b, a) => a.Name.localeCompare(b.Name));
 			setFilterParameters({
 				Name: true,
 				Description: filterParameters.Description,
@@ -110,7 +110,7 @@ function AchievementData() {
 	}
 	function sortByRewardExperience() {
 		if (filterParameters.RewardExperience) {
-			achievementData.sort((a, b) =>
+			categories.sort((a, b) =>
 				a.RewardExperience > b.RewardExperience ? 1 : b.RewardExperience > a.RewardExperience ? -1 : 0
 			);
 			setFilterParameters({
@@ -120,7 +120,7 @@ function AchievementData() {
 				ImgName: filterParameters.ImgName
 			});
 		} else {
-			achievementData.sort((a, b) =>
+			categories.sort((a, b) =>
 				a.RewardExperience < b.RewardExperience ? 1 : b.RewardExperience < a.RewardExperience ? -1 : 0
 			);
 			setFilterParameters({
@@ -133,11 +133,11 @@ function AchievementData() {
 	}
 
 	return (
-		<div className="AchievementData">
+		<div className="categories">
 			{/* Create new item button */}
 			<div className="container mt-5" align="right">
 				<Button onClick={() => addModalShow()} variant="outline-primary">
-					Create new achievement
+					Create new category
 				</Button>
 			</div>
 			{/* Search */}
@@ -151,18 +151,18 @@ function AchievementData() {
 						aria-describedby="inputGroup-sizing-default"
 					/>
 					<Button onClick={() => searchName(search)}>Search</Button>
-					<Button onClick={() => getAchievementData()}>Cancel</Button>
+					<Button onClick={() => getCategories()}>Cancel</Button>
 				</InputGroup>
 			</div>
 			{/* Create new item modal */}
 			<Modal size="lg" centered show={addShow} onHide={addHandleClose}>
-				<ChangeAchievement
+				<ChangeCategory
 					state={addHandleClose}
-					achievement={achievement}
-					setAchievement={setAchievement}
-					getAchievementData={getAchievementData}
+					category={category}
+					setCategory={setCategory}
+					getCategories={getCategories}
 					method="POST"
-					title="Add new achievement"
+					title="Add new category"
 				/>
 			</Modal>
 			{/* Main table */}
@@ -198,7 +198,7 @@ function AchievementData() {
 						</tr>
 					</thead>
 					<tbody>
-						{achievementData.map(e => (
+						{categories.map(e => (
 							<tr key={e.Id}>
 								<td>{e.Name}</td>
 								<td className="overflow-auto">{e.Description}</td>
@@ -221,17 +221,17 @@ function AchievementData() {
 			</div>
 			{/* Edit item modal */}
 			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
-				<ChangeAchievement
+				<ChangeCategory
 					state={editHandleClose}
-					achievement={achievement}
-					setAchievement={setAchievement}
-					getAchievementData={getAchievementData}
+					category={category}
+					setCategory={setCategory}
+					getCategories={getCategories}
 					method="PUT"
-					title="Edit achievement"
+					title="Edit category"
 				/>
 			</Modal>
 		</div>
 	);
 }
 
-export default AchievementData;
+export default Categories;
