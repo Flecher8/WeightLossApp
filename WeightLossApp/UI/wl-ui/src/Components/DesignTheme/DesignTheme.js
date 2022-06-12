@@ -42,7 +42,8 @@ function DesignThemeData() {
 			Id: undefined,
 			BaseColor: "",
 			SecondaryColor: "",
-            AccentColor: ""
+            AccentColor: "",
+			IconImage: ""
 		});
 	}
 
@@ -139,6 +140,30 @@ function DesignThemeData() {
 			});
 		}
 	}
+	return (
+		<div className="DesignThemes container">
+			{/* Create new item button */}
+			<div className="container mt-5" align="right">
+				<Button onClick={() => addModalShow()} variant="outline-primary">
+					Create new design theme
+				</Button>
+			</div>
+			{/* Search */}
+			<div className="container mt-5">
+				<InputGroup className="mb-3">
+					<FormControl
+						aria-label="Default"
+						placeholder="Search"
+						value={search}
+						onChange={e => setSearch(e.target.value)}
+						aria-describedby="inputGroup-sizing-default"
+					/>
+					<Button onClick={() => searchByColor(search)}>Search</Button>
+					<Button onClick={() => getDesignThemes()}>Cancel</Button>
+				</InputGroup>
+			</div>
+		</div>
+	)
 }
 
 export default DesignThemeData;
