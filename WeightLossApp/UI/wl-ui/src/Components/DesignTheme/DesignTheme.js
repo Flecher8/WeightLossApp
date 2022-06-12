@@ -198,6 +198,12 @@ function DesignThemeData() {
 								<i className="fa-solid fa-arrows-up-down"></i>
 							</Button>
 						</th>
+						<th>
+							IconImage
+							<Button className="btn-light">
+								<i className="fa-solid fa-arrows-up-down"></i>
+							</Button>
+						</th>
 					</thead>
 				</Table>
 			</div>
