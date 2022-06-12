@@ -3,6 +3,8 @@ import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 
 function ChangeDesignTheme(props) {
+    const [validated, setValidated] = useState(false);
+    
     // Save img in imgur and write img to object
 	function saveImg(ev) {
 		const formdata = new FormData();
@@ -26,4 +28,39 @@ function ChangeDesignTheme(props) {
 				});
 			});
 	}
+
+    // Fetch function
+	const handleSubmit = event => {
+		const form = event.currentTarget;
+		if (!form.checkValidity()) {
+			event.preventDefault();
+			event.stopPropagation();
+		} else {
+			event.preventDefault();
+			fetch(constants.API_URL + "DesignThemeData", {
+				method: props.method,
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json"
+				},
+
+				body: JSON.stringify(props.designTheme)
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						// Update main table
+						props.getDesignThemes();
+
+						// Close
+						props.state();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
+		}
+
+		setValidated(true);
+	};
 }
