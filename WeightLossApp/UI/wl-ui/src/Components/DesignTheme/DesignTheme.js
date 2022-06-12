@@ -142,7 +142,7 @@ function DesignThemeData() {
 			});
 		}
 	}
-	
+
 	return (
 		<div className="DesignThemes container">
 			{/* Create new item button */}
@@ -181,29 +181,31 @@ function DesignThemeData() {
 				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
 					<thead>
 						<tr>
+							<th>
 							BaseColor
 							<Button className="btn-light" onClick={() => sortByBaseColor()}>
 								<i className="fa-solid fa-arrows-up-down"></i>
 							</Button>
-						</tr>
-						<th>
+							</th>
+							<th>
 							SecondaryColor
 							<Button className="btn-light" onClick={() => sortBySecondaryColor()}>
 								<i className="fa-solid fa-arrows-up-down"></i>
 							</Button>
-						</th>
-						<th>
-							AccentColor
-							<Button className="btn-light" onClick={() => sortByAccentColor()}>
-								<i className="fa-solid fa-arrows-up-down"></i>
-							</Button>
-						</th>
-						<th>
-							IconImage
-							<Button className="btn-light">
-								<i className="fa-solid fa-arrows-up-down"></i>
-							</Button>
-						</th>
+							</th>
+							<th>
+								AccentColor
+								<Button className="btn-light" onClick={() => sortByAccentColor()}>
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+							<th>
+								IconImage
+								<Button className="btn-light">
+									<i className="fa-solid fa-arrows-up-down"></i>
+								</Button>
+							</th>
+						</tr>
 					</thead>
 					<tbody>
 						{designThemes.map(e => (
