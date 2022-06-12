@@ -6,12 +6,12 @@ namespace WeightLossApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DesignThemeController : ControllerBase
+    public class DesignThemeDataController : ControllerBase
     {
         // DataBase context
         private readonly FitnessAssistantContext _context;
 
-        public DesignThemeController(FitnessAssistantContext context)
+        public DesignThemeDataController(FitnessAssistantContext context)
         {
             _context = context;
         }
