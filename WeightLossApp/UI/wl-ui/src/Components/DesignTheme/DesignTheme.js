@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
-import ChangeExercise from "../ChangeDesignTheme/ChangeDesignTheme";
 import ChangeDesignTheme from "../ChangeDesignTheme/ChangeDesignTheme";
 
 
@@ -227,6 +226,17 @@ function DesignThemeData() {
 					</tbody>
 				</Table>
 			</div>
+			{/* Edit item modal */}
+			<Modal size="lg" centered show={editShow} onHide={editHandleClose}>
+				<ChangeDesignTheme
+					state={editHandleClose}
+					designTheme={designTheme}
+					setDesignTheme={setDesignTheme}
+					setDesignThemes={setDesignThemes}
+					method="PUT"
+					title="Edit design theme"
+				/>
+			</Modal>
 		</div>
 	)
 }
