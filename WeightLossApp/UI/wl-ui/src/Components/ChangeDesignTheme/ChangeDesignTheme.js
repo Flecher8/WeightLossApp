@@ -63,4 +63,14 @@ function ChangeDesignTheme(props) {
 
 		setValidated(true);
 	};
+
+    return (
+        <div className="ChangeDesignTheme">
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Modal.Header closeButton>
+					<Modal.Title>{props.title}</Modal.Title>
+				</Modal.Header>
+            </Form>
+        </div>
+    )
 }
