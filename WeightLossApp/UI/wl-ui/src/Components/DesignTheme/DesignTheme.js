@@ -176,6 +176,19 @@ function DesignThemeData() {
 					title="Add new design theme"
 				/>
 			</Modal>
+			{/* Main table */}
+			<div className="container mt-5">
+				<Table className="table table-striped auto__table text-center" striped bordered hover size="lg">
+					<thead>
+						<tr>
+							BaseColor
+							<Button className="btn-light" onClick={() => sortByBaseColor()}>
+								<i className="fa-solid fa-arrows-up-down"></i>
+							</Button>
+						</tr>
+					</thead>
+				</Table>
+			</div>
 		</div>
 	)
 }
