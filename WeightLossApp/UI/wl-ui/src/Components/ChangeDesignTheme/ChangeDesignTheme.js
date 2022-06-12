@@ -70,6 +70,30 @@ function ChangeDesignTheme(props) {
                 <Modal.Header closeButton>
 					<Modal.Title>{props.title}</Modal.Title>
 				</Modal.Header>
+                <Modal.Body>
+                    <Row className="mb-3">
+						<Form.Group as={Col} controlId="validationCustom01">
+							<Form.Label className="ms-1">Base Color</Form.Label>
+							<Form.Control
+								required
+								pattern="^#(?:[0-9a-fA-F]{3}){1,2}$"
+								type="text"
+								maxLength="7"
+								placeholder="Section"
+								value={props.designTheme.BaseColor}
+								onChange={e =>
+									props.setDesignTheme({
+										Id: props.designTheme.Id,
+										BaseColor: e.target.value,
+										SecondaryColor: props.designTheme.SecondaryColor,
+										AccentColor: props.designTheme.AccentColor,
+										IconImage: props.designTheme.IconImage
+									})
+								}
+							/>
+						</Form.Group>
+					</Row>
+                </Modal.Body>
             </Form>
         </div>
     )
