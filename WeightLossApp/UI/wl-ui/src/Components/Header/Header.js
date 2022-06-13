@@ -18,32 +18,38 @@ function Header() {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul className="navbar-nav">
-					<li className="nav-item">
-						<Link className="nav-link" to="/IngridientsData">
-							Ingridients Data
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={"/Categories"}>
-							Categories
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={"/AchievementData"}>
-							Achivements Data
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={"/SectionTraining"}>
-							Section Training
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={"/Exercises"}>
-							Exercises
-						</Link>
-					</li>
-					
+					<ul className="navbar-nav">
+						<li className="nav-item">
+							<Link className="nav-link" to="/IngridientsData">
+								Ingridients Data
+							</Link>
+						</li>
+            <li className="nav-item">
+						  <Link className="nav-link" to={"/Categories"}>
+							  Categories
+						  </Link>
+					  </li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/AchievementData"}>
+								Achivements Data
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/SectionTraining"}>
+								Section Training
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/Exercises"}>
+								Exercises
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/Trainings"}>
+								Trainings
+							</Link>
+						</li>
+					</ul>
 				</ul>
 			</div>
 		</nav>

@@ -9,6 +9,7 @@ import SectionTraining from "./Components/SectionTraining/SectionTraining";
 import AchievementData from "./Components/AchievementData/AchievementData";
 import Categories from "./Components/Categories/Categories";
 import Login from "./Components/Login/Login"
+import Trainings from "./Components/Trainings/Trainings";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Entry point of application, adds App component to the index.html file
@@ -27,6 +28,7 @@ root.render(
 				<Route path="/AchievementData" element={user ? <AchievementData /> : <Login />} />
 				<Route path="/Categories" element={user ? <Categories /> : <Login />} />
 				<Route path="/Login" element={user ? <Login /> : <Login />} />
+        <Route path="/Trainings" element={user ? <Trainings /> : <Login />} />
 				{/* Default Router */}
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
