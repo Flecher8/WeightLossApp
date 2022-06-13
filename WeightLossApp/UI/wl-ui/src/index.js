@@ -13,18 +13,20 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Entry point of application, adds App component to the index.html file
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const user = localStorage.getItem("user");
+
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<Header />
+			{user ? <Header /> : null}
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/IngridientsData" element={<IngridientsData />} />
-				<Route path="/Exercises" element={<Exercises />} />
-				<Route path="/SectionTraining" element={<SectionTraining />} />
-				<Route path="/AchievementData" element={<AchievementData />} />
-				<Route path="/Categories" element={<Categories />} />
-				<Route path="/Login" element={<Login />} />
+				<Route path="/" element={user ? <Home /> : <Login />} />
+				<Route path="/IngridientsData" element={user ? <IngridientsData /> : <Login />} />
+				<Route path="/Exercises" element={user ? <Exercises /> : <Login />} />
+				<Route path="/SectionTraining" element={user ? <SectionTraining /> : <Login />} />
+				<Route path="/AchievementData" element={user ? <AchievementData /> : <Login />} />
+				<Route path="/Categories" element={user ? <Categories /> : <Login />} />
+				<Route path="/Login" element={user ? <Login /> : <Login />} />
 				{/* Default Router */}
 				<Route path="/*" element={<Navigate to="/" />} />
 			</Routes>
