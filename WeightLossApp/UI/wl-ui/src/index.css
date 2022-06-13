@@ -20,3 +20,9 @@ code {
 .dropdown-container {
   width: 100%;
 }
+
+.login-wrap {
+  width: 35vw;
+  margin: 100px auto;
+  padding: 50px;
+}

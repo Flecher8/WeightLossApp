@@ -400,7 +400,7 @@ export class IngridientsData extends Component {
 		return (
 			<div className="container">
 				<div style={{ width: 80 + "vw" }}>
-					<h3 className="m-5">This is Ingridients page</h3>
+					<h3 className="m-5">This is Categories page</h3>
 
 					{/* Main table */}
 					<div className="container mt-5">
@@ -412,13 +412,13 @@ export class IngridientsData extends Component {
 								onChange={e => this.setState( { searchLine: e.target.value }) }
 								aria-describedby="inputGroup-sizing-default"
 							/>
-							<Button onClick={ () =>  { 
+							<Button className="btn-dark" onClick={ () =>  { 
 								this.setState({
 									ingridientsData: this.state.ingridientsData
 										.filter(i => i.Name.includes(this.state.searchLine))
 								});
 							}}>Search</Button>
-							<Button onClick={() => this.refreshList()}>Cancel</Button>
+							<Button className="btn-dark" onClick={() => this.refreshList()}>Cancel</Button>
 						</InputGroup>
 						<Table 
 							className="table table-striped table-bordered table-sm text-center" 
@@ -497,7 +497,7 @@ export class IngridientsData extends Component {
 						</Table>
 					</div>
 
-					{/* Three buttons to perform basic operations */}
+					{/* Three buttons to perform add operation */}
 					<button
 						type="button"
 						className="btn btn-dark m-2 float-end"
@@ -626,7 +626,7 @@ export class IngridientsData extends Component {
 										{this.state.itemID === 0 ? (
 											<button
 												type="submit"
-												className="btn btn-primary float-start"
+												className="btn btn-dark float-end"
 												>
 												Create
 											</button>
@@ -636,7 +636,7 @@ export class IngridientsData extends Component {
 										{this.state.itemID !== 0 ? (
 											<button
 												type="submit"
-												className="btn btn-primary float-start"
+												className="btn btn-dark float-end"
 												>
 												Update
 											</button>

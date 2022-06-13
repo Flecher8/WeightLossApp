@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { constants } from "../../Constants";
 import { Modal, Button, Form, Row, Col, Table, InputGroup, FormControl } from "react-bootstrap";
-import ChangeAchievement from "../ChangeAchievement/ChangeAchievement";
+import ChangeAchievement from "../Modals/ChangeAchievement";
 
 function AchievementData() {
 	// AchivementData data
