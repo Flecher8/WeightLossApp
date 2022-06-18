@@ -1,0 +1,15 @@
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\bin\Debug\netstandard2.0\Mobile.deps.json
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\bin\Debug\netstandard2.0\Mobile.dll
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\bin\Debug\netstandard2.0\ref\Mobile.dll
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\bin\Debug\netstandard2.0\Mobile.pdb
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.csproj.AssemblyReference.cache
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.GeneratedMSBuildEditorConfig.editorconfig
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\App.xaml.g.cs
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.AssemblyInfoInputs.cache
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.AssemblyInfo.cs
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.csproj.CoreCompileInputs.cache
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\XamlC.stamp
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.dll
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\ref\Mobile.dll
+D:\NURE\assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.pdb
