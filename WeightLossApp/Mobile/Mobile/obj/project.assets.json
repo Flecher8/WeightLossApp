@@ -2,6 +2,84 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
+      "DevExpress.XamarinForms.Charts/21.2.8": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "[21.2.8]",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Charts.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Charts.dll": {}
+        }
+      },
+      "DevExpress.XamarinForms.CollectionView/21.2.8": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "[21.2.8]",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.CollectionView.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.CollectionView.dll": {}
+        }
+      },
+      "DevExpress.XamarinForms.Core/21.2.8": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Core.dll": {}
+        }
+      },
+      "DevExpress.XamarinForms.Editors/21.2.8": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.XamarinForms.CollectionView": "[21.2.8]",
+          "DevExpress.XamarinForms.Core": "[21.2.8]",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Editors.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Editors.dll": {}
+        }
+      },
+      "DevExpress.XamarinForms.Navigation/21.2.8": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "[21.2.8]",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.dll": {}
+        }
+      },
+      "DevExpress.XamarinForms.Scheduler/21.2.8": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "[21.2.8]",
+          "Xamarin.Forms": "5.0.0.2012"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -67,6 +145,124 @@
     }
   },
   "libraries": {
+    "DevExpress.XamarinForms.Charts/21.2.8": {
+      "sha512": "XF11VriuUGB2cOGoixZhvsudyYpYbl76hrM/scJ1PNXjLAEMvwi0cv/6YX44j8gZRNK9++oLeBoFXKaG5VZDIQ==",
+      "type": "package",
+      "path": "devexpress.xamarinforms.charts/21.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.xamarinforms.charts.21.2.8.nupkg.sha512",
+        "devexpress.xamarinforms.charts.nuspec",
+        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Charts.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.Android.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.xml",
+        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Charts.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Charts.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Charts.iOS.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Charts.xml",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Charts.dll",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Charts.xml"
+      ]
+    },
+    "DevExpress.XamarinForms.CollectionView/21.2.8": {
+      "sha512": "cp4PzYBPk/OoBUkuDZtmS6G3UmFxnbRDurkWvni/GphOMy8cpMHhrYzVVwsry2SNOMWf+2LR4ycLWipSVUEIIQ==",
+      "type": "package",
+      "path": "devexpress.xamarinforms.collectionview/21.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.xamarinforms.collectionview.21.2.8.nupkg.sha512",
+        "devexpress.xamarinforms.collectionview.nuspec",
+        "lib/MonoAndroid10/DevExpress.Xamarin.Android.CollectionView.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.Android.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.dll",
+        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.CollectionView.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.CollectionView.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.CollectionView.iOS.dll",
+        "lib/netstandard2.0/DevExpress.XamarinForms.CollectionView.dll"
+      ]
+    },
+    "DevExpress.XamarinForms.Core/21.2.8": {
+      "sha512": "u9/gu+zgnXdZRDNL1koTOisQeR03gikfXTB6N5IyvO5YiV0YeDTrgtS3yRWJPFolXsSQfayCEtEYTeSbhd7nlQ==",
+      "type": "package",
+      "path": "devexpress.xamarinforms.core/21.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.xamarinforms.core.21.2.8.nupkg.sha512",
+        "devexpress.xamarinforms.core.nuspec",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Core.Android.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Core.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Core.xml",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Core.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Core.iOS.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Core.xml",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Core.dll",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Core.xml"
+      ]
+    },
+    "DevExpress.XamarinForms.Editors/21.2.8": {
+      "sha512": "HDQHCypWlXTdOi8Tk3lOtP96aeHD+Dn2meRJ3y5RADz56LeIXcurkz/K0afQuvfcbV6i6Q5+pzSnYBFrj5+Rfg==",
+      "type": "package",
+      "path": "devexpress.xamarinforms.editors/21.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.xamarinforms.editors.21.2.8.nupkg.sha512",
+        "devexpress.xamarinforms.editors.nuspec",
+        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Editors.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.Android.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.dll",
+        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Editors.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Editors.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Editors.iOS.dll",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Editors.dll"
+      ]
+    },
+    "DevExpress.XamarinForms.Navigation/21.2.8": {
+      "sha512": "s0GmzZ0Hz7eQSqfvkppiNNWXa7ACdV7zeT6xkIG7N/DSWJ3HgC+5O8WEvIz/5+ECFDG/Hob/lYw5JfjxBe2JJA==",
+      "type": "package",
+      "path": "devexpress.xamarinforms.navigation/21.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.xamarinforms.navigation.21.2.8.nupkg.sha512",
+        "devexpress.xamarinforms.navigation.nuspec",
+        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Navigation.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.Android.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.xml",
+        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Navigation.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Navigation.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Navigation.iOS.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Navigation.xml",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.dll",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.xml"
+      ]
+    },
+    "DevExpress.XamarinForms.Scheduler/21.2.8": {
+      "sha512": "iWID3vBlI8bI3E4mCmouiHCI77wNZijdPIbTGDVBMQj5nNoX3Du54IMTyJ6p3GLnLTMn2EhvdzEA3ZJq12zGUw==",
+      "type": "package",
+      "path": "devexpress.xamarinforms.scheduler/21.2.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "devexpress.xamarinforms.scheduler.21.2.8.nupkg.sha512",
+        "devexpress.xamarinforms.scheduler.nuspec",
+        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Scheduler.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.Android.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.dll",
+        "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.xml",
+        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Scheduler.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Scheduler.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Scheduler.iOS.dll",
+        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Scheduler.xml",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.dll",
+        "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.xml"
+      ]
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
@@ -519,6 +715,11 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "DevExpress.XamarinForms.Charts >= 21.2.8",
+      "DevExpress.XamarinForms.CollectionView >= 21.2.8",
+      "DevExpress.XamarinForms.Editors >= 21.2.8",
+      "DevExpress.XamarinForms.Navigation >= 21.2.8",
+      "DevExpress.XamarinForms.Scheduler >= 21.2.8",
       "NETStandard.Library >= 2.0.3",
       "Xamarin.Essentials >= 1.7.0",
       "Xamarin.Forms >= 5.0.0.2196"
@@ -531,11 +732,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+      "projectUniqueName": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
       "projectName": "Mobile",
-      "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+      "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
       "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
-      "outputPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
+      "outputPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -569,6 +770,26 @@
       "netstandard2.0": {
         "targetAlias": "netstandard2.0",
         "dependencies": {
+          "DevExpress.XamarinForms.Charts": {
+            "target": "Package",
+            "version": "[21.2.8, )"
+          },
+          "DevExpress.XamarinForms.CollectionView": {
+            "target": "Package",
+            "version": "[21.2.8, )"
+          },
+          "DevExpress.XamarinForms.Editors": {
+            "target": "Package",
+            "version": "[21.2.8, )"
+          },
+          "DevExpress.XamarinForms.Navigation": {
+            "target": "Package",
+            "version": "[21.2.8, )"
+          },
+          "DevExpress.XamarinForms.Scheduler": {
+            "target": "Package",
+            "version": "[21.2.8, )"
+          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",

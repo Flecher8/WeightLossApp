@@ -96,6 +96,22 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
+            "DevExpress.XamarinForms.Charts": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.CollectionView": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.Editors": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.Navigation": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
