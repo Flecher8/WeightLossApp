@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {}
+  },
+  "projects": {
+    "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+        "projectName": "Mobile",
+        "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+        "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
+        "outputPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\vmlf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/W4CQYn1mwm6cLgRjflSgJmo9dUVSRUnnv8otF3kM5JfdD5NriO/api": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "DevExpress.XamarinForms.Charts": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.CollectionView": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.Editors": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.Navigation": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "DevExpress.XamarinForms.Scheduler": {
+              "target": "Package",
+              "version": "[21.2.8, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Xamarin.Essentials": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[5.0.0.2196, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

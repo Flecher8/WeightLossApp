@@ -5,7 +5,13 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeightLossApp", "WeightLossApp\WeightLossApp.csproj", "{BB23DCDE-AD70-4E02-8C7B-F4236AAD2E5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{A860467B-E772-4DB4-93E6-C94BD33C4EA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{A860467B-E772-4DB4-93E6-C94BD33C4EA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mobile", "Mobile\Mobile\Mobile.csproj", "{6082859E-9F4F-4627-9CB8-B77B38D8DD67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.Android", "Mobile\Mobile.Android\Mobile.Android.csproj", "{EBBE3A1D-7225-4220-8253-98F19654D76B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{64E76460-7859-40BA-AF9C-1887C99217A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,20 @@ Global
 		{A860467B-E772-4DB4-93E6-C94BD33C4EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A860467B-E772-4DB4-93E6-C94BD33C4EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A860467B-E772-4DB4-93E6-C94BD33C4EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6082859E-9F4F-4627-9CB8-B77B38D8DD67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6082859E-9F4F-4627-9CB8-B77B38D8DD67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6082859E-9F4F-4627-9CB8-B77B38D8DD67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6082859E-9F4F-4627-9CB8-B77B38D8DD67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
