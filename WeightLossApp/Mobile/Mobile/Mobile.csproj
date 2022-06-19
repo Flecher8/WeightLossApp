@@ -11,6 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fontawesomeIcons\icons\otfs\IconsRegular.otf" />
+    <None Remove="fontawesomeIcons\icons\otfs\IconsSolid.otf" />
+    <None Remove="fontawesomeIcons\icons\otfs\Regular-400.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="fontawesomeIcons\icons\otfs\Regular-400.otf" />
+    <EmbeddedResource Include="fontawesomeIcons\icons\otfs\IconsRegular.otf" />
+    <EmbeddedResource Include="fontawesomeIcons\icons\otfs\IconsSolid.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DevExpress.XamarinForms.Charts" Version="21.2.8" />
     <PackageReference Include="DevExpress.XamarinForms.CollectionView" Version="21.2.8" />
     <PackageReference Include="DevExpress.XamarinForms.Editors" Version="21.2.8" />
@@ -18,5 +30,21 @@
     <PackageReference Include="DevExpress.XamarinForms.Scheduler" Version="21.2.8" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\FoodPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StatisticPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TrainingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@ namespace Mobile
         public App()
         {
             InitializeComponent();
+            DevExpress.XamarinForms.Navigation.Initializer.Init();
 
             MainPage = new MainPage();
         }

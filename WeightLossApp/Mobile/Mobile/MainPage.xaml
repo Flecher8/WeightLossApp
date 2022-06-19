@@ -1,24 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mobile.MainPage">
+<dxn:TabPage 
+     xmlns="http://xamarin.com/schemas/2014/forms"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
+     xmlns:local="clr-namespace:Mobile"
+     xmlns:fa="clr-namespace:FontAwesome"
+     x:Class="Mobile.MainPage"
+     BackgroundColor="{StaticResource BackgroundColor}"
+     HeaderPanelBackgroundColor="{StaticResource PrimaryColor}"
+     SelectedItemHeaderBackgroundColor="{StaticResource PrimaryColor}"
+     HeaderPanelPosition="Bottom"
+     ItemHeaderWidth="*"
+     HeaderPanelHeight="80"
+     IsVisible="true"
+     IsSelectedItemIndicatorVisible="False"
+     ItemHeaderTextColor="{StaticResource BlockBackgroundColor}"
+     SelectedItemHeaderTextColor="{StaticResource TextColorLight}"
+     ItemHeaderIconColor="{StaticResource TextColorUnactive}"
+     SelectedItemHeaderIconColor="{StaticResource TextColorLight}"
+     ItemHeaderIconPosition="Right"
+     >
+        <dxn:TabPageItem>
+        <dxn:TabPageItem.Content>
+            <ContentPage>
+                <ContentPage.IconImageSource>
+                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.HouseChimney}"></FontImageSource>
+                </ContentPage.IconImageSource>
+                <Grid>
+                    <Label Text="Main page" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="CenterAndExpand"
+                        BackgroundColor="{StaticResource BlockBackgroundColor}"/>
+                </Grid>
+            </ContentPage>
+        </dxn:TabPageItem.Content>
+    </dxn:TabPageItem>
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    <dxn:TabPageItem>
+        <dxn:TabPageItem.Content>
+            <ContentPage>
+                <ContentPage.IconImageSource>
+                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Utensils}"></FontImageSource>
+                </ContentPage.IconImageSource>
+                <Label Text="Food data" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="CenterAndExpand"/>
+            </ContentPage>
+        </dxn:TabPageItem.Content>
+    </dxn:TabPageItem>
 
-</ContentPage>
+    <dxn:TabPageItem>
+        <dxn:TabPageItem.Content>
+            <ContentPage>
+                <ContentPage.IconImageSource>
+                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.ChartLine}"></FontImageSource>
+                </ContentPage.IconImageSource>
+                <Label Text="Statistic" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="CenterAndExpand"/>
+            </ContentPage>
+        </dxn:TabPageItem.Content>
+    </dxn:TabPageItem>
+
+    <dxn:TabPageItem>
+        <dxn:TabPageItem.Content>
+            <ContentPage>
+                <ContentPage.IconImageSource>
+                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Dumbbell}"></FontImageSource>
+                </ContentPage.IconImageSource>
+                <Label Text="People Here" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="CenterAndExpand"/>
+            </ContentPage>
+        </dxn:TabPageItem.Content>
+    </dxn:TabPageItem>
+</dxn:TabPage>

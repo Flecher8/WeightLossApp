@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mobile", "Mobile\Mobile\Mob
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.Android", "Mobile\Mobile.Android\Mobile.Android.csproj", "{EBBE3A1D-7225-4220-8253-98F19654D76B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{64E76460-7859-40BA-AF9C-1887C99217A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EBBE3A1D-7225-4220-8253-98F19654D76B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E76460-7859-40BA-AF9C-1887C99217A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
