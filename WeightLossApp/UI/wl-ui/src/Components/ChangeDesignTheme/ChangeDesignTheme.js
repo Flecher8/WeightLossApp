@@ -19,12 +19,13 @@ function ChangeDesignTheme(props) {
 		})
 			.then(res => res.json())
 			.then(data => {
+				//console.log("HELLO"+data.data.link);
 				props.setDesignTheme({
 					Id: props.designTheme.Id,
 					BaseColor: props.designTheme.BaseColor,
 					SecondaryColor: props.designTheme.SecondaryColor,
 					AccentColor: props.designTheme.AccentColor,
-					IconImage: data.data.link,
+					IconImage: data.data.link
 				});
 			});
 	}
@@ -150,7 +151,7 @@ function ChangeDesignTheme(props) {
 							<Form.Control
 								type="file"
 								placeholder="IconImage"
-								value={props.designTheme.IconImage}
+								value={props.designTheme.IconImg}
 								onChange={e => saveImg(e)}
 							/>
 						</Form.Group>

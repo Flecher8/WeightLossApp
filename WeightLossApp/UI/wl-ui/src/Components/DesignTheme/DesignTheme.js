@@ -202,7 +202,7 @@ function DesignThemeData() {
 							<th>
 								IconImage
 								<Button className="btn-light">
-									<i className="fa-solid fa-arrows-up-down"></i>
+									<i className="fa-solid"></i>
 								</Button>
 							</th>
 						</tr>
@@ -210,9 +210,9 @@ function DesignThemeData() {
 					<tbody>
 						{designThemes.map(e => (
 							<tr key={e.Id}>
-								<td>{e.BaseColor}</td>
-								<td>{e.SecondaryColor}</td>
-								<td>{e.AccentColor}</td>
+								<td style={{backgroundColor : e.BaseColor, color : e.BaseColor}}>{e.BaseColor}</td>
+								<td style={{backgroundColor : e.SecondaryColor, color : e.SecondaryColor}}>{e.SecondaryColor}</td>
+								<td style={{backgroundColor : e.AccentColor, color : e.AccentColor}}>{e.AccentColor}</td>
 								<td>
 									<img src={e.IconImage} alt="img" width="100px" />
 								</td>
@@ -235,7 +235,7 @@ function DesignThemeData() {
 					state={editHandleClose}
 					designTheme={designTheme}
 					setDesignTheme={setDesignTheme}
-					setDesignThemes={setDesignThemes}
+					setDesignThemes={getDesignThemes}
 					method="PUT"
 					title="Edit design theme"
 				/>
