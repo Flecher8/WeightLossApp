@@ -9,12 +9,89 @@
     ".NETStandard,Version=v2.0/": {
       "Mobile/1.0.0": {
         "dependencies": {
+          "DevExpress.XamarinForms.Charts": "21.2.8",
+          "DevExpress.XamarinForms.CollectionView": "21.2.8",
+          "DevExpress.XamarinForms.Editors": "21.2.8",
+          "DevExpress.XamarinForms.Navigation": "21.2.8",
+          "DevExpress.XamarinForms.Scheduler": "21.2.8",
           "NETStandard.Library": "2.0.3",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2196"
         },
         "runtime": {
           "Mobile.dll": {}
+        }
+      },
+      "DevExpress.XamarinForms.Charts/21.2.8": {
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "21.2.8",
+          "Xamarin.Forms": "5.0.0.2196"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Charts.dll": {
+            "assemblyVersion": "21.2.8.0",
+            "fileVersion": "21.2.8.0"
+          }
+        }
+      },
+      "DevExpress.XamarinForms.CollectionView/21.2.8": {
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "21.2.8",
+          "Xamarin.Forms": "5.0.0.2196"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.CollectionView.dll": {
+            "assemblyVersion": "21.2.8.0",
+            "fileVersion": "21.2.8.0"
+          }
+        }
+      },
+      "DevExpress.XamarinForms.Core/21.2.8": {
+        "dependencies": {
+          "Xamarin.Forms": "5.0.0.2196"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Core.dll": {
+            "assemblyVersion": "21.2.8.0",
+            "fileVersion": "21.2.8.0"
+          }
+        }
+      },
+      "DevExpress.XamarinForms.Editors/21.2.8": {
+        "dependencies": {
+          "DevExpress.XamarinForms.CollectionView": "21.2.8",
+          "DevExpress.XamarinForms.Core": "21.2.8",
+          "Xamarin.Forms": "5.0.0.2196"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Editors.dll": {
+            "assemblyVersion": "21.2.8.0",
+            "fileVersion": "21.2.8.0"
+          }
+        }
+      },
+      "DevExpress.XamarinForms.Navigation/21.2.8": {
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "21.2.8",
+          "Xamarin.Forms": "5.0.0.2196"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.dll": {
+            "assemblyVersion": "21.2.8.0",
+            "fileVersion": "21.2.8.0"
+          }
+        }
+      },
+      "DevExpress.XamarinForms.Scheduler/21.2.8": {
+        "dependencies": {
+          "DevExpress.XamarinForms.Core": "21.2.8",
+          "Xamarin.Forms": "5.0.0.2196"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.dll": {
+            "assemblyVersion": "21.2.8.0",
+            "fileVersion": "21.2.8.0"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
@@ -65,6 +142,48 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "DevExpress.XamarinForms.Charts/21.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XF11VriuUGB2cOGoixZhvsudyYpYbl76hrM/scJ1PNXjLAEMvwi0cv/6YX44j8gZRNK9++oLeBoFXKaG5VZDIQ==",
+      "path": "devexpress.xamarinforms.charts/21.2.8",
+      "hashPath": "devexpress.xamarinforms.charts.21.2.8.nupkg.sha512"
+    },
+    "DevExpress.XamarinForms.CollectionView/21.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cp4PzYBPk/OoBUkuDZtmS6G3UmFxnbRDurkWvni/GphOMy8cpMHhrYzVVwsry2SNOMWf+2LR4ycLWipSVUEIIQ==",
+      "path": "devexpress.xamarinforms.collectionview/21.2.8",
+      "hashPath": "devexpress.xamarinforms.collectionview.21.2.8.nupkg.sha512"
+    },
+    "DevExpress.XamarinForms.Core/21.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u9/gu+zgnXdZRDNL1koTOisQeR03gikfXTB6N5IyvO5YiV0YeDTrgtS3yRWJPFolXsSQfayCEtEYTeSbhd7nlQ==",
+      "path": "devexpress.xamarinforms.core/21.2.8",
+      "hashPath": "devexpress.xamarinforms.core.21.2.8.nupkg.sha512"
+    },
+    "DevExpress.XamarinForms.Editors/21.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HDQHCypWlXTdOi8Tk3lOtP96aeHD+Dn2meRJ3y5RADz56LeIXcurkz/K0afQuvfcbV6i6Q5+pzSnYBFrj5+Rfg==",
+      "path": "devexpress.xamarinforms.editors/21.2.8",
+      "hashPath": "devexpress.xamarinforms.editors.21.2.8.nupkg.sha512"
+    },
+    "DevExpress.XamarinForms.Navigation/21.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-s0GmzZ0Hz7eQSqfvkppiNNWXa7ACdV7zeT6xkIG7N/DSWJ3HgC+5O8WEvIz/5+ECFDG/Hob/lYw5JfjxBe2JJA==",
+      "path": "devexpress.xamarinforms.navigation/21.2.8",
+      "hashPath": "devexpress.xamarinforms.navigation.21.2.8.nupkg.sha512"
+    },
+    "DevExpress.XamarinForms.Scheduler/21.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iWID3vBlI8bI3E4mCmouiHCI77wNZijdPIbTGDVBMQj5nNoX3Du54IMTyJ6p3GLnLTMn2EhvdzEA3ZJq12zGUw==",
+      "path": "devexpress.xamarinforms.scheduler/21.2.8",
+      "hashPath": "devexpress.xamarinforms.scheduler.21.2.8.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",

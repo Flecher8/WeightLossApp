@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
@@ -11,15 +11,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="fontawesomeIcons\icons\otfs\IconsRegular.otf" />
-    <None Remove="fontawesomeIcons\icons\otfs\IconsSolid.otf" />
-    <None Remove="fontawesomeIcons\icons\otfs\Regular-400.otf" />
+    <Compile Remove="src\Fonts\fontawesomeIcons\icons\svgs\**" />
+    <EmbeddedResource Remove="src\Fonts\fontawesomeIcons\icons\svgs\**" />
+    <None Remove="src\Fonts\fontawesomeIcons\icons\svgs\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="fontawesomeIcons\icons\otfs\Regular-400.otf" />
-    <EmbeddedResource Include="fontawesomeIcons\icons\otfs\IconsRegular.otf" />
-    <EmbeddedResource Include="fontawesomeIcons\icons\otfs\IconsSolid.otf" />
+    <None Remove="src\Fonts\Comfortaa\ComfortaaFont.ttf" />
+    <None Remove="src\Fonts\fontawesomeIcons\icons\otfs\IconsRegular.otf" />
+    <None Remove="src\Fonts\fontawesomeIcons\icons\otfs\IconsSolid.otf" />
+    <None Remove="src\Fonts\fontawesomeIcons\icons\otfs\Regular-400.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="src\Fonts\Comfortaa\ComfortaaFont.ttf" />
+    <EmbeddedResource Include="src\Fonts\fontawesomeIcons\icons\otfs\Regular-400.otf" />
+    <EmbeddedResource Include="src\Fonts\fontawesomeIcons\icons\otfs\IconsRegular.otf" />
+    <EmbeddedResource Include="src\Fonts\fontawesomeIcons\icons\otfs\IconsSolid.otf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,10 +41,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="UIComponents\TabsHeaderPanell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\FoodPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

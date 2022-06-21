@@ -4,7 +4,8 @@
      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
      xmlns:local="clr-namespace:Mobile"
-     xmlns:fa="clr-namespace:FontAwesome"
+     xmlns:fa="clr-namespace:FontAwesome" 
+     xmlns:local1="clr-namespace:Mobile.UIComponents"
      x:Class="Mobile.MainPage"
      BackgroundColor="{StaticResource BackgroundColor}"
      HeaderPanelBackgroundColor="{StaticResource PrimaryColor}"
@@ -16,9 +17,9 @@
      IsSelectedItemIndicatorVisible="False"
      ItemHeaderTextColor="{StaticResource BlockBackgroundColor}"
      SelectedItemHeaderTextColor="{StaticResource TextColorLight}"
-     ItemHeaderIconColor="{StaticResource TextColorUnactive}"
+     ItemHeaderIconColor="{StaticResource TextColorDark}"
      SelectedItemHeaderIconColor="{StaticResource TextColorLight}"
-     ItemHeaderIconPosition="Right"
+     ItemHeaderIconPosition="Left"
      >
         <dxn:TabPageItem>
         <dxn:TabPageItem.Content>
@@ -27,10 +28,20 @@
                     <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.HouseChimney}"></FontImageSource>
                 </ContentPage.IconImageSource>
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <local1:TabsHeaderPanell 
+                        Grid.Row="0" 
+                        PanellTitle="Hi, Vlad!"/>
+
+
                     <Label Text="Main page" 
                         HorizontalOptions="Center" 
                         VerticalOptions="CenterAndExpand"
-                        BackgroundColor="{StaticResource BlockBackgroundColor}"/>
+                        BackgroundColor="{StaticResource BlockBackgroundColor}"
+                        Grid.Row="1"/>
                 </Grid>
             </ContentPage>
         </dxn:TabPageItem.Content>
