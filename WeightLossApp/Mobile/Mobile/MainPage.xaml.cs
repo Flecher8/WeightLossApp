@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using DevExpress.XamarinForms.Navigation;
+using Mobile.ViewModels;
 
 namespace Mobile
 {
@@ -14,6 +15,7 @@ namespace Mobile
         public MainPage()
         {
             InitializeComponent();
+
         }
     }
 }

@@ -21,6 +21,18 @@
             <Color x:Key="TextColorLight">#FFFFFF</Color>
             <Color x:Key="TextColorDark">#3B322C</Color>
             <Color x:Key="TextColorUnactive">#E0E0E0</Color>
+            
+            <!--Controll styles-->
+            <Style x:Key="CircleButtonS" TargetType="Button">
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BorderRadius" Value="25" />
+                <Setter Property="Margin" Value="0,15,30,0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />
+            </Style>
+            
 
         </ResourceDictionary>
     </Application.Resources>

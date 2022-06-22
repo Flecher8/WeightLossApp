@@ -6,11 +6,10 @@ using System.Text;
 
 namespace Mobile.Helpers
 {
-    internal class PropertyChangedIpmlementator : INotifyPropertyChanged
+    public class PropertyChangedIpmlementator : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

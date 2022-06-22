@@ -4,6 +4,7 @@
      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
      xmlns:local="clr-namespace:Mobile"
+     xmlns:views="clr-namespace:Mobile.Views"
      xmlns:fa="clr-namespace:FontAwesome" 
      xmlns:local1="clr-namespace:Mobile.UIComponents"
      x:Class="Mobile.MainPage"
@@ -35,8 +36,6 @@
                     <local1:TabsHeaderPanell 
                         Grid.Row="0" 
                         PanellTitle="Hi, Vlad!"/>
-
-
                     <Label Text="Main page" 
                         HorizontalOptions="Center" 
                         VerticalOptions="CenterAndExpand"
@@ -49,14 +48,17 @@
 
     <dxn:TabPageItem>
         <dxn:TabPageItem.Content>
-            <ContentPage>
+            <!--<ContentPage>
                 <ContentPage.IconImageSource>
                     <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Utensils}"></FontImageSource>
                 </ContentPage.IconImageSource>
-                <Label Text="Food data" 
-                        HorizontalOptions="Center" 
-                        VerticalOptions="CenterAndExpand"/>
-            </ContentPage>
+            </ContentPage>-->
+
+            <views:FoodPage>
+                <ContentPage.IconImageSource>
+                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Utensils}"></FontImageSource>
+                </ContentPage.IconImageSource>
+            </views:FoodPage>
         </dxn:TabPageItem.Content>
     </dxn:TabPageItem>
 
