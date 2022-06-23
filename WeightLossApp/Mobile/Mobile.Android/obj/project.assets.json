@@ -2,109 +2,6 @@
   "version": 3,
   "targets": {
     "MonoAndroid,Version=v12.0": {
-      "DevExpress.XamarinForms.Charts/21.2.8": {
-        "type": "package",
-        "dependencies": {
-          "DevExpress.XamarinForms.Core": "[21.2.8]",
-          "Xamarin.Forms": "5.0.0.2012"
-        },
-        "compile": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Charts.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Charts.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.dll": {}
-        }
-      },
-      "DevExpress.XamarinForms.CollectionView/21.2.8": {
-        "type": "package",
-        "dependencies": {
-          "DevExpress.XamarinForms.Core": "[21.2.8]",
-          "Xamarin.Forms": "5.0.0.2012",
-          "Xamarin.Kotlin.StdLib": "1.4.20"
-        },
-        "compile": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.CollectionView.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.CollectionView.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.dll": {}
-        }
-      },
-      "DevExpress.XamarinForms.Core/21.2.8": {
-        "type": "package",
-        "dependencies": {
-          "Xamarin.Forms": "5.0.0.2012"
-        },
-        "compile": {
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Core.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Core.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Core.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Core.dll": {}
-        }
-      },
-      "DevExpress.XamarinForms.Editors/21.2.8": {
-        "type": "package",
-        "dependencies": {
-          "DevExpress.XamarinForms.CollectionView": "[21.2.8]",
-          "DevExpress.XamarinForms.Core": "[21.2.8]",
-          "Xamarin.AndroidX.AutoFill": "1.1.0.6",
-          "Xamarin.Forms": "5.0.0.2012",
-          "Xamarin.Kotlin.StdLib": "1.4.20"
-        },
-        "compile": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Editors.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Editors.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.dll": {}
-        }
-      },
-      "DevExpress.XamarinForms.Navigation/21.2.8": {
-        "type": "package",
-        "dependencies": {
-          "DevExpress.XamarinForms.Core": "[21.2.8]",
-          "Xamarin.Forms": "5.0.0.2012"
-        },
-        "compile": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Navigation.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Navigation.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.dll": {}
-        }
-      },
-      "DevExpress.XamarinForms.Scheduler/21.2.8": {
-        "type": "package",
-        "dependencies": {
-          "DevExpress.XamarinForms.Core": "[21.2.8]",
-          "Xamarin.Forms": "5.0.0.2012"
-        },
-        "compile": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Scheduler.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/DevExpress.Xamarin.Android.Scheduler.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.Android.dll": {},
-          "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.dll": {}
-        }
-      },
       "GraphQL.Client/4.0.2": {
         "type": "package",
         "dependencies": {
@@ -507,21 +404,6 @@
         },
         "build": {
           "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
-        }
-      },
-      "Xamarin.AndroidX.AutoFill/1.1.0.6": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "Java.Interop"
-        ],
-        "compile": {
-          "lib/monoandroid90/Xamarin.AndroidX.AutoFill.dll": {}
-        },
-        "runtime": {
-          "lib/monoandroid90/Xamarin.AndroidX.AutoFill.dll": {}
-        },
-        "build": {
-          "buildTransitive/monoandroid9.0/Xamarin.AndroidX.AutoFill.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.3.0.6": {
@@ -1833,55 +1715,6 @@
           "buildTransitive/monoandroid50/Xamarin.Google.Guava.ListenableFuture.targets": {}
         }
       },
-      "Xamarin.Jetbrains.Annotations/13.0.0.3": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "Java.Interop"
-        ],
-        "compile": {
-          "lib/monoandroid10.0/Xamarin.Jetbrains.Annotations.dll": {}
-        },
-        "runtime": {
-          "lib/monoandroid10.0/Xamarin.Jetbrains.Annotations.dll": {}
-        },
-        "build": {
-          "build/monoandroid10.0/_._": {}
-        }
-      },
-      "Xamarin.Kotlin.StdLib/1.4.20": {
-        "type": "package",
-        "dependencies": {
-          "Xamarin.Jetbrains.Annotations": "13.0.0.3",
-          "Xamarin.Kotlin.StdLib.Common": "1.4.20"
-        },
-        "frameworkAssemblies": [
-          "Java.Interop"
-        ],
-        "compile": {
-          "lib/monoandroid10.0/Xamarin.Kotlin.StdLib.dll": {}
-        },
-        "runtime": {
-          "lib/monoandroid10.0/Xamarin.Kotlin.StdLib.dll": {}
-        },
-        "build": {
-          "build/monoandroid10.0/_._": {}
-        }
-      },
-      "Xamarin.Kotlin.StdLib.Common/1.4.20": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "Java.Interop"
-        ],
-        "compile": {
-          "lib/monoandroid10.0/Xamarin.Kotlin.StdLib.Common.dll": {}
-        },
-        "runtime": {
-          "lib/monoandroid10.0/Xamarin.Kotlin.StdLib.Common.dll": {}
-        },
-        "build": {
-          "build/monoandroid10.0/_._": {}
-        }
-      },
       "Mobile/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -1908,124 +1741,6 @@
     }
   },
   "libraries": {
-    "DevExpress.XamarinForms.Charts/21.2.8": {
-      "sha512": "XF11VriuUGB2cOGoixZhvsudyYpYbl76hrM/scJ1PNXjLAEMvwi0cv/6YX44j8gZRNK9++oLeBoFXKaG5VZDIQ==",
-      "type": "package",
-      "path": "devexpress.xamarinforms.charts/21.2.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "devexpress.xamarinforms.charts.21.2.8.nupkg.sha512",
-        "devexpress.xamarinforms.charts.nuspec",
-        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Charts.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.Android.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Charts.xml",
-        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Charts.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Charts.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Charts.iOS.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Charts.xml",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Charts.dll",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Charts.xml"
-      ]
-    },
-    "DevExpress.XamarinForms.CollectionView/21.2.8": {
-      "sha512": "cp4PzYBPk/OoBUkuDZtmS6G3UmFxnbRDurkWvni/GphOMy8cpMHhrYzVVwsry2SNOMWf+2LR4ycLWipSVUEIIQ==",
-      "type": "package",
-      "path": "devexpress.xamarinforms.collectionview/21.2.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "devexpress.xamarinforms.collectionview.21.2.8.nupkg.sha512",
-        "devexpress.xamarinforms.collectionview.nuspec",
-        "lib/MonoAndroid10/DevExpress.Xamarin.Android.CollectionView.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.Android.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.CollectionView.dll",
-        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.CollectionView.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.CollectionView.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.CollectionView.iOS.dll",
-        "lib/netstandard2.0/DevExpress.XamarinForms.CollectionView.dll"
-      ]
-    },
-    "DevExpress.XamarinForms.Core/21.2.8": {
-      "sha512": "u9/gu+zgnXdZRDNL1koTOisQeR03gikfXTB6N5IyvO5YiV0YeDTrgtS3yRWJPFolXsSQfayCEtEYTeSbhd7nlQ==",
-      "type": "package",
-      "path": "devexpress.xamarinforms.core/21.2.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "devexpress.xamarinforms.core.21.2.8.nupkg.sha512",
-        "devexpress.xamarinforms.core.nuspec",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Core.Android.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Core.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Core.xml",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Core.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Core.iOS.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Core.xml",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Core.dll",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Core.xml"
-      ]
-    },
-    "DevExpress.XamarinForms.Editors/21.2.8": {
-      "sha512": "HDQHCypWlXTdOi8Tk3lOtP96aeHD+Dn2meRJ3y5RADz56LeIXcurkz/K0afQuvfcbV6i6Q5+pzSnYBFrj5+Rfg==",
-      "type": "package",
-      "path": "devexpress.xamarinforms.editors/21.2.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "devexpress.xamarinforms.editors.21.2.8.nupkg.sha512",
-        "devexpress.xamarinforms.editors.nuspec",
-        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Editors.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.Android.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Editors.dll",
-        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Editors.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Editors.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Editors.iOS.dll",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Editors.dll"
-      ]
-    },
-    "DevExpress.XamarinForms.Navigation/21.2.8": {
-      "sha512": "s0GmzZ0Hz7eQSqfvkppiNNWXa7ACdV7zeT6xkIG7N/DSWJ3HgC+5O8WEvIz/5+ECFDG/Hob/lYw5JfjxBe2JJA==",
-      "type": "package",
-      "path": "devexpress.xamarinforms.navigation/21.2.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "devexpress.xamarinforms.navigation.21.2.8.nupkg.sha512",
-        "devexpress.xamarinforms.navigation.nuspec",
-        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Navigation.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.Android.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Navigation.xml",
-        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Navigation.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Navigation.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Navigation.iOS.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Navigation.xml",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.dll",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Navigation.xml"
-      ]
-    },
-    "DevExpress.XamarinForms.Scheduler/21.2.8": {
-      "sha512": "iWID3vBlI8bI3E4mCmouiHCI77wNZijdPIbTGDVBMQj5nNoX3Du54IMTyJ6p3GLnLTMn2EhvdzEA3ZJq12zGUw==",
-      "type": "package",
-      "path": "devexpress.xamarinforms.scheduler/21.2.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "devexpress.xamarinforms.scheduler.21.2.8.nupkg.sha512",
-        "devexpress.xamarinforms.scheduler.nuspec",
-        "lib/MonoAndroid10/DevExpress.Xamarin.Android.Scheduler.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.Android.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.dll",
-        "lib/MonoAndroid10/DevExpress.XamarinForms.Scheduler.xml",
-        "lib/Xamarin.iOS10/DevExpress.Xamarin.iOS.Scheduler.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Scheduler.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Scheduler.iOS.dll",
-        "lib/Xamarin.iOS10/DevExpress.XamarinForms.Scheduler.xml",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.dll",
-        "lib/netstandard2.0/DevExpress.XamarinForms.Scheduler.xml"
-      ]
-    },
     "GraphQL.Client/4.0.2": {
       "sha512": "EB/icQ7QWzCQzfT6yv8L6BAW+c7DrQuwIg/nNSguOQBMs2W7aaYMpEYidEZ4U2ao0CrT6gcCY0F8xz9hoB3Pvw==",
       "type": "package",
@@ -2666,23 +2381,6 @@
         "lib/net6.0-android30.0/Xamarin.AndroidX.AsyncLayoutInflater.xml",
         "xamarin.androidx.asynclayoutinflater.1.0.0.8.nupkg.sha512",
         "xamarin.androidx.asynclayoutinflater.nuspec"
-      ]
-    },
-    "Xamarin.AndroidX.AutoFill/1.1.0.6": {
-      "sha512": "SaykTozzgEdUbCe1gKukL5Tq0JOZwczTwAve5CikcYXxxr4qz6PWJ1fMbNoG4iXG7ae/86uIqURFR4Mku+Ovtg==",
-      "type": "package",
-      "path": "xamarin.androidx.autofill/1.1.0.6",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "aar/androidx.autofill.autofill.aar",
-        "build/monoandroid9.0/Xamarin.AndroidX.AutoFill.targets",
-        "buildTransitive/monoandroid9.0/Xamarin.AndroidX.AutoFill.targets",
-        "lib/monoandroid90/Xamarin.AndroidX.AutoFill.dll",
-        "lib/monoandroid90/Xamarin.AndroidX.AutoFill.pdb",
-        "xamarin.androidx.autofill.1.1.0.6.nupkg.sha512",
-        "xamarin.androidx.autofill.nuspec"
       ]
     },
     "Xamarin.AndroidX.Browser/1.3.0.6": {
@@ -4053,51 +3751,6 @@
         "xamarin.google.guava.listenablefuture.nuspec"
       ]
     },
-    "Xamarin.Jetbrains.Annotations/13.0.0.3": {
-      "sha512": "YBQJ/J9ClC+7upizNaZH4qjGgM5LsNdygV4MqPMDUopHBulsyv2VPDUHar1xxIvgEzOuGoSjsaENosZWS+lKXA==",
-      "type": "package",
-      "path": "xamarin.jetbrains.annotations/13.0.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "build/monoandroid10.0/Xamarin.Jetbrains.Annotations.targets",
-        "jar/org.jetbrains.annotations.jar",
-        "lib/monoandroid10.0/Xamarin.Jetbrains.Annotations.dll",
-        "xamarin.jetbrains.annotations.13.0.0.3.nupkg.sha512",
-        "xamarin.jetbrains.annotations.nuspec"
-      ]
-    },
-    "Xamarin.Kotlin.StdLib/1.4.20": {
-      "sha512": "pWCb/dO0w7nVPsRmQHFwMOAnA8t9afPEsAflQcAs61XJu/TKNRxjcVjRCeqViQVAd/eKA90Bc4qvTCTMHBDYbw==",
-      "type": "package",
-      "path": "xamarin.kotlin.stdlib/1.4.20",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "build/monoandroid10.0/Xamarin.Kotlin.StdLib.targets",
-        "jar/org.jetbrains.kotlin.kotlin-stdlib.jar",
-        "lib/monoandroid10.0/Xamarin.Kotlin.StdLib.dll",
-        "xamarin.kotlin.stdlib.1.4.20.nupkg.sha512",
-        "xamarin.kotlin.stdlib.nuspec"
-      ]
-    },
-    "Xamarin.Kotlin.StdLib.Common/1.4.20": {
-      "sha512": "o5mv45X1z/LE6Bufm3Zr01TtSFC6z0KAqWwlG8yF2RumSg1a7lb1cNAWSOrE6DEV5uSa06aSq40f/2yMA29sAA==",
-      "type": "package",
-      "path": "xamarin.kotlin.stdlib.common/1.4.20",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.md",
-        "build/monoandroid10.0/Xamarin.Kotlin.StdLib.Common.targets",
-        "jar/org.jetbrains.kotlin.kotlin-stdlib-common.jar",
-        "lib/monoandroid10.0/Xamarin.Kotlin.StdLib.Common.dll",
-        "xamarin.kotlin.stdlib.common.1.4.20.nupkg.sha512",
-        "xamarin.kotlin.stdlib.common.nuspec"
-      ]
-    },
     "Mobile/1.0.0": {
       "type": "project",
       "path": "../Mobile/Mobile.csproj",
@@ -4112,27 +3765,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kiril\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Users\\Vl\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "projectUniqueName": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
       "projectName": "Mobile.Android",
-      "projectPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
-      "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
+      "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "packagesPath": "C:\\Users\\Vl\\.nuget\\packages\\",
+      "outputPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Vl\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -4141,14 +3791,13 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.devexpress.com/W4CQYn1mwm6cLgRjflSgJmo9dUVSRUnnv8otF3kM5JfdD5NriO/api": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
-              "projectPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
+            "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+              "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
             }
           }
         }
@@ -4168,5 +3817,52 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет DevExpress.XamarinForms.CollectionView. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "DevExpress.XamarinForms.CollectionView",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет DevExpress.XamarinForms.Editors. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "DevExpress.XamarinForms.Editors",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет DevExpress.XamarinForms.Scheduler. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "DevExpress.XamarinForms.Scheduler",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет DevExpress.XamarinForms.Charts. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "DevExpress.XamarinForms.Charts",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет DevExpress.XamarinForms.Navigation. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "DevExpress.XamarinForms.Navigation",
+      "targetGraphs": [
+        "MonoAndroid,Version=v12.0"
+      ]
+    }
+  ]
 }

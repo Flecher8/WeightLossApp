@@ -1,3 +1,0 @@
-values/strings.xml;values/strings.xml
-drawable/arrow_group_up.xml;drawable/arrow_group_up.xml
-drawable/arrow_group_down.xml;drawable/arrow_group_down.xml
