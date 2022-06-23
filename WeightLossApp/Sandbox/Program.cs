@@ -6,8 +6,8 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            var ingr = new IngridientsDataVM();
-            Console.WriteLine(ingr.result);
+            var loginVM = new LoginVM();
+            Console.WriteLine(123);
             Console.ReadLine();
         }
     }
