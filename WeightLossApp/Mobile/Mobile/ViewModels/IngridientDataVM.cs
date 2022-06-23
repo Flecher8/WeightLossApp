@@ -7,9 +7,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using GraphQL;
-using GraphQL.Client.Http;
-using GraphQL.Client.Serializer.Newtonsoft;
 using Mobile.Helpers;
 using Mobile.Models;
 using Xamarin.Forms;
@@ -21,6 +18,7 @@ namespace Mobile.ViewModels
         private ObservableCollection<IngridientData> _ingridients;
         private Command _loadMoreCommand;
         private bool _isLoading;
+
 
         public ObservableCollection<IngridientData> Ingridients
         {

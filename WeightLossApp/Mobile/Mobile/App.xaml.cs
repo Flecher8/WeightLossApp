@@ -10,6 +10,7 @@ namespace Mobile
         {
             InitializeComponent();
             DevExpress.XamarinForms.Navigation.Initializer.Init();
+            DevExpress.XamarinForms.Charts.Initializer.Init();
 
             MainPage = new MainPage();
         }

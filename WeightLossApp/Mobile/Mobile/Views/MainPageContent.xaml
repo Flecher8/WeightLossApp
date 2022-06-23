@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/charts"
+             xmlns:comp="clr-namespace:Mobile.UIComponents"
+             x:Class="Mobile.Views.MainPageContent">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <comp:TabsHeaderPanell Grid.Row="0" PanellTitle="Hi, Vlad!"/>
+
+            <Frame Style="{StaticResource OuterFrame}"
+                   Grid.Row="1">
+                <Frame Padding="20"
+                               CornerRadius="25"
+                               BackgroundColor="{StaticResource BlockBackgroundColor}">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <dxc:PieChartView x:Name="chart"
+                                              BackgroundColor="{StaticResource BlockBackgroundColor}"
+                                              HeightRequest="200">
+                                <dxc:PieChartView.ChartStyle>
+                                    <dxc:PieChartStyle BackgroundColor="{StaticResource BlockBackgroundColor}"
+                                                       Palette="{Binding Palette}">
+                                    </dxc:PieChartStyle>
+                                </dxc:PieChartView.ChartStyle>
+                                <dxc:PieChartView.Series>
+                                    <dxc:DonutSeries>
+                                        <dxc:DonutSeries.Data>
+                                            <dxc:PieSeriesDataAdapter DataSource="{Binding MainChartValues}"
+                                                                      LabelDataMember="Title"
+                                                                      ValueDataMember="Value"/>
+                                        </dxc:DonutSeries.Data>
+                                    </dxc:DonutSeries>
+                                </dxc:PieChartView.Series>
+                                <dxc:PieChartView.Hint>
+                                    <dxc:PieHint Enabled="True">
+                                        <dxc:PieHint.Style>
+                                            <dxc:PieHintStyle BackgroundColor="{StaticResource SecondaryColor}"/>
+                                        </dxc:PieHint.Style>
+                                    </dxc:PieHint>
+                                </dxc:PieChartView.Hint>
+                                
+                            </dxc:PieChartView>
+                            <!--Here data should be binded-->
+                            <Label Style="{StaticResource HeaderLabel}"
+                                       Grid.Column="1">Day's progress</Label>
+                        </Grid>
+
+                        <Label Style="{StaticResource RegularTextLabel}">Well done! It remains to work a little in the category of "nutrition".</Label>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+            <Frame Style="{StaticResource OuterFrame}"
+                   Grid.Row="2">
+                <Frame Padding="20"
+                               CornerRadius="25"
+                               BackgroundColor="{StaticResource BlockBackgroundColor}">
+                    <StackLayout>
+                        <Label Style="{StaticResource HeaderLabel}"
+                               Margin="0">Nutrition</Label>
+                        <ProgressBar Progress="{Binding NutritionProgress}"
+                                     HeightRequest="10"
+                                     ProgressColor="{StaticResource PrimaryColor}"
+                                     ></ProgressBar>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+            <Frame Style="{StaticResource OuterFrame}"
+                           Grid.Row="3">
+                <Frame Padding="20"
+                               CornerRadius="25"
+                               BackgroundColor="{StaticResource BlockBackgroundColor}">
+                    <StackLayout>
+                        <Label Style="{StaticResource HeaderLabel}"
+                               Margin="0">Sport</Label>
+                        <ProgressBar Progress="{Binding SportProgress}"
+                                     ProgressColor="{StaticResource PrimaryColor}"
+                                     ></ProgressBar>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

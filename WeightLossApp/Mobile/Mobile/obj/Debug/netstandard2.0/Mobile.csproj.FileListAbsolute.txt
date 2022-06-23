@@ -17,3 +17,5 @@ D:\NURE\Assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Views\Sta
 D:\NURE\Assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Views\TrainingPage.xaml.g.cs
 D:\NURE\Assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\UIComponents\TabsHeaderPanell.xaml.g.cs
 D:\NURE\Assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Mobile.csproj.AssemblyReference.cache
+D:\NURE\Assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Views\ProfilePage.xaml.g.cs
+D:\NURE\Assistant\WeightLossApp\Mobile\Mobile\obj\Debug\netstandard2.0\Views\MainPageContent.xaml.g.cs
