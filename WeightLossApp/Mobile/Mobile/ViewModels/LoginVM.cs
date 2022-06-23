@@ -22,6 +22,7 @@ namespace Mobile.ViewModels
 
         // Commands
         public Command login { get; private set; }
+        public Command registration { get; private set; }
 
         // Navigation
         public INavigation Navigation { get; set; }
@@ -31,10 +32,18 @@ namespace Mobile.ViewModels
 
         public LoginVM()
         {
+            // Create Data
             users = new List<User>();
             user = new User();
+
+            // Set API URL
             ApiUrl = "https://stirred-eagle-95.hasura.app/api/rest/";
+
+            // Create Commands
             login = new Command(Login);
+            registration = new Command(Registration);
+
+            // Load Data
             LoadAsync();
         }
         public string Email
@@ -58,6 +67,11 @@ namespace Mobile.ViewModels
 
         // Add navigation to main page!!!
         public void Login()
+        {
+            //Navigation.PushAsync();
+        }
+        // Add navigation to one of the registration pages!!!
+        public void Registration()
         {
             //Navigation.PushAsync();
         }
