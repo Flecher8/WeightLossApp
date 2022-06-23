@@ -68,11 +68,16 @@ namespace Mobile.ViewModels
         // Add navigation to main page!!!
         public void Login()
         {
-            //Navigation.PushAsync();
+            if(isDataCorrect)
+            {
+                // Navigation to new page [ paraments = email ] 
+                //Navigation.PushAsync();
+            }
         }
         // Add navigation to one of the registration pages!!!
         public void Registration()
         {
+            // Navigation to new page [ paraments = email ] 
             //Navigation.PushAsync();
         }
         public async Task LoadAsync()
@@ -129,6 +134,20 @@ namespace Mobile.ViewModels
             var result = o.SelectToken("User");
 
             return result.ToString();
+        }
+        private bool isDataCorrect
+        {
+            get
+            {
+                foreach (User element in users)
+                {
+                    if (element.Email == user.Email && element.Password == user.Password)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }
