@@ -6,7 +6,9 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var ingr = new IngridientsDataVM();
+            Console.WriteLine(ingr.result);
+            Console.ReadLine();
         }
     }
 }
