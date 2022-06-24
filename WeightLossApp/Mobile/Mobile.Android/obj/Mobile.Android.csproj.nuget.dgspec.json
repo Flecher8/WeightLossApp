@@ -27,7 +27,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/W4CQYn1mwm6cLgRjflSgJmo9dUVSRUnnv8otF3kM5JfdD5NriO/api": {}
         },
         "frameworks": {
           "monoandroid12.0": {
@@ -76,7 +77,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/W4CQYn1mwm6cLgRjflSgJmo9dUVSRUnnv8otF3kM5JfdD5NriO/api": {}
         },
         "frameworks": {
           "netstandard2.0": {

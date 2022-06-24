@@ -26,8 +26,8 @@ namespace Mobile.ViewModels
         public bool IsLogedIn { get; set; }
 
         // Commands
-        public Command login { get; private set; }
-        public Command registration { get; private set; }
+        public Command LogIn { get; private set; }
+        public Command Registration { get; private set; }
 
         // Google commands
         public Command googleLogIn { get; private set; }
@@ -56,8 +56,8 @@ namespace Mobile.ViewModels
             ApiUrl = "https://stirred-eagle-95.hasura.app/api/rest/";
 
             // Create Commands
-            login = new Command(Login);
-            registration = new Command(Registration);
+            LogIn = new Command(LoginFun);
+            Registration = new Command(RegistrationFun);
 
             // Create Google Commands
             googleLogIn = new Command(GoogleLogin);
@@ -84,8 +84,9 @@ namespace Mobile.ViewModels
             }
         }
 
+        
         // Add navigation to main page!!!
-        public void Login()
+        public void LoginFun()
         {
             if(isDataCorrect)
             {
@@ -94,7 +95,7 @@ namespace Mobile.ViewModels
             }
         }
         // Add navigation to one of the registration pages!!!
-        public void Registration()
+        public void RegistrationFun()
         {
             // Navigation to new page [ paraments = email ] 
             //Navigation.PushAsync();
@@ -114,7 +115,7 @@ namespace Mobile.ViewModels
                     // Add navigation to the main page!!!
                     //Navigation.PushAsync();
                 }
-                App.Current.MainPage.DisplayAlert("Message", "Вы не зарегистрированы", "Ok");
+                App.Current.MainPage.DisplayAlert("Message", "No such email", "Ok");
             }
             else
             {
