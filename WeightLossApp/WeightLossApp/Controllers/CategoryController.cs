@@ -33,43 +33,9 @@ namespace WeightLossApp.Controllers
 
         // Used to add new records to DB, input - json 
         [HttpPost]
-        public JsonResult Post(IngridientData item)
+        public JsonResult Post(Category item)
         {
-            _context.IngridientData.Add(item);
-            _context.SaveChanges();
-
-            return new JsonResult("Succes!!");
-        }
-
-        // Used to add categories to ingridient
-        [HttpPost("/PostIngridientCategory/{newList}")]
-        public JsonResult PostIngridientCategory(IEnumerable<IngridientCategory> newList)
-        {
-            if (newList == null) return null;
-
-            // Collecting existing objectes, which are related with updated Ingridient
-            IEnumerable<IngridientCategory> existing = _context.IngridientCategory.Where(i => i.IngridientId == newList.First().IngridientId);
-
-            // Iterating through them to find what to delete
-            foreach (IngridientCategory item in existing)
-            {
-                // Deleting only if element not in new list
-                if (!newList.Contains(item))
-                {
-                    _context.IngridientCategory.Remove(item);
-                }
-            }
-
-            // Iterating through newList to find what to add
-            foreach (IngridientCategory item in newList)
-            {
-                // Adding only if element is new
-                if (!newList.Contains(item))
-                {
-                    _context.IngridientCategory.Add(item);
-                }
-            }
-
+            _context.Category.Add(item);
             _context.SaveChanges();
 
             return new JsonResult("Succes!!");
@@ -77,9 +43,9 @@ namespace WeightLossApp.Controllers
 
         // Used to update existing DB records, input - json 
         [HttpPut]
-        public JsonResult Put(IngridientData item)
+        public JsonResult Put(Category item)
         {
-            _context.IngridientData.Update(item);
+            _context.Category.Update(item);
             _context.SaveChanges();
 
             return new JsonResult("Succes!!");
@@ -89,8 +55,8 @@ namespace WeightLossApp.Controllers
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
-            IngridientData item = _context.Find<IngridientData>(id);
-            _context.IngridientData.Remove(item);
+            Category item = _context.Find<Category>(id);
+            _context.Category.Remove(item);
             _context.SaveChanges();
 
             return new JsonResult("Deleted");

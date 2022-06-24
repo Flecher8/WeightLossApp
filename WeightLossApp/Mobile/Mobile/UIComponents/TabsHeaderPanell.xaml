@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.UIComponents.TabsHeaderPanell"
+             x:Name="this"
+             xmlns:fa="clr-namespace:FontAwesome" >
+    <ContentView.Content>
+        <StackLayout>
+            <Grid BindingContext="{x:Reference this}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="TitleLabel"
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       Grid.Column="0" 
+                       Margin="30,15,0,0"
+                       TextColor="{StaticResource SecondaryColor}"
+                       Text="{Binding PanellTitle}"
+                       FontFamily="Comfortaa"></Label>
+                <Button Grid.Column="1"
+                        HorizontalOptions="End" 
+                        Style="{StaticResource CircleButtonS}">
+                    <Button.ImageSource>
+                        <FontImageSource 
+                            FontFamily="IconsSolid" 
+                            Glyph="{Static fa:FontAwesomeIcons.UserLarge}"
+                            Color="{StaticResource TextColorDark}"/>
+                    </Button.ImageSource>
+                </Button>
+                
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

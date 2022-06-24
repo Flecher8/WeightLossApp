@@ -18,36 +18,54 @@ function Header() {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul className="navbar-nav">
-					<li className="nav-item">
-						<Link className="nav-link" to="/IngridientsData">
-							Ingridients Data
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={"/AchievementData"}>
-							Features
-						</Link>
-					</li>
-					<li className="nav-item">
-						<div className="dropdown">
-								<Link className="nav-link" to={"/"}>
-								Store
-								</Link>
-							<div className="dropdown-content">
-								<Link className="nav-link" to={"/PremiumSubscriptions"}>
-								PremiumSubscription
-								</Link>
-								<Link className="nav-link" to={"/DesignThemes"}>
-								DesignThemes
-								</Link>
-							</div>
-						</div>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={"/"}>
-							Pricing
-						</Link>
-					</li>
+
+					<ul className="navbar-nav">
+						<li className="nav-item">
+							<Link className="nav-link" to="/IngridientsData">
+								Ingridients Data
+							</Link>
+						</li>
+            <li className="nav-item">
+						  <Link className="nav-link" to={"/Categories"}>
+							  Categories
+						  </Link>
+					  </li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/AchievementData"}>
+								Achivements Data
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/SectionTraining"}>
+								Section Training
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/Exercises"}>
+								Exercises
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link className="nav-link" to={"/Trainings"}>
+								Trainings
+							</Link>
+						</li>
+            <li className="nav-item">
+              <div className="dropdown">
+                  <Link className="nav-link" to={"/"}>
+                  Store
+                  </Link>
+                <div className="dropdown-content">
+                  <Link className="nav-link" to={"/PremiumSubscriptions"}>
+                  PremiumSubscription
+                  </Link>
+                  <Link className="nav-link" to={"/DesignThemes"}>
+                  DesignThemes
+                  </Link>
+                </div>
+              </div>
+            </li>
+					</ul>
 				</ul>
 			</div>
 		</nav>

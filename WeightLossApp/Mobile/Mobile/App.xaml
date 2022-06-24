@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--<OnPlatform x:TypeArguments="x:String" x:Key="FaSolid">
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="Android" Value="Font Awesome 6 Free-Solid-900.otf#Font Awesome Solid" />
+                <On Platform="UWP" Value="Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+            </OnPlatform>-->
+
+
+            <!--Colors-->
+            <Color x:Key="PrimaryColor">#249565</Color>
+            <Color x:Key="BackgroundColor">#FFFFFF</Color>
+            <Color x:Key="BlockBackgroundColor">#E0E0E0</Color>
+            <Color x:Key="SecondaryColor">#3B322C</Color>
+            
+            <!--Text Styles-->
+            <Color x:Key="TextColorLight">#FFFFFF</Color>
+            <Color x:Key="TextColorDark">#3B322C</Color>
+            <Color x:Key="TextColorUnactive">#E0E0E0</Color>
+            
+            <!--Controll styles-->
+            <Style x:Key="CircleButtonS" TargetType="Button">
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BorderRadius" Value="25" />
+                <Setter Property="Margin" Value="0,15,30,0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />
+            </Style>
+            
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

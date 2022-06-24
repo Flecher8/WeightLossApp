@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { constants } from "../../Constants";
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter, numberFilter } from "react-bootstrap-table2-filter";
-import paginationFactory from "react-bootstrap-table2-paginator";
 import { MultiSelect } from "react-multi-select-component";
+import { Button, Table, InputGroup, FormControl} from "react-bootstrap";
 
 // Component for IngridientData page
 export class IngridientsData extends Component {
@@ -17,6 +15,14 @@ export class IngridientsData extends Component {
 			// List of data to be displayed
 			ingridientsData: [],
 			categories: [],
+			filterParameters: {
+				ID: false,
+				Name: false,
+				Calories: false,
+				Proteins: false,
+				Carbohydrates: false,
+				Fats: false
+			},
 			// Title of the modal window
 			modalTitle: "",
 			// Data of the selected item
@@ -27,11 +33,14 @@ export class IngridientsData extends Component {
 			itemProteins: 0,
 			itemCarbohydrates: 0,
 			itemFats: 0,
+			itemImageName: "",
 			itemCategories: [],
 			// Options for multiselect
 			selectOptions: [],
 			// Data to display as multiselect selected
 			categoryNames: [], 
+			HTTPMethod: "",
+			searchLine: ""
 		};
 	}
 
@@ -47,64 +56,32 @@ export class IngridientsData extends Component {
 			itemCarbohydrates: 0,
 			itemFats: 0,
 			itemCategories: [],
+			itemImageName: "",
 			selectOptions: this.getMultiSelectOptions(),
 			categoryNames: [], 
+			HTTPMethod: "POST"
 		});
 	}
 
-	// Called when create button is clicked
-	createClick() {
-
-		let ingridientCategories = [];
-
-		for (let category of this.state.itemCategories) {
-			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
-		}
-
-		// Sending HTTP POST request to the server
-		// with data from state
-		fetch(constants.API_URL + "IngridientData", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			// Content of the request, will be converted to
-			// the IngridientData instance on API side
-			// and passed to HTTP Post method
-			body: JSON.stringify({
-				Name: this.state.itemName,
-				Calories: this.state.itemCalories,
-				Proteins: this.state.itemProteins,
-				Carbohydrates: this.state.itemCarbohydrates,
-				Fats: this.state.itemFats,
-				ingridientCategory: ingridientCategories,
-		})})
-			.then(res => res.json())
-			.then(
-				result => {
-					// Refreshing data
-					this.refreshList();
-				},
-				error => {
-					alert("Failed");
-				}
-			);
-	}
-
-	// Called when update button is clicked
-	updateClick() {
-		let ingridientCategories = [];
+	handleSubmit = event => {
+		const form = event.currentTarget;
+		if (!form.checkValidity()) {
+			event.preventDefault();
+			event.stopPropagation();
+		} 
+		else {
+			console.log(this.state.HTTPMethod);
+			event.preventDefault();
+			let ingridientCategories = [];
 
 		for (let category of this.state.itemCategories) {
 			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
 		}
 
-		console.log(ingridientCategories);
+		let method = this.state.HTTPMethod;
 
-		// Sending HTTP PUT request to the server
-		// with data from state
 		fetch(constants.API_URL + "IngridientData", {
-			method: "PUT",
+			method: method,
 			headers: {
 				"Content-Type": "application/json"
 			},
@@ -115,18 +92,71 @@ export class IngridientsData extends Component {
 				Proteins: this.state.itemProteins,
 				Carbohydrates: this.state.itemCarbohydrates,
 				Fats: this.state.itemFats,
+				ImageName: this.state.itemImageName,
 				ingridientCategory: ingridientCategories,
 			})
 		})
 			.then(res => res.json())
 			.then(
 				result => {
+					console.log(this.state.itemImageName,);
 					this.refreshList();
 				},
 				error => {
 					alert("Failed");
 				}
 			);
+		}
+	}
+
+	// Save img in imgur and write img to object
+	saveImg(ev) {
+		const formdata = new FormData();
+		formdata.append("image", ev.target.files[0]);
+		console.log(ev.target.files[0]);
+		fetch(constants.API_Imgur, {
+			method: "POST",
+			headers: {
+				Authorization: "Client-ID " + constants.Client_ID,
+				Accept: "application/json"
+			},
+			body: formdata
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log(data.data.link);
+				this.setState({
+					itemImageName: data.data.link,
+				});
+			});
+
+			console.log(this.state.itemImageName);
+	}
+
+	editClick(row) {
+
+		let rowCategories = this.state.ingridientsData.find(i => i.Id === row.Id)
+			.IngridientCategory.map(i => i.Category);
+		let temp = []
+
+		for(let category of rowCategories) {
+			temp.push({ label: category.Name, value: category.Id });
+		}
+
+		this.setState({
+			modalTitle: "Editing Ingridient",
+			itemID: row.Id,
+			itemName: row.Name,
+			itemCalories: row.Calories,
+			itemProteins: row.Proteins,
+			itemCarbohydrates: row.Carbohydrates,
+			itemFats: row.Fats,
+			itemCategories: temp,
+			itemImageName: row.ImageName,
+			selectOptions: this.getMultiSelectOptions(),
+			categoryNames: rowCategories.map(i => i.Name),
+			HTTPMethod: "PUT"
+		});
 	}
 
 	// Called when delete button is clicked
@@ -174,29 +204,6 @@ export class IngridientsData extends Component {
 		this.refreshList();
 	}
 
-	// Next 5 functions called when user types
-	// something in input fields of modal window.
-	// They are saving this data to specified state variables
-	changeName = e => {
-		this.setState({ itemName: e.target.value });
-	};
-
-	changeCalories = e => {
-		this.setState({ itemCalories: e.target.value });
-	};
-
-	changeFats = e => {
-		this.setState({ itemFats: e.target.value });
-	};
-
-	changeCarbohydrates = e => {
-		this.setState({ itemCarbohydrates: e.target.value });
-	};
-
-	changeProteins = e => {
-		this.setState({ itemProteins: e.target.value });
-	};
-
 	changeCategory = e => {
 		this.setState({ 
 			itemCategories: e,
@@ -215,127 +222,282 @@ export class IngridientsData extends Component {
 		return res;
 	}
 
+	// Sort functions
+	sortById() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Id) {
+			this.state.ingridientsData.sort((a, b) => (a.Id > b.Id ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: false,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Id < b.Id ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: true,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByName() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Name) {
+			this.state.ingridientsData.sort((a, b) => a.Name.localeCompare(b.Name));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: false,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((b, a) => a.Name.localeCompare(b.Name));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: true,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByCalories() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Calories) {
+			this.state.ingridientsData.sort((a, b) => (a.Calories > b.Calories ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: false,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Calories < b.Calories ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: true,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByFats() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Fats) {
+			this.state.ingridientsData.sort((a, b) => (a.Fats > b.Fats ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: false,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Fats < b.Fats ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: true,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByProteins() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Proteins) {
+			this.state.ingridientsData.sort((a, b) => (a.Proteins > b.Proteins ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: false,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Proteins < b.Proteins ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: true,
+					Carbohydrates: filterParameters.Carbohydrates
+				}
+			});
+		}
+	}
+	sortByCarbohydrates() {
+		let filterParameters = this.state.filterParameters;
+		if (filterParameters.Carbohydrates) {
+			this.state.ingridientsData.sort((a, b) => (a.Carbohydrates > b.Carbohydrates ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: false
+				}
+			});
+		} else {
+			this.state.ingridientsData.sort((a, b) => (a.Carbohydrates < b.Carbohydrates ? 1 : -1));
+			this.setState({
+				filterParameters: {
+					Id: filterParameters.Id,
+					Name: filterParameters.Name,
+					Calories: filterParameters.Calories,
+					Fats: filterParameters.Fats,
+					Proteins: filterParameters.Proteins,
+					Carbohydrates: true
+				}
+			});
+		}
+	}
+
 	// Possibly main function of the component
 	// Return statement of this function describes what
 	// will be displayed in place where this component is used
 	render() {
-		// Object that describes selection of rows
-		const selectRow = {
-			mode: "radio",
-			clickToSelect: true,
-			style: { backgroundColor: "#f6f6f6" },
-			onSelect: (row, isSelect, rowIndex, e) => {
-				let rowCategories = this.state.ingridientsData.find(i => i.Id == row.Id)
-					.IngridientCategory.map(i => i.Category);
-				let temp = []
-
-				for(let category of rowCategories) {
-					temp.push({ label: category.Name, value: category.Id });
-				}
-
-				this.setState({
-					modalTitle: "Editing Ingridient",
-					itemID: row.Id,
-					itemName: row.Name,
-					itemCalories: row.Calories,
-					itemProteins: row.Proteins,
-					itemCarbohydrates: row.Carbohydrates,
-					itemFats: row.Fats,
-					itemCategories: temp,
-					selectOptions: this.getMultiSelectOptions(),
-					categoryNames: rowCategories.map(i => i.Name),
-				});
-			}
-		};
-
-		// Array of objects, that describes
-		// columns of the datatable
-		const columns = [
-			{
-				dataField: "Id",
-				sort: true,
-				text: "Ingridient ID",
-				headerAlign: "left"
-			},
-			{
-				// Data field name
-				dataField: "Name",
-				// Header
-				text: "Name",
-				// Sortable
-				sort: true,
-				// Filtrable, and which Filter uses
-				filter: textFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Calories",
-				text: "Calories",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Proteins",
-				text: "Proteins",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Carbohydrates",
-				text: "Carbohydrates",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			},
-			{
-				dataField: "Fats",
-				text: "Fats",
-				sort: true,
-				filter: numberFilter(),
-				headerAlign: "left"
-			}
-		];
-
-		const expandRow = {
-			renderer: row => (
-			  	<div className="container">
-				  	<div className="row">
-						{row.IngridientCategory.map(c => 
-							<div className="mx-4 col bg-light border border-dark border-2 rounded">
-								<h6>Category: {c.Category.Name}</h6>
-								<p>Id: {c.Category.Id}</p>
-								<p>Type: {c.Category.Type}</p>
-								<p>Danger: {c.Category.Danger}</p>
-							</div>
-						)}
-					</div>
-			  	</div>
-			),
-			showExpandColumn: true,
-			onlyOneExpanding: true,
-		  };
-
 		// This part describes what will be displayed
 		return (
 			<div className="container">
 				<div style={{ width: 80 + "vw" }}>
-					<h3 className="m-5">This is Ingridients page</h3>
+					<h3 className="m-5">This is Categories page</h3>
 
-					<BootstrapTable
-						keyField="Id"
-						data={this.state.ingridientsData}
-						columns={columns}
-						filter={filterFactory()}
-						filterPosition="top"
-						// Pagination divides table into pages
-						pagination={paginationFactory()}
-						selectRow={selectRow}
-						expandRow={ expandRow }
-					/>
+					{/* Main table */}
+					<div className="container mt-5">
+						<InputGroup className="mb-3">
+							<FormControl
+								aria-label="Default"
+								placeholder="Search"
+								value={this.state.searchLine}
+								onChange={e => this.setState( { searchLine: e.target.value }) }
+								aria-describedby="inputGroup-sizing-default"
+							/>
+							<Button className="btn-dark" onClick={ () =>  { 
+								this.setState({
+									ingridientsData: this.state.ingridientsData
+										.filter(i => i.Name.includes(this.state.searchLine))
+								});
+							}}>Search</Button>
+							<Button className="btn-dark" onClick={() => this.refreshList()}>Cancel</Button>
+						</InputGroup>
+						<Table 
+							className="table table-striped table-bordered table-sm text-center" 
+							striped bordered hover size="lg"
+							id="dtBasicExample">
+							<thead>
+								<tr>
+									<th class="th-sm">
+										ID
+										<Button className="btn-light" onClick={() => this.sortById()}>
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th class="th-sm">
+										Name
+										<Button className="btn-light" onClick={() => this.sortByName()}>
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th>
+										Image
+									</th>
+									<th class="th-sm">
+										Calories
+										<Button className="btn-light" onClick={() => this.sortByCalories()}>
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th class="th-sm">
+										Proteins
+										<Button className="btn-light" onClick={() => this.sortByProteins()}>
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th class="th-sm">
+										Fats
+										<Button className="btn-light" onClick={() => this.sortByFats()}>
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th class="th-sm">
+										Carbohydrates
+										<Button className="btn-light" onClick={() => this.sortByCarbohydrates()}>
+											<i className="fa-solid fa-arrows-up-down"></i>
+										</Button>
+									</th>
+									<th class="th-sm">Options</th>
+								</tr>
+							</thead>
+							<tbody>
+								{this.state.ingridientsData.map(e => (
+									<tr key={e.Id}>
+										<td>{e.Id}</td>
+										<td>{e.Name}</td>
+										<td><img src={e.ImageName} alt="img" width="100px" /></td>
+										<td>{e.Calories}</td>
+										<td>{e.Proteins}</td>
+										<td>{e.Fats}</td>
+										<td>{e.Carbohydrates}</td>
+										<td>
+											<Button 
+												className="m-2" 
+												variant="outline-dark"
+												onClick={() => this.editClick(e)}
+												data-bs-toggle="modal"
+												data-bs-target="#exampleModal">
+												Edit
+											</Button>
+											<Button className="m-2" onClick={() => this.deleteClick(e.Id)} variant="outline-danger">
+												Delete
+											</Button>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</Table>
+					</div>
 
-					{/* Three buttons to perform basic operations */}
+					{/* Three buttons to perform add operation */}
 					<button
 						type="button"
 						className="btn btn-dark m-2 float-end"
@@ -345,25 +507,6 @@ export class IngridientsData extends Component {
 						data-bs-target="#exampleModal"
 						onClick={() => this.addClick()}>
 						Add ingridient data
-					</button>
-
-					<button
-						type="button"
-						className="btn btn-dark m-2 float-end"
-						data-bs-toggle="modal"
-						data-bs-target="#exampleModal"
-						// When there is no selected item,
-						// button should be disabled
-						disabled={this.state.itemID === 0}>
-						Edit ingridient data
-					</button>
-
-					<button
-						type="button"
-						className="btn btn-dark m-2 float-end"
-						onClick={() => this.deleteClick(this.state.itemID)}
-						disabled={this.state.itemID === 0}>
-						Delete ingridient data
 					</button>
 
 					{/* Modal window component */}
@@ -379,92 +522,126 @@ export class IngridientsData extends Component {
 										aria-label="Close"></button>
 								</div>
 								<div className="modal-body">
+									<form class="needs-validation" id="modalForm" noValidate onSubmit={this.handleSubmit}>
 									{/* Inputs for item properties
                                     value: assigns data from component state
                                     onChange: calls specified function to update state */}
-									<div className="input-group mb-3">
-										<span className="input-group-text">Ingridient Name</span>
-										<input
-											type="text"
-											className="form-control"
-											value={this.state.itemName}
-											onChange={this.changeName}
-										/>
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-text">Ingridient Calories</span>
-										<input
-											type="text"
-											className="form-control"
-											value={this.state.itemCalories}
-											onChange={this.changeCalories}
-										/>
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-text">Ingridient Carbohydrates</span>
-										<input
-											type="text"
-											className="form-control"
-											value={this.state.itemCarbohydrates}
-											onChange={this.changeCarbohydrates}
-										/>
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-text">Ingridient Fats</span>
-										<input
-											type="text"
-											className="form-control"
-											value={this.state.itemFats}
-											onChange={this.changeFats}
-										/>
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-text">Ingridient Proteins</span>
-										<input
-											type="text"
-											className="form-control"
-											value={this.state.itemProteins}
-											onChange={this.changeProteins}
-										/>
-									</div>
-									<div className="input-group mb-3">
-										{/* <span className="input-group-text">Ingridient Category</span> */}
-										
-										<MultiSelect
-											className="input-group-text"
-											options={this.state.selectOptions}
-											value={this.state.itemCategories}
-											onChange={this.changeCategory}
-											labelledBy="Ingridient Category"
-										/>
-										<input
-											type="text"
-											className="form-control"
-											value={JSON.stringify(this.state.categoryNames)}
-											onChange={this.changeProteins}
-											disabled="true"
-										/>
-									</div>
+										<div className="form-group mb-3">
+											<span className="form-label">Ingridient Name</span>
+											<input
+												required
+												type="text"
+												placeholder="Name"
+												pattern="^([A-ZА-ЯЁ]||[a-zа-яё])*$"
+												className="form-control"
+												value={this.state.itemName}
+												onChange={e => this.setState({ itemName: e.target.value }) }
+											/>
+										</div>
+										<div className="form-group mb-3">
+											<span className="form-label">Ingridient Calories</span>
+											<input
+												required
+												type="text"
+												placeholder="Calories"
+												pattern="^[1-9][0-9]*$"
+												className="form-control"
+												value={this.state.itemCalories}
+												onChange={e => this.setState({ itemCalories: e.target.value }) }
+											/>
+										</div>
+										<div className="form mb-3">
+											<span className="form-label">Ingridient Carbohydrates</span>
+											<input
+												required
+												type="text"
+												placeholder="Carbohydrates"
+												pattern="^[1-9][0-9]*$"
+												className="form-control"
+												value={this.state.itemCarbohydrates}
+												onChange={e => this.setState({ itemCarbohydrates: e.target.value }) }
+											/>
+										</div>
+										<div className="form mb-3">
+											<span className="form-label">Ingridient Fats</span>
+											<input
+												required
+												type="text"
+												placeholder="Fats"
+												pattern="^[1-9][0-9]*$"
+												className="form-control"
+												value={this.state.itemFats}
+												onChange={e => this.setState({ itemFats: e.target.value }) }
+											/>
+										</div>
+										<div className="form mb-3">
+											<span className="form-label">Ingridient Proteins</span>
+											<input
+												required
+												type="text"
+												placeholder="Proteins"
+												pattern="^[1-9][0-9]*$"
+												className="form-control"
+												value={this.state.itemProteins}
+												onChange={e => this.setState({ itemProteins: e.target.value }) }
+											/>
+										</div>
+										<div className="form mb-3">
+											{/* <span className="form-text">Ingridient Category</span> */}
+											
+											<MultiSelect
+												className="form-label"
+												options={this.state.selectOptions}
+												value={this.state.itemCategories}
+												onChange={this.changeCategory}
+												labelledBy="Ingridient Category"
+											/>
+											<input
+												type="text"
+												className="form-control"
+												value={JSON.stringify(this.state.categoryNames)}
+												onChange={this.changeProteins}
+												disabled={true}
+											/>
+										</div>
+										{/* if the object is being edited - display an image */}
+										{this.state.HTTPMethod === "PUT" && (
+											<div className="container border mb-3">
+												<p>Image now</p>
+												<img src={this.state.itemImageName} alt="unloaded img" width="150px" />
+											</div>
+										)}
+										<div className="form mb-3">
+											<span className="form-label">Image</span>
+											<input
+												className="form-control"
+												type="file"
+												placeholder="ImageName"
+												//value={this.state.itemImageName}
+												onChange={e => this.saveImg(e)}
+											/>
+										</div>
 
-									{/* If selected item id == 0 Than we need to add new item */}
-									{this.state.itemID === 0 ? (
-										<button
-											type="button"
-											className="btn btn-primary float-start"
-											onClick={() => this.createClick()}>
-											Create
-										</button>
-									) : null}
+										{/* If selected item id == 0 Than we need to add new item */}
+										{this.state.itemID === 0 ? (
+											<button
+												type="submit"
+												className="btn btn-dark float-end"
+												>
+												Create
+											</button>
+										) : null}
 
-									{/* If selected item id !== 0 Than we need to updating existing item */}
-									{this.state.itemID !== 0 ? (
-										<button
-											type="button"
-											className="btn btn-primary float-start"
-											onClick={() => this.updateClick()}>
-											Update
-										</button>
-									) : null}
+										{/* If selected item id !== 0 Than we need to updating existing item */}
+										{this.state.itemID !== 0 ? (
+											<button
+												type="submit"
+												className="btn btn-dark float-end"
+												>
+												Update
+											</button>
+										) : null}
+									</form>
 								</div>
 							</div>
 						</div>
