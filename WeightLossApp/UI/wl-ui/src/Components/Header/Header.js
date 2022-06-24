@@ -24,9 +24,24 @@ function Header() {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="nav-link" to={"/Exercises"}>
+						<Link className="nav-link" to={"/AchievementData"}>
 							Features
 						</Link>
+					</li>
+					<li className="nav-item">
+						<div className="dropdown">
+								<Link className="nav-link" to={"/"}>
+								Store
+								</Link>
+							<div className="dropdown-content">
+								<Link className="nav-link" to={"/PremiumSubscriptions"}>
+								PremiumSubscription
+								</Link>
+								<Link className="nav-link" to={"/DesignThemes"}>
+								DesignThemes
+								</Link>
+							</div>
+						</div>
 					</li>
 					<li className="nav-item">
 						<Link className="nav-link" to={"/"}>

@@ -13,11 +13,11 @@ namespace Model.Models
         public int Id { get; set; }
         public string Section { get; set; }
         public string Name { get; set; }
-        public int Length { get; set; }
+        public int? Length { get; set; }
         public string Instructions { get; set; }
-        public byte[] ImageName { get; set; }
-        public int BurntCalories { get; set; }
-        public int NumberOfReps { get; set; }
+        public string ImageName { get; set; }
+        public int? BurntCalories { get; set; }
+        public int? NumberOfReps { get; set; }
 
         public virtual ICollection<TrainingExercise> TrainingExercise { get; set; }
     }

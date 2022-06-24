@@ -11,7 +11,8 @@ namespace Model.Models
         }
 
         public int Id { get; set; }
-        public int? NumberOfDays { get; set; }
+        public int NumberOfDays { get; set; }
+        public decimal Price { get; set; }
 
         public virtual ICollection<PremiumStatus> PremiumStatus { get; set; }
     }
