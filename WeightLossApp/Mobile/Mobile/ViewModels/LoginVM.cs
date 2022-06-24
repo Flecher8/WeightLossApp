@@ -20,9 +20,17 @@ namespace Mobile.ViewModels
         private List<User> users;
         private User user;
 
+        // Google variables
+        private readonly IGoogleManager googleManager;
+        GoogleUser GoogleUser = new GoogleUser();
+        public bool IsLogedIn { get; set; }
+
         // Commands
         public Command login { get; private set; }
         public Command registration { get; private set; }
+
+        // Google commands
+        public Command googleLogIn { get; private set; }
 
         // Navigation
         public INavigation Navigation { get; set; }
@@ -30,11 +38,19 @@ namespace Mobile.ViewModels
         // API
         private string ApiUrl { get; set; }
 
+
+
+        /*
+         * Functions
+         */
         public LoginVM()
         {
             // Create Data
             users = new List<User>();
             user = new User();
+
+            // Set Google variables
+            googleManager = DependencyService.Get<IGoogleManager>();
 
             // Set API URL
             ApiUrl = "https://stirred-eagle-95.hasura.app/api/rest/";
@@ -42,6 +58,9 @@ namespace Mobile.ViewModels
             // Create Commands
             login = new Command(Login);
             registration = new Command(Registration);
+
+            // Create Google Commands
+            googleLogIn = new Command(GoogleLogin);
 
             // Load Data
             LoadAsync();
@@ -80,6 +99,29 @@ namespace Mobile.ViewModels
             // Navigation to new page [ paraments = email ] 
             //Navigation.PushAsync();
         }
+        public void GoogleLogin()
+        {
+            googleManager.Login(OnLoginComplete);
+        }
+        private void OnLoginComplete(GoogleUser googleUser, string message)
+        {
+            if(googleUser != null)
+            {
+                GoogleUser = googleUser;
+                IsLogedIn = true;
+                if(isRegistered)
+                {
+                    // Add navigation to the main page!!!
+                    //Navigation.PushAsync();
+                }
+                App.Current.MainPage.DisplayAlert("Message", "Вы не зарегистрированы", "Ok");
+            }
+            else
+            {
+                App.Current.MainPage.DisplayAlert("Message", message, "Ok");
+            }
+        }
+        
         public async Task LoadAsync()
         {
             Console.WriteLine("~~~~~~~~~~");
@@ -142,6 +184,20 @@ namespace Mobile.ViewModels
                 foreach (User element in users)
                 {
                     if (element.Email == user.Email && element.Password == user.Password)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        private bool isRegistered
+        {
+            get
+            {
+                foreach (User usr in users)
+                {
+                    if (usr.Email == GoogleUser.Email)
                     {
                         return true;
                     }
