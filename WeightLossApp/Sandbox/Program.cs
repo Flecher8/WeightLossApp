@@ -6,7 +6,9 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var loginVM = new LoginVM();
+            Console.WriteLine(123);
+            Console.ReadLine();
         }
     }
 }
