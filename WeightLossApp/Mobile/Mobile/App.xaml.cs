@@ -13,7 +13,7 @@ namespace Mobile
             DevExpress.XamarinForms.Navigation.Initializer.Init();
             DevExpress.XamarinForms.Charts.Initializer.Init();
 
-            MainPage = new Views.RegistrationPage();
+            MainPage = new Views.LoginPage();
         }
 
         protected override void OnStart()

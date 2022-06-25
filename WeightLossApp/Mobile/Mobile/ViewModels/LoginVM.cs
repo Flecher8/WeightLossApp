@@ -11,6 +11,7 @@ using Mobile.Helpers;
 using Mobile.Models;
 using Xamarin.Forms;
 using Newtonsoft.Json.Linq;
+using Mobile.Services;
 
 namespace Mobile.ViewModels
 {
@@ -19,6 +20,8 @@ namespace Mobile.ViewModels
         // Data
         private List<User> users;
         private User user;
+        private string email;
+        private string password;
 
         // Google variables
         private readonly IGoogleManager googleManager;
@@ -29,8 +32,10 @@ namespace Mobile.ViewModels
         public Command LogIn { get; private set; }
         public Command Registration { get; private set; }
 
+        public Command Logout { get; private set; }
+
         // Google commands
-        public Command googleLogIn { get; private set; }
+        public Command GoogleLogIn { get; private set; }
 
         // Navigation
         public INavigation Navigation { get; set; }
@@ -47,7 +52,6 @@ namespace Mobile.ViewModels
         {
             // Create Data
             users = new List<User>();
-            user = new User();
 
             // Set Google variables
             googleManager = DependencyService.Get<IGoogleManager>();
@@ -58,47 +62,62 @@ namespace Mobile.ViewModels
             // Create Commands
             LogIn = new Command(LoginFun);
             Registration = new Command(RegistrationFun);
+            Logout = new Command(LogOut);
 
             // Create Google Commands
-            googleLogIn = new Command(GoogleLogin);
+            GoogleLogIn = new Command(GoogleLogin);
 
             // Load Data
             LoadAsync();
+
+            Password = "pass";
+            Email = "mail";
         }
+
+        public void LogOut()
+        {
+            googleManager.Logout();
+        }
+
         public string Email
         {
-            get => user.Email;
+            get => email;
             set
             {
-                user.Email = value;
+                email = value;
                 OnPropertyChanged();
             }
         }
         public string Password
         {
-            get => user.Password;
+            get => password;
             set
             {
-                user.Email = value;
+                password = value;
                 OnPropertyChanged();
             }
         }
 
         
         // Add navigation to main page!!!
-        public void LoginFun()
+        public async void LoginFun()
         {
             if(isDataCorrect)
             {
-                // Navigation to new page [ paraments = email ] 
-                //Navigation.PushAsync();
+                AppProfile prof = AppProfile.Instance;
+                await prof.LoadAsyncPM(user.Login);
+                await prof.LoadAsync(prof.Profile.Id);
+
+                App.Current.MainPage = new MainPage();
+            }
+            else
+            {
+                App.Current.MainPage.DisplayAlert("Message", "Login faliled", "Ok");
             }
         }
-        // Add navigation to one of the registration pages!!!
         public void RegistrationFun()
         {
-            // Navigation to new page [ paraments = email ] 
-            //Navigation.PushAsync();
+            App.Current.MainPage = new Views.RegistrationPage();
         }
         public void GoogleLogin()
         {
@@ -109,13 +128,22 @@ namespace Mobile.ViewModels
             if(googleUser != null)
             {
                 GoogleUser = googleUser;
+
+                Console.WriteLine(googleUser.Email);
                 IsLogedIn = true;
                 if(isRegistered)
                 {
-                    // Add navigation to the main page!!!
-                    //Navigation.PushAsync();
+                    AppProfile prof = AppProfile.Instance;
+                    prof.LoadAsyncPM(user.Login);
+                    prof.LoadAsync(prof.Profile.Id);
+
+                    App.Current.MainPage = new MainPage();
                 }
-                App.Current.MainPage.DisplayAlert("Message", "No such email", "Ok");
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("Message", "No such email", "Ok");
+                    googleManager.Logout();
+                }
             }
             else
             {
@@ -184,8 +212,9 @@ namespace Mobile.ViewModels
             {
                 foreach (User element in users)
                 {
-                    if (element.Email == user.Email && element.Password == user.Password)
+                    if (element.Email == Email && element.Password == Password)
                     {
+                        user = element;
                         return true;
                     }
                 }
@@ -200,6 +229,7 @@ namespace Mobile.ViewModels
                 {
                     if (usr.Email == GoogleUser.Email)
                     {
+                        user = usr;
                         return true;
                     }
                 }
