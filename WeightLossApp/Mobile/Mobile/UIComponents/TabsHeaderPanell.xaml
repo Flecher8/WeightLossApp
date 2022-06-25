@@ -13,23 +13,21 @@
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="TitleLabel"
-                       FontSize="24" 
-                       FontAttributes="Bold"
                        Grid.Column="0" 
-                       Margin="30,15,0,0"
-                       TextColor="{StaticResource SecondaryColor}"
                        Text="{Binding PanellTitle}"
-                       FontFamily="Comfortaa"></Label>
-                <Button Grid.Column="1"
+                       Style="{StaticResource HeaderLabel}"></Label>
+                <!--<Button x:Name="ProfileButton"
+                        Grid.Column="1"
                         HorizontalOptions="End" 
-                        Style="{StaticResource CircleButtonS}">
+                        Style="{StaticResource CircleButtonS}"
+                        Clicked="Profile_Clicked">
                     <Button.ImageSource>
                         <FontImageSource 
                             FontFamily="IconsSolid" 
                             Glyph="{Static fa:FontAwesomeIcons.UserLarge}"
                             Color="{StaticResource TextColorDark}"/>
                     </Button.ImageSource>
-                </Button>
+                </Button>-->
                 
             </Grid>
         </StackLayout>

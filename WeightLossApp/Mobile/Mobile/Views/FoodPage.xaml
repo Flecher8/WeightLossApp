@@ -2,19 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mobile.Views.FoodPage"
-             x:Name="this">
+             xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
+             xmlns:local="clr-namespace:Mobile"
+             xmlns:views="clr-namespace:Mobile.Views"
+             xmlns:fa="clr-namespace:FontAwesome">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <views:IsSelectedToColorConverter x:Key="BackgroundColorConverter"
+                                          DefaultColor="Transparent"
+                                          SelectedColor="{StaticResource PrimaryColor}"/>
+            <views:IsSelectedToColorConverter x:Key="FontColorConverter"
+                                          DefaultColor="{StaticResource PrimaryColor}"
+                                          SelectedColor="{StaticResource TextColorLight}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Yea, it is it"></Label>
-            <ListView ItemsSource="{Binding Ingridients}"
-                      BackgroundColor="{StaticResource BlockBackgroundColor}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Name}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button Text="Load" Command="{Binding LoadCommand}"></Button>
-        </StackLayout>
+        <dxn:TabView
+            SelectedItemIndex="{Binding SelectedIndex, Mode=TwoWay}"
+            HeaderPanelShadowHeight="3"
+            HeaderPanelShadowRadius="3">
+            <dxn:TabView.ItemHeaderTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,8,0,8"
+                           Padding="16,0,16,0"
+                           CornerRadius="16"
+                           HasShadow="True"
+                           BackgroundColor="{Binding  FirstSelected, Converter={StaticResource BackgroundColorConverter}}">
+                        <Label Text="{Binding GroupKey}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="{Binding FirstSelected, Converter={StaticResource BackgroundColorConverter}}"/>
+                    </Frame>
+                </DataTemplate>
+            </dxn:TabView.ItemHeaderTemplate>
+            <dxn:TabViewItem>
+                <dxn:TabViewItem.Content>
+                    <views:NutrientsStateView></views:NutrientsStateView>
+                </dxn:TabViewItem.Content>
+            </dxn:TabViewItem>
+            <dxn:TabViewItem>
+                <views:NutrientsStateView></views:NutrientsStateView>
+            </dxn:TabViewItem>
+        </dxn:TabView>
     </ContentPage.Content>
 </ContentPage>
