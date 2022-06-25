@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\WeightLossApp",
-    "\\WeightLossApp\\Mobile",
-    "\\WeightLossApp\\Sandbox"
+    ""
   ],
-  "SelectedNode": "\\WeightLossApp\\Sandbox\\IngridientsDataVM.cs",
+  "SelectedNode": "\\WeightLossApp.sln",
   "PreviewInSolutionExplorer": false
 }
