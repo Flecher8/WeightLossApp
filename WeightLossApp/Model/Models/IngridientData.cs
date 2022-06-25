@@ -10,6 +10,7 @@ namespace Model.Models
             IngridientCategory = new HashSet<IngridientCategory>();
         }
 
+
         public int Id { get; set; }
         public string Name { get; set; }
         public double? Calories { get; set; }
