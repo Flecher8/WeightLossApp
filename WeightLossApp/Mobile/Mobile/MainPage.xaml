@@ -6,7 +6,7 @@
      xmlns:local="clr-namespace:Mobile"
      xmlns:views="clr-namespace:Mobile.Views"
      xmlns:fa="clr-namespace:FontAwesome" 
-     xmlns:local1="clr-namespace:Mobile.UIComponents"
+     xmlns:comp="clr-namespace:Mobile.UIComponents"
      x:Class="Mobile.MainPage"
      BackgroundColor="{StaticResource BackgroundColor}"
      HeaderPanelBackgroundColor="{StaticResource PrimaryColor}"
@@ -21,39 +21,22 @@
      ItemHeaderIconColor="{StaticResource TextColorDark}"
      SelectedItemHeaderIconColor="{StaticResource TextColorLight}"
      ItemHeaderIconPosition="Left"
+     
      >
-        <dxn:TabPageItem>
+    <dxn:TabPageItem>
         <dxn:TabPageItem.Content>
-            <ContentPage>
+
+            <views:MainPageContent>
                 <ContentPage.IconImageSource>
                     <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.HouseChimney}"></FontImageSource>
                 </ContentPage.IconImageSource>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="9*"/>
-                    </Grid.RowDefinitions>
-                    <local1:TabsHeaderPanell 
-                        Grid.Row="0" 
-                        PanellTitle="Hi, Vlad!"/>
-                    <Label Text="Main page" 
-                        HorizontalOptions="Center" 
-                        VerticalOptions="CenterAndExpand"
-                        BackgroundColor="{StaticResource BlockBackgroundColor}"
-                        Grid.Row="1"/>
-                </Grid>
-            </ContentPage>
+            </views:MainPageContent>
+            
         </dxn:TabPageItem.Content>
     </dxn:TabPageItem>
 
     <dxn:TabPageItem>
         <dxn:TabPageItem.Content>
-            <!--<ContentPage>
-                <ContentPage.IconImageSource>
-                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Utensils}"></FontImageSource>
-                </ContentPage.IconImageSource>
-            </ContentPage>-->
-
             <views:FoodPage>
                 <ContentPage.IconImageSource>
                     <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Utensils}"></FontImageSource>
@@ -85,6 +68,19 @@
                         HorizontalOptions="Center" 
                         VerticalOptions="CenterAndExpand"/>
             </ContentPage>
+        </dxn:TabPageItem.Content>
+    </dxn:TabPageItem>
+    
+    <dxn:TabPageItem >
+        <dxn:TabPageItem.Content>
+            <NavigationPage>
+                <x:Arguments>
+                    <views:ProfilePage></views:ProfilePage>
+                </x:Arguments>
+                <NavigationPage.IconImageSource>
+                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.User}"></FontImageSource>
+                </NavigationPage.IconImageSource>
+            </NavigationPage>
         </dxn:TabPageItem.Content>
     </dxn:TabPageItem>
 </dxn:TabPage>

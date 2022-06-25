@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace Mobile
 {
     public partial class App : Application
@@ -10,8 +11,9 @@ namespace Mobile
         {
             InitializeComponent();
             DevExpress.XamarinForms.Navigation.Initializer.Init();
+            DevExpress.XamarinForms.Charts.Initializer.Init();
 
-            MainPage = new MainPage();
+            MainPage = new Views.RegistrationPage();
         }
 
         protected override void OnStart()
