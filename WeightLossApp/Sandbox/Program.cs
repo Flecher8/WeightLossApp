@@ -6,8 +6,8 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            var ingr = new AppProfile();
-            ingr.LoadAsyncPM();
+            var loginVM = new LoginVM();
+            Console.WriteLine(123);
             Console.ReadLine();
         }
     }

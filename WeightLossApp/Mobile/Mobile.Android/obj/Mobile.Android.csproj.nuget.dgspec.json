@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj": {}
+    "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj": {
+    "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+        "projectUniqueName": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
         "projectName": "Mobile.Android",
-        "projectPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
-        "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
+        "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+        "packagesPath": "C:\\Users\\Vl\\.nuget\\packages\\",
+        "outputPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Vl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -35,8 +33,8 @@
         "frameworks": {
           "monoandroid12.0": {
             "projectReferences": {
-              "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
-                "projectPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
+              "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+                "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
               }
             }
           }
@@ -57,22 +55,20 @@
         }
       }
     },
-    "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+    "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+        "projectUniqueName": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
         "projectName": "Mobile",
-        "projectPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
-        "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kiril\\Source\\Repos\\WeightLossApp1\\WeightLossApp\\Mobile\\Mobile\\obj\\",
+        "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+        "packagesPath": "C:\\Users\\Vl\\.nuget\\packages\\",
+        "outputPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\kiril\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Vl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -161,7 +157,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
