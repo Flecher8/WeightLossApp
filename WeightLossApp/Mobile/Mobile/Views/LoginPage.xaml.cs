@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Mobile.ViewModels;
 
 namespace Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public LoginVM ViewModel { get; set; }
+
         public LoginPage()
         {
             InitializeComponent();
+            ViewModel = new LoginVM();
+            BindingContext = ViewModel;
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Application.Current.MainPage = new RegistrationPage();
-
-        }
     }
 }

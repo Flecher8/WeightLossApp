@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "370265228157",
+    "project_id": "fitnessassistant-8e48c",
+    "storage_bucket": "fitnessassistant-8e48c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370265228157:android:8c5fce2e89a48689934214",
+        "android_client_info": {
+          "package_name": "com.avengers.fitnessassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370265228157-2d1f4u0nr3cd13lsh7lf6vi850f550ca.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avengers.fitnessassistant",
+            "certificate_hash": "395e31e814e8f7e429f07bc5807448017147abbf"
+          }
+        },
+        {
+          "client_id": "370265228157-a8km4psauihicdgflt8580ch6prdnlhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOoBmNbFHJspiZ9Y2WKfJ5kf4-i0gqcCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370265228157-a8km4psauihicdgflt8580ch6prdnlhk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,10 +13,10 @@
                 <Image Source="logo.jpg"/>
             </Frame>
             <dxe:TextEdit LabelText="Email" 
-                          Text=""
+                          Text="{Binding Email}"
                           Style="{StaticResource TextEditRegular}"></dxe:TextEdit>
             <dxe:PasswordEdit LabelText="Password" 
-                              Text=""
+                              Text="{Binding Password}"
                               Style="{StaticResource PasswordEditRegular}"></dxe:PasswordEdit>
             <Grid x:Name="ApiLoginButtons">
                 <Grid.ColumnDefinitions>
@@ -30,7 +30,8 @@
                         BorderRadius="50"
                         BackgroundColor="{StaticResource BackgroundColor}"
                         BorderColor="{StaticResource SecondaryColor}"
-                        BorderWidth="2">
+                        BorderWidth="2"
+                        Command="{Binding GoogleLogIn}">
                     <Button.ImageSource>
                         <FontImageSource FontFamily="BrandsSolid" Color="{StaticResource SecondaryColor}" Glyph="{Static fa:FontAwesomeIcons.Google}"></FontImageSource>
                     </Button.ImageSource>
@@ -47,11 +48,12 @@
             </Grid>
 
             <Button Style="{StaticResource ButtonRegular}"
-                    Text="Login">
+                    Text="Login"
+                    Command="{Binding LogIn}">
             </Button>
             <Button Style="{StaticResource ButtonOutlined}"
                     Text="Sign UP"
-                    Clicked="Button_Clicked">
+                    Command="{Binding Registration}">
             </Button>
         </StackLayout>
     </ContentPage.Content>
