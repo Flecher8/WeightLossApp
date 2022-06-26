@@ -14,6 +14,8 @@ namespace Mobile
     {
         public MainPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
 
         }

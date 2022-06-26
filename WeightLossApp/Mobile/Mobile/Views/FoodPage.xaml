@@ -13,8 +13,7 @@
             SelectedItemIndicatorColor="{StaticResource PrimaryColor}"
             SelectedItemHeaderTextColor="{StaticResource PrimaryColor}"
             ItemHeaderTextColor="{StaticResource TextColorLight}"
-            SelectedItemIndicatorHeight="5"
-            ItemHeaderPadding="20">
+            SelectedItemIndicatorHeight="5">
             
             <dxn:TabViewItem>
                 <dxn:TabViewItem.HeaderContent>

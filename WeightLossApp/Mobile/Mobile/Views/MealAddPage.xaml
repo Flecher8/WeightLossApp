@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.MealAddPage"
+              xmlns:fa="clr-namespace:FontAwesome" 
+             xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Style="{StaticResource HeaderLabel}" Text="New Meal"/>
+            <dxe:TextEdit LabelText="Meal Name" 
+                          Text="{Binding Email}"
+                          Style="{StaticResource TextEditRegular}"></dxe:TextEdit>
+            <Label Style="{StaticResource RegularTextLabel}" 
+                   Text="Ingridients list:"
+                   Margin="35,10"/>
+            <ListView HeightRequest="100"></ListView>
+
+            <Button Style="{StaticResource ButtonRegular}" 
+                    Text="Add new ingridient"></Button>
+            <Button Style="{StaticResource ButtonRegular}" 
+                    Text="Confirm"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

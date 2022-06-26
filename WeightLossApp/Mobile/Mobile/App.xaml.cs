@@ -21,7 +21,9 @@ namespace Mobile
 
                 LoadProfile(login);
 
-                MainPage = new MainPage();
+                var navigationPage = new NavigationPage(new MainPage());
+
+                MainPage = navigationPage;
 
             }
             else
