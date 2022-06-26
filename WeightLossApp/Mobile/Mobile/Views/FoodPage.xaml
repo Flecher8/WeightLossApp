@@ -45,7 +45,7 @@
                     </Frame>
                 </dxn:TabViewItem.HeaderContent>
                 <dxn:TabViewItem.Content>
-                    <views:NutrientsStateView></views:NutrientsStateView>
+                    <views:MealsPageContent></views:MealsPageContent>
                 </dxn:TabViewItem.Content>
             </dxn:TabViewItem>
         </dxn:TabView>
