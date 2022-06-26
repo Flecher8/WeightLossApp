@@ -2,6 +2,7 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mobile.App"
+             xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
              xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors">
     <Application.Resources>
         <ResourceDictionary>
@@ -127,6 +128,14 @@
                 <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />
                 <Setter Property="CornerRadius" Value="20" />
                 <Setter Property="HeightRequest" Value="50" />
+            </Style>
+
+            <Style x:Key="NavTabTop" TargetType="Frame">
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Padding" Value="16,5,16,5" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

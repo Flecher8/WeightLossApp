@@ -1451,19 +1451,21 @@
   },
   "packageFolders": {
     "C:\\Users\\vmlf\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+      "projectUniqueName": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
       "projectName": "Mobile",
-      "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+      "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
       "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
-      "outputPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
+      "outputPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\vmlf\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,7 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Mobile.Services;
+using System.Threading.Tasks;
 
 namespace Mobile
 {
@@ -12,8 +13,33 @@ namespace Mobile
             InitializeComponent();
             DevExpress.XamarinForms.Navigation.Initializer.Init();
             DevExpress.XamarinForms.Charts.Initializer.Init();
+            string login = Xamarin.Essentials.Preferences.Get("UserLogin", "empty");
 
-            MainPage = new Views.LoginPage();
+            if (login != "empty")
+            {
+                AppProfile profile = AppProfile.Instance;
+
+                LoadProfile(login);
+
+                MainPage = new MainPage();
+
+            }
+            else
+            {
+                MainPage = new Views.LoginPage();
+            }
+
+
+
+
+        }
+
+        public static async Task LoadProfile(string login)
+        {
+            AppProfile profile = AppProfile.Instance;
+
+            await profile.LoadAsyncPM(login);
+            await profile.LoadAsync(profile.Profile.Id);
         }
 
         protected override void OnStart()
@@ -27,5 +53,7 @@ namespace Mobile
         protected override void OnResume()
         {
         }
+
+
     }
 }

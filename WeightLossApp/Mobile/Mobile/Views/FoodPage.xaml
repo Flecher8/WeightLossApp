@@ -6,42 +6,47 @@
              xmlns:local="clr-namespace:Mobile"
              xmlns:views="clr-namespace:Mobile.Views"
              xmlns:fa="clr-namespace:FontAwesome">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <views:IsSelectedToColorConverter x:Key="BackgroundColorConverter"
-                                          DefaultColor="Transparent"
-                                          SelectedColor="{StaticResource PrimaryColor}"/>
-            <views:IsSelectedToColorConverter x:Key="FontColorConverter"
-                                          DefaultColor="{StaticResource PrimaryColor}"
-                                          SelectedColor="{StaticResource TextColorLight}"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <dxn:TabView
-            SelectedItemIndex="{Binding SelectedIndex, Mode=TwoWay}"
-            HeaderPanelShadowHeight="3"
-            HeaderPanelShadowRadius="3">
-            <dxn:TabView.ItemHeaderTemplate>
-                <DataTemplate>
-                    <Frame Margin="0,8,0,8"
-                           Padding="16,0,16,0"
-                           CornerRadius="16"
-                           HasShadow="True"
-                           BackgroundColor="{Binding  FirstSelected, Converter={StaticResource BackgroundColorConverter}}">
-                        <Label Text="{Binding GroupKey}"
+            HeaderPanelHeight="60"
+            HeaderPanelContentAlignment="Start"
+            SelectedItemIndicatorColor="{StaticResource PrimaryColor}"
+            SelectedItemHeaderTextColor="{StaticResource PrimaryColor}"
+            ItemHeaderTextColor="{StaticResource TextColorLight}"
+            SelectedItemIndicatorHeight="5"
+            ItemHeaderPadding="20">
+            
+            <dxn:TabViewItem>
+                <dxn:TabViewItem.HeaderContent>
+                    <Frame Style="{StaticResource NavTabTop}">
+                        <Label Text="Nutrients data"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
-                               TextColor="{Binding FirstSelected, Converter={StaticResource BackgroundColorConverter}}"/>
+                               TextColor="{StaticResource TextColorLight}"
+                               BackgroundColor="Transparent"
+                               FontSize="16"
+                               FontFamily="Comfortaa"/>
                     </Frame>
-                </DataTemplate>
-            </dxn:TabView.ItemHeaderTemplate>
-            <dxn:TabViewItem>
+                </dxn:TabViewItem.HeaderContent>
                 <dxn:TabViewItem.Content>
                     <views:NutrientsStateView></views:NutrientsStateView>
                 </dxn:TabViewItem.Content>
             </dxn:TabViewItem>
             <dxn:TabViewItem>
-                <views:NutrientsStateView></views:NutrientsStateView>
+                <dxn:TabViewItem.HeaderContent>
+                    <Frame Style="{StaticResource NavTabTop}">
+                        <Label Text="This day meals"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="{StaticResource TextColorLight}"
+                               BackgroundColor="Transparent"
+                               FontSize="16"
+                               FontFamily="Comfortaa"/>
+                    </Frame>
+                </dxn:TabViewItem.HeaderContent>
+                <dxn:TabViewItem.Content>
+                    <views:NutrientsStateView></views:NutrientsStateView>
+                </dxn:TabViewItem.Content>
             </dxn:TabViewItem>
         </dxn:TabView>
     </ContentPage.Content>

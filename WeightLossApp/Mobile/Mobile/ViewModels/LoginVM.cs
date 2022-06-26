@@ -104,9 +104,9 @@ namespace Mobile.ViewModels
         {
             if(isDataCorrect)
             {
-                AppProfile prof = AppProfile.Instance;
-                await prof.LoadAsyncPM(user.Login);
-                await prof.LoadAsync(prof.Profile.Id);
+                App.LoadProfile(user.Login);
+
+                Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 
                 App.Current.MainPage = new MainPage();
             }
@@ -133,9 +133,9 @@ namespace Mobile.ViewModels
                 IsLogedIn = true;
                 if(isRegistered)
                 {
-                    AppProfile prof = AppProfile.Instance;
-                    prof.LoadAsyncPM(user.Login);
-                    prof.LoadAsync(prof.Profile.Id);
+                    App.LoadProfile(user.Login);
+
+                    Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 
                     App.Current.MainPage = new MainPage();
                 }

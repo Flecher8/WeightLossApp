@@ -5544,11 +5544,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "projectUniqueName": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
       "projectName": "Mobile.Android",
-      "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
       "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
-      "outputPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
+      "outputPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -5570,8 +5570,8 @@
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
-              "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
+            "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+              "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
             }
           }
         }
