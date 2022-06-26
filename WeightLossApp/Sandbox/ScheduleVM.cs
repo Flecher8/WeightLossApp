@@ -41,8 +41,9 @@ namespace Sandbox
             profile = AppProfile.Instance;
             date = DateTime.Now;
 
-            fillEvents(date);
             LoadSchedule();
+            fillEvents(date);
+            
 
             // Create Commands
             LeftDate = new Command(SwitchDateLeft);
@@ -53,7 +54,7 @@ namespace Sandbox
         private void AddNewEvent()
         {
             // Add navigation to AddEvent View
-            //App.Current.MainPage = new AddEventPage();
+            //App.Current.MainPage = new AddEventPage(schedule.ID);
         }
 
         private void SwitchDateRight()
@@ -73,9 +74,9 @@ namespace Sandbox
             get => events;
         }
 
-        public DateTime Date
+        public string Date
         {
-            get => date;
+            get => date.ToString("d");
         }
 
         private async Task LoadSchedule()
@@ -99,7 +100,7 @@ namespace Sandbox
 
                     Console.WriteLine("----------------------------");
 
-                    res = GetArrayStringResponce(res);
+                    res = GetArrayStringResponce(res, "Schedule");
 
                     List<Schedule> tmp = null;
 
@@ -126,15 +127,15 @@ namespace Sandbox
             }
         }
 
-        private string GetArrayStringResponce(string jsonResult)
+        private string GetArrayStringResponce(string jsonResult, string token)
         {
             JObject o = JObject.Parse(jsonResult);
-            var result = o.SelectToken("Schedule");
+            var result = o.SelectToken(token);
             
             return result.ToString();
         }
-        // Доделать !!!
-        // Функция заполнения events по определённой дате
+
+        // Get events by specific date
         private async Task fillEvents(DateTime date)
         {
             // By profile ID find in table Schedule needed row with Schedule ID
@@ -148,17 +149,19 @@ namespace Sandbox
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 Console.WriteLine("~~~~~~~~");
-
-                HttpResponseMessage response = await client.GetAsync("schedule_id?profile_id=" + profile.Profile.Id);
+                
+                // schedule.ID
+                HttpResponseMessage response = await client.GetAsync("event?schedule_ID=" + schedule.ID);
+                
 
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
 
-                    res = GetArrayStringResponce(res);
+                    res = GetArrayStringResponce(res, "Event");
 
-                    List<User> temp = null;
+                    List<Event> temp = null;
 
                     try
                     {
@@ -166,16 +169,27 @@ namespace Sandbox
                         {
                             PropertyNameCaseInsensitive = true,
                         };
-                        temp = JsonSerializer.Deserialize<List<User>>(res);
+                        temp = JsonSerializer.Deserialize<List<Event>>(res);
 
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(" ~~~~~ " + ex.Message);
                     }
-                    foreach (User el in temp)
+                    // Clear events
+                    events.Clear();
+
+                    // Add new events
+                    foreach (Event ev in temp)
                     {
-                        users.Add(el);
+                        if(ev.DateTime.Date == date.Date)
+                        {
+                            events.Add(ev);
+                        }
+                    }
+                    foreach(Event ev in events)
+                    {
+                        Console.WriteLine(ev.Type);
                     }
                 }
                 else
