@@ -39,6 +39,13 @@
                 <Setter Property="FontFamily" Value="Comfortaa" />
             </Style>
 
+            <Style x:Key="MediumTextLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="FontFamily" Value="Comfortaa" />
+            </Style>
+
             <!--Controll styles-->
             <Style x:Key="CircleButtonS" TargetType="Button">
                 <Setter Property="WidthRequest" Value="50" />
@@ -136,6 +143,12 @@
                 <Setter Property="CornerRadius" Value="20" />
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+            <Style x:Key="InnerFrame" TargetType="Frame" >
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BlockBackgroundColor}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
