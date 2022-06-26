@@ -6,8 +6,8 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            var loginVM = new LoginVM();
-            Console.WriteLine(123);
+            var schedule = new ScheduleVM();
+            
             Console.ReadLine();
         }
     }
