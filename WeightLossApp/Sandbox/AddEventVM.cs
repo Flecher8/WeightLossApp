@@ -22,7 +22,8 @@ namespace Sandbox
         private string selectedCategory;
         private string messageText;
         private DateTime date;
-        private DateTime time;
+        private TimeSpan time;
+        private int sheduleID;
 
 
         // Commands
@@ -32,13 +33,17 @@ namespace Sandbox
         // Navigation
         public INavigation Navigation { get; set; }
 
-        public AddEventVM()
+        public AddEventVM(int schedule_Id)
         {
             // Create data
             categories = new ObservableCollection<string>();
             fillCategories();
+            
             date = DateTime.Today;
-            time = DateTime.Now;
+            time = TimeSpan.Zero;
+
+
+            sheduleID = schedule_Id;
 
             // Set commands
             Back = new Command(goBack);
@@ -83,7 +88,7 @@ namespace Sandbox
                 OnPropertyChanged();
             }
         }
-        public DateTime Time
+        public TimeSpan Time
         {
             get => time;
             set
@@ -92,15 +97,72 @@ namespace Sandbox
                 OnPropertyChanged();
             }
         }
+
         private void goBack()
         {
             Navigation.PopAsync();
         }
+
         // Need new functions!!!
-        private void CreateEvent()
+        public void CreateEvent()
         {
             // 1) Post new event !!!
+            PostEvent();
             // 2) Navigate to last page ( use goBack function)
+        }
+        private async Task PostEvent()
+        {
+
+            Console.WriteLine("~~~~~~~~~~");
+            using (var client = new HttpClient())
+            {
+                string address = "https://stirred-eagle-95.hasura.app/api/rest/";
+                client.BaseAddress = new Uri(address);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                DateTime neededDate = date + time;
+                messageText = "text";
+                selectedCategory = "Training";
+
+                string adr =
+                    "postEvent?DateTime=" + neededDate.ToString("G")
+                    + "&Description=" + messageText
+                    + "&Schedule_ID=" + sheduleID
+                    + "&SendNotification=true"
+                    + "&Type=" + selectedCategory;
+
+                HttpResponseMessage response = await client.PostAsync(adr ,null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+
+                    Console.WriteLine("----------------------------");
+
+                    Console.WriteLine(res);
+
+                    try
+                    {
+                        JsonSerializerOptions options = new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true,
+
+                        };
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(" ~~~~~ " + ex.Message);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
         }
         private void fillCategories()
         {
