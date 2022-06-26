@@ -139,7 +139,50 @@ namespace Sandbox
         {
             // By profile ID find in table Schedule needed row with Schedule ID
             // Find all events for this Schedule ID and fill ObservableCollection<Event> events
-            
+            Console.WriteLine("~~~~~~~~~~");
+            using (var client = new HttpClient())
+            {
+                string address = "https://stirred-eagle-95.hasura.app/api/rest/";
+                client.BaseAddress = new Uri(address);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                HttpResponseMessage response = await client.GetAsync("schedule_id?profile_id=" + profile.Profile.Id);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+
+                    res = GetArrayStringResponce(res);
+
+                    List<User> temp = null;
+
+                    try
+                    {
+                        JsonSerializerOptions options = new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true,
+                        };
+                        temp = JsonSerializer.Deserialize<List<User>>(res);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(" ~~~~~ " + ex.Message);
+                    }
+                    foreach (User el in temp)
+                    {
+                        users.Add(el);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
         }
     }
 }
