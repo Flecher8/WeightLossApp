@@ -41,7 +41,7 @@ namespace Sandbox
             
             date = DateTime.Today;
             time = TimeSpan.Zero;
-
+            
 
             sheduleID = schedule_Id;
 
@@ -103,12 +103,16 @@ namespace Sandbox
             Navigation.PopAsync();
         }
 
-        // Need new functions!!!
-        public void CreateEvent()
+        
+        private void CreateEvent()
         {
-            // 1) Post new event !!!
-            PostEvent();
-            // 2) Navigate to last page ( use goBack function)
+            if(DataCorrect)
+            {
+                // 1) Post new event 
+                PostEvent();
+            }
+            // 2) Navigate to last page
+            goBack();
         }
         private async Task PostEvent()
         {
@@ -122,10 +126,9 @@ namespace Sandbox
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 Console.WriteLine("~~~~~~~~");
-
+                
                 DateTime neededDate = date + time;
-                messageText = "text";
-                selectedCategory = "Training";
+                
 
                 string adr =
                     "postEvent?DateTime=" + neededDate.ToString("G")
@@ -141,8 +144,6 @@ namespace Sandbox
                     string res = await response.Content.ReadAsStringAsync();
 
                     Console.WriteLine("----------------------------");
-
-                    Console.WriteLine(res);
 
                     try
                     {
@@ -169,6 +170,10 @@ namespace Sandbox
             categories.Add("Food");
             categories.Add("Training");
             categories.Add("Medicine");
+        }
+        private bool DataCorrect
+        {
+            get => messageText != null && selectedCategory != null;
         }
     }
 }

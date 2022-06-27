@@ -7,7 +7,6 @@ namespace Sandbox
         static void Main(string[] args)
         {
             var addeventVM = new AddEventVM(1);
-            addeventVM.CreateEvent();
             Console.ReadLine();
         }
     }
