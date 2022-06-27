@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using DevExpress.Mvvm.Native;
 using Mobile.Helpers;
@@ -55,7 +58,7 @@ namespace Mobile.ViewModels
 
         private void OnAddClick()
         {
-            IEnumerable<IngridientMeal> filtered = GetUnknownIngredients(MealIngridients,
+            IEnumerable<IngridientMeal> filtered = _mealService.GetOnlyUnknownIngredients(MealIngridients,
                 _mealService.ConvertIngredientDataToMealParts(new List<IngridientData>()));
             foreach (var ingridientMeal in filtered)
             {
@@ -69,9 +72,6 @@ namespace Mobile.ViewModels
             _mealIngridients.Remove(ingridientMeal);
         }
 
-        private IEnumerable<IngridientMeal> GetUnknownIngredients(IEnumerable<IngridientMeal> initMealIngredients, IEnumerable<IngridientMeal> newMealIngredients)
-        {
-            return initMealIngredients.Where(i => !newMealIngredients.Any(ni => ni.IngridientId.Equals(i.IngridientId)));
-        }
+        
     }
 }
