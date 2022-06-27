@@ -71,7 +71,7 @@ namespace Mobile.ViewModels
 
         private IEnumerable<IngridientMeal> GetUnknownIngredients(IEnumerable<IngridientMeal> initMealIngredients, IEnumerable<IngridientMeal> newMealIngredients)
         {
-            return initMealIngredients.Intersect(newMealIngredients);
+            return initMealIngredients.Where(i => !newMealIngredients.Any(ni => ni.IngridientId.Equals(i.IngridientId)));
         }
     }
 }
