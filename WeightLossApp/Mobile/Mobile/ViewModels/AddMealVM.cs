@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using DevExpress.Mvvm.Native;
 using Mobile.Helpers;
 using Mobile.Models;
 using Mobile.Services;
@@ -53,7 +55,9 @@ namespace Mobile.ViewModels
 
         private void OnAddClick()
         {
-            foreach (var ingridientMeal in _mealService.ConvertIngredientDataToMealParts(new List<IngridientData>()))
+            IEnumerable<IngridientMeal> filtered = GetUnknownIngredients(MealIngridients,
+                _mealService.ConvertIngredientDataToMealParts(new List<IngridientData>()));
+            foreach (var ingridientMeal in filtered)
             {
                 _mealIngridients.Add(ingridientMeal);
             }
@@ -63,6 +67,11 @@ namespace Mobile.ViewModels
         {
             var ingridientMeal = obj as IngridientMeal;
             _mealIngridients.Remove(ingridientMeal);
+        }
+
+        private IEnumerable<IngridientMeal> GetUnknownIngredients(IEnumerable<IngridientMeal> initMealIngredients, IEnumerable<IngridientMeal> newMealIngredients)
+        {
+            return initMealIngredients.Intersect(newMealIngredients);
         }
     }
 }
