@@ -6,8 +6,7 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            var schedule = new ScheduleVM();
-            
+            var addeventVM = new AddEventVM(1);
             Console.ReadLine();
         }
     }
