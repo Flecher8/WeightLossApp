@@ -24,6 +24,7 @@ namespace Sandbox
         User user;
 
         private string passwordAgain;
+        private string preferences;
 
         private bool ragioButtonKeep;
         private bool ragioButtonLoose;
@@ -88,6 +89,7 @@ namespace Sandbox
                     if (!member.hasNull && !user.hasNull)
                     {
                         PostData();
+                        CreateProfile();
                     }
 
                     // 2) Add navigation to the main page!!!
@@ -98,6 +100,11 @@ namespace Sandbox
 
             }
             App.Current.MainPage.DisplayAlert("Message", "You are already registered", "Ok");
+        }
+        // Need to be done
+        private void CreateProfile()
+        {
+            throw new NotImplementedException();
         }
 
         // Google Registration
@@ -121,15 +128,6 @@ namespace Sandbox
 
         // Input fields
         // User info
-        public string Login
-        {
-            get => user.Login;
-            set
-            {
-                user.Login = value;
-                OnPropertyChanged();
-            }
-        }
         public double Weight
         {
             get => member.Weight;
@@ -167,7 +165,27 @@ namespace Sandbox
             }
         }
 
+        // User preferences
+        public string Preferences
+        {
+            get => preferences;
+            set
+            {
+                preferences = value;
+                OnPropertyChanged();
+            }
+        }
+
         // Registration data
+        public string Login
+        {
+            get => user.Login;
+            set
+            {
+                user.Login = value;
+                OnPropertyChanged();
+            }
+        }
         public string Email
         {
             get => user.Email;
@@ -225,7 +243,8 @@ namespace Sandbox
                 OnPropertyChanged();
             }
         }
-        // Исправить, чтобы брать только user по определённому email
+
+        
         public async Task LoadAsync()
         {
             Console.WriteLine("~~~~~~~~~~");
@@ -310,34 +329,38 @@ namespace Sandbox
             member.Goal = "Less";
             member.Birthday = null;
             member.RegistrationDate = DateTime.Now;
-            member.Gender = "M";
+            member.Gender = "Male";
             PostMember();
         }
         // Нужно сделать Post метод для Member!!!
         private async Task PostMember()
         {
             Console.WriteLine("~~~~~~~~~~");
-            Console.WriteLine("member");
             using (var client = new HttpClient())
             {
-                string address = "postmember";
-                //client.BaseAddress = new Uri(ApiUrl);
-                //client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                DateTime date = (DateTime)member.Birthday;
+                string address = 
+                    "postMember?Birthday=" + date.ToString("G")
+                    + "&Gender=" + member.Gender
+                    + "&Goal=" + member.Goal
+                    + "&Height=" + member.Height
+                    + "&RegistrationDate=" + DateTime.Now.ToString("G")
+                    + "&Weight=" + member.Weight;
 
-                var json = JsonSerializer.Serialize(member);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 Console.WriteLine("~~~~~~~~");
 
-                HttpResponseMessage response = await client.PostAsync(ApiUrl + address, data);
+                HttpResponseMessage response = await client.PostAsync(address, null);
                 //Console.WriteLine(response);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
-                    Console.WriteLine(123);
+                    
                     Console.WriteLine(res);
 
                 }

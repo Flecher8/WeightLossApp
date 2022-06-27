@@ -6,7 +6,9 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
-            var addeventVM = new AddEventVM(1);
+            var registrationVM = new RegistrationVM();
+            Console.ReadLine();
+            registrationVM.PostData();
             Console.ReadLine();
         }
     }
