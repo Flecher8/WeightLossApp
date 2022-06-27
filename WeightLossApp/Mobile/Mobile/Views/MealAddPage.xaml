@@ -13,10 +13,13 @@
             <Label Style="{StaticResource RegularTextLabel}" 
                    Text="Ingridients list:"
                    Margin="35,10"/>
-            <ListView HeightRequest="100"></ListView>
+            <ListView HeightRequest="100">
+                
+            </ListView>
 
             <Button Style="{StaticResource ButtonRegular}" 
-                    Text="Add new ingridient"></Button>
+                    Text="Add new ingridient"
+                    Clicked="Button_Clicked"></Button>
             <Button Style="{StaticResource ButtonRegular}" 
                     Text="Confirm"></Button>
         </StackLayout>

@@ -103,6 +103,14 @@
                 <Setter Property="TextFontFamily" Value="Comfortaa" />
             </Style>
 
+            <Style x:Key="SearchEditRegular" TargetType="dxe:AutoCompleteEdit">
+                <Setter Property="Margin" Value="30,10,30,10" />
+                <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="TextFontFamily" Value="Comfortaa" />
+            </Style>
+
             <Style x:Key="NumericEditRegular" TargetType="dxe:NumericEdit">
                 <Setter Property="Margin" Value="30,10,30,10" />
                 <Setter Property="BorderColor" Value="{StaticResource SecondaryColor}" />

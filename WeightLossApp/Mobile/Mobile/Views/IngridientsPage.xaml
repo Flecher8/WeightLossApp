@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.IngridientsPage"
+             xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
+             xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors"
+             xmlns:local="clr-namespace:Mobile"
+             xmlns:views="clr-namespace:Mobile.Views"
+             xmlns:vm="clr-namespace:Mobile.ViewModels"
+             xmlns:fa="clr-namespace:FontAwesome"
+             xmlns:model="clr-namespace:Mobile.Models">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Style="{StaticResource HeaderLabel}">Ingridients catalog</Label>
+            <Label Style="{StaticResource RegularTextLabel}"
+                   Margin="30,0">Categories</Label>
+
+            <dxe:FilterChipGroup x:Name="filterChipGroup"
+                                 Margin="15,0"
+                                 BackgroundColor="Transparent"
+                                 ChipBackgroundColor="{StaticResource BackgroundColor}" 
+                                 ChipBorderThickness="2"
+                                 ChipBorderColor="{StaticResource SecondaryColor}"
+                                 ChipSelectedBackgroundColor="{StaticResource PrimaryColor}" 
+                                 ChipSelectedBorderColor="{StaticResource PrimaryColor}"
+                                 ChipSelectedTextColor="{StaticResource TextColorLight}"
+                                 ItemsSource="{Binding Categories}"
+                                 SelectedItems="{Binding CategoryChosen, Mode=TwoWay}"
+                                 ChipFontFamily="Comfortaa"
+                                 IsMultiline="False"/>
+
+            <dxe:AutoCompleteEdit Style="{StaticResource SearchEditRegular}"
+                                  HeightRequest="50"
+                                  LabelText="Search"
+                                  ClearIconVisibility="Always"
+                                  SubmitIconVisibility="Always"
+                                  QuerySubmittedCommand="{Binding LoadCommand}"
+                                  ItemsSource="{Binding Suggestions}"
+                                  Text="{Binding SearchlineValue}"></dxe:AutoCompleteEdit>
+
+            <ListView ItemsSource="{Binding Foods}"
+                                  HasUnevenRows="True"
+                                  SeparatorVisibility="None"
+                                  BackgroundColor="Transparent"
+                                  HeightRequest="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Food">
+                        <ViewCell>
+                            <Grid>
+                                <Frame Style="{StaticResource OuterFrame}">
+                                    <Frame Style="{StaticResource InnerFrame}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <Label Style="{StaticResource MediumTextLabel}"
+                                                               Text="{Binding Label}"
+                                                               Grid.Column="0"
+                                                               Margin="0"/>
+                                            <Label Style="{StaticResource RegularTextLabel}"
+                                                   Text="{Binding Nutrients}"
+                                                   Grid.Row="1"/>
+                                            <Button BackgroundColor="{StaticResource BlockBackgroundColor}"
+                                                    Grid.Column="1"
+                                                    Grid.RowSpan="2"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:IngridientsDataVM}}, Path=AddCommand}"
+                                                    CommandParameter="{Binding Label}">
+                                                <Button.ImageSource>
+                                                    <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.Plus}" Color="{StaticResource TextColorDark}"/>
+                                                </Button.ImageSource>
+                                            </Button>
+                                        </Grid>
+                                    </Frame>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
