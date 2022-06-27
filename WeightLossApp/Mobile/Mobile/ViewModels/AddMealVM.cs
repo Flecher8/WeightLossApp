@@ -17,7 +17,7 @@ namespace Mobile.ViewModels
 
         // commands properties
         public Command CreateMeal; 
-        public Command AddIngredient;
+        public Command AddIngredient => new Command(OnAddClick);
         public Command<IngridientMeal> RemoveIngredientCommand => new Command<IngridientMeal>(OnRemoveClick);
 
         // data properties
@@ -39,6 +39,11 @@ namespace Mobile.ViewModels
                 _mealName = value;
                 OnPropertyChanged();
             }
+        }
+
+        private void OnAddClick()
+        {
+
         }
 
         private void OnRemoveClick(object obj)
