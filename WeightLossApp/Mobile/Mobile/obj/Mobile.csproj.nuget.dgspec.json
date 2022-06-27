@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {}
+    "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {}
   },
   "projects": {
-    "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+    "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+        "projectUniqueName": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
         "projectName": "Mobile",
-        "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+        "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
         "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
-        "outputPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
+        "outputPath": "D:\\NURE\\Assistant\\WeightLossApp\\Mobile\\Mobile\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

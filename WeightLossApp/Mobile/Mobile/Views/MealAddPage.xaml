@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mobile.Views.MealAddPage"
-              xmlns:fa="clr-namespace:FontAwesome" 
+             xmlns:views="clr-namespace:Mobile.Views"
+             xmlns:fa="clr-namespace:FontAwesome" 
              xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors">
     <ContentPage.Content>
         <StackLayout>
@@ -13,8 +14,37 @@
             <Label Style="{StaticResource RegularTextLabel}" 
                    Text="Ingridients list:"
                    Margin="35,10"/>
-            <ListView HeightRequest="100">
-                
+            <ListView ItemsSource="{Binding Foods}"
+                                  HasUnevenRows="True"
+                                  SeparatorVisibility="None"
+                                  BackgroundColor="Transparent"
+                      SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="views:DataObject">
+                        <ViewCell>
+                            <Grid>
+                                <Frame Style="{StaticResource InnerFrame}"
+                                       Margin="20,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Style="{StaticResource MediumTextLabel}"
+                                               Text="{Binding Name}"
+                                               Grid.Column="0"
+                                               Margin="0"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"/>
+                                        <Entry Text="{Binding Weight}"
+                                               Grid.Column="1"></Entry>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
             <Button Style="{StaticResource ButtonRegular}" 

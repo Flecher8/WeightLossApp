@@ -14,13 +14,14 @@ namespace Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MealAddPage : ContentPage
     {
-        public ObservableCollection<Food> Foods { get; set; }
+        public ObservableCollection<DataObject> Foods { get; set; }
 
         public MealAddPage()
         {
-            Foods = new ObservableCollection<Food>()
+            Foods = new ObservableCollection<DataObject>()
             {
-                new Food(),
+                new DataObject("Tomato"),
+                new DataObject("Potato"),
             };
             InitializeComponent();
             BindingContext = this;
