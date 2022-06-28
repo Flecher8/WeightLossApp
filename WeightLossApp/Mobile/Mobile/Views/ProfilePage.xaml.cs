@@ -16,5 +16,13 @@ namespace Mobile.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+			SheduleComponentPage.ViewModel.data.LoadEvents();
+			//SheduleComponentPage.ViewModel.data.test();
+		}
+    }
 }

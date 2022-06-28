@@ -42,7 +42,8 @@
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"
                                   BackgroundColor="Transparent"
-                                  HeightRequest="100">
+                                  HeightRequest="100"
+                      SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Food">
                         <ViewCell>

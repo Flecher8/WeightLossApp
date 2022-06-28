@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.ShedulePageContent"
+             xmlns:dxsch="http://schemas.devexpress.com/xamarin/2014/forms/scheduler"
+             xmlns:views="clr-namespace:Mobile.Views">
+  <ContentView.Content>
+        <StackLayout>
+            <dxsch:WeekView Tap="OnTap">
+                <dxsch:WeekView.DataStorage>
+                    <dxsch:SchedulerDataStorage x:Name="storage">
+                        <dxsch:SchedulerDataStorage.DataSource>
+                            <dxsch:DataSource AppointmentsSource="{Binding EventRepository}" >
+                                <dxsch:DataSource.AppointmentMappings>
+                                    <dxsch:AppointmentMappings 
+                                    AllDay="AllDay"
+                                    Start="StartTime"
+                                    End="EndTime"
+                                    Subject="Subject"
+                                    LabelId="LabelID"
+                                    StatusId="StatusID"
+                                    RecurrenceInfo="RecurrenceInfo"
+                                    Reminder="ReminderInfo"/>
+                                </dxsch:DataSource.AppointmentMappings>
+                            </dxsch:DataSource>
+                        </dxsch:SchedulerDataStorage.DataSource>
+                    </dxsch:SchedulerDataStorage>
+                </dxsch:WeekView.DataStorage>
+            </dxsch:WeekView>
+            <Button Style="{StaticResource ButtonRegular}" 
+                    Text="Add new event"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
