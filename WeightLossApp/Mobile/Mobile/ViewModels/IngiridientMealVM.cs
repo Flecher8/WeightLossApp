@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace Mobile.ViewModels
 {
-    public class AddMealVM : PropertyChangedIpmlementator
+    public class IngiridientMealVM : PropertyChangedIpmlementator
     {
         // services
         private readonly IngiridentMealService _mealIngridientsService;
@@ -27,10 +27,11 @@ namespace Mobile.ViewModels
 
         // commands properties
         public Command CreateMeal => new Command(OnMealCreate);
-        public Command AddIngredient => new Command(OnAddClick);
-        public Command<IngridientMeal> RemoveIngredientCommand => new Command<IngridientMeal>(OnRemoveClick);
+        public Command<IngridientMeal> EditMealIngridients => new Command<IngridientMeal>(OnEditClick);
+        public Command AddIngredient => new Command(OnAddIngiridientClick);
+        public Command<IngridientMeal> RemoveIngredient => new Command<IngridientMeal>(OnRemoveIngridientClick);
 
-        public AddMealVM()
+        public IngiridientMealVM()
         {
             _mealService = new MealService();
             _mealIngridientsService = new IngiridentMealService();
@@ -64,7 +65,13 @@ namespace Mobile.ViewModels
             await _mealIngridientsService.PostAsync(_mealIngridients);
         }
 
-        private void OnAddClick()
+        private async void OnEditClick(object obj)
+        {
+            var ingridientMeal = obj as IngridientMeal;
+            await _mealIngridientsService.PutAsync(ingridientMeal);
+        }
+
+        private void OnAddIngiridientClick()
         {
             IEnumerable<IngridientMeal> filtered = _mealIngridientsService.GetOnlyUnknownIngredients(MealIngridients,
                 _mealIngridientsService.ConvertIngredientDataToMealParts(new List<IngridientData>()));
@@ -74,7 +81,7 @@ namespace Mobile.ViewModels
             }
         }
 
-        private void OnRemoveClick(object obj)
+        private void OnRemoveIngridientClick(object obj)
         {
             var ingridientMeal = obj as IngridientMeal;
             _mealIngridients.Remove(ingridientMeal);
