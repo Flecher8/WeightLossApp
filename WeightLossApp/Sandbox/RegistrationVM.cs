@@ -332,7 +332,7 @@ namespace Sandbox
             member.Gender = "Male";
             PostMember();
         }
-        // Нужно сделать Post метод для Member!!!
+        // Post Member
         private async Task PostMember()
         {
             Console.WriteLine("~~~~~~~~~~");
@@ -356,8 +356,6 @@ namespace Sandbox
 
                 HttpResponseMessage response = await client.PostAsync(address, null);
 
-                
-
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
@@ -365,14 +363,13 @@ namespace Sandbox
 
                     List<Member> temp = new List<Member>();
 
-                    Console.WriteLine(res);
                     res = GetArrayStringResponce(res, "insert_Member");
-                    Console.WriteLine(res);
+
                     res = GetArrayStringResponce(res, "returning");
-                    Console.WriteLine(res);
+
 
                     temp = JsonSerializer.Deserialize<List<Member>>(res);
-                    
+                    member.ID = temp[0].ID;
                 }
                 else
                 {
