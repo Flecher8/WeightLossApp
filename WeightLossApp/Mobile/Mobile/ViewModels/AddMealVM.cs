@@ -18,7 +18,7 @@ namespace Mobile.ViewModels
     public class AddMealVM : PropertyChangedIpmlementator
     {
         // services
-        private readonly IngredientMealService _mealService;
+        private readonly IngiridentMealService _mealService;
 
         // data fields
         private ObservableCollection<IngridientMeal> _mealIngridients;
@@ -31,7 +31,7 @@ namespace Mobile.ViewModels
 
         public AddMealVM()
         {
-            _mealService = new IngredientMealService();
+            _mealService = new IngiridentMealService();
             _mealIngridients = new ObservableCollection<IngridientMeal>();
         }
 
@@ -56,6 +56,11 @@ namespace Mobile.ViewModels
             }
         }
 
+        private async void OnMealCreate()
+        {
+            await _mealService.PostAsync(_mealIngridients);
+        }
+
         private void OnAddClick()
         {
             IEnumerable<IngridientMeal> filtered = _mealService.GetOnlyUnknownIngredients(MealIngridients,
@@ -71,7 +76,5 @@ namespace Mobile.ViewModels
             var ingridientMeal = obj as IngridientMeal;
             _mealIngridients.Remove(ingridientMeal);
         }
-
-        
     }
 }
