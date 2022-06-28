@@ -8,7 +8,7 @@ namespace Sandbox
         {
             var registrationVM = new RegistrationVM();
             Console.ReadLine();
-            registrationVM.PostData();
+            registrationVM.SS();
             Console.ReadLine();
         }
     }

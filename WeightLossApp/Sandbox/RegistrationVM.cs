@@ -25,9 +25,9 @@ namespace Sandbox
         private User user;
         private int premiumStatusID;
         private int inventoryID;
+        private ObservableCollection<string> preferences;
 
         private string passwordAgain;
-        private string preferences;
 
         private bool ragioButtonKeep;
         private bool ragioButtonLoose;
@@ -64,7 +64,7 @@ namespace Sandbox
             user = new User();
 
             // Set Google variables
-            //googleManager = DependencyService.Get<IGoogleManager>();
+            googleManager = DependencyService.Get<IGoogleManager>();
 
             // Set API URL
             ApiUrl = "https://stirred-eagle-95.hasura.app/api/rest/";
@@ -185,7 +185,7 @@ namespace Sandbox
         }
 
         // User preferences
-        public string Preferences
+        public ObservableCollection<string> Preferences
         {
             get => preferences;
             set
@@ -340,20 +340,9 @@ namespace Sandbox
         {
             get => (user.Password == passwordAgain);
         }
-        // Пробная функция!!!
+        
         public async void PostData()
         {
-            //member.Weight = 15;
-            //member.Height = 15;
-            //member.Goal = "Less";
-            //member.Birthday = DateTime.Today.AddYears(-20);
-            //member.RegistrationDate = DateTime.Now;
-            //member.Gender = "Male";
-            //await PostMember();
-            //user.Email = "test@gmail.com";
-            //user.Login = "test";
-            //user.Password = "test";
-            //PostUser();
             await PostInformationNeededForProfile();
             await PostProfile();
             // Post AchivementAcquirement!!! (needs to be developed)
@@ -374,6 +363,7 @@ namespace Sandbox
             PostInventory();
         }
 
+
         // Post Profile
         private async Task PostProfile()
         {
@@ -386,12 +376,17 @@ namespace Sandbox
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 Console.WriteLine("~~~~~~~~");
-                //!!!
+                string prefs = "";
+                foreach (string elm in preferences)
+                {
+                    prefs += elm + " ";
+                }
+
                 string address = 
                     "postProfile?Exp=" + startExp
                     + "&Inventory_ID=" + inventoryID
                     + "&Member_ID=" + member.ID
-                    + "&Preferences=" + preferences;
+                    + "&Preferences=" + prefs;
 
                 HttpResponseMessage response = await client.PostAsync(address, null);
 
