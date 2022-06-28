@@ -11,7 +11,7 @@ namespace Mobile.Services
 {
     public class MealService
     {
-        public async Task PostAsync(Meal meal)
+        public async Task PostAsync(string mealName)
         {
             using (var client = new HttpClient())
             {
@@ -19,7 +19,7 @@ namespace Mobile.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
-                HttpResponseMessage response = await client.GetAsync($"meal?name={meal.Name}");
+                HttpResponseMessage response = await client.GetAsync($"meal?name={mealName}");
                 if (response.StatusCode is HttpStatusCode.Created) 
                 { 
                     Console.WriteLine("Meal created." + response.StatusCode);
