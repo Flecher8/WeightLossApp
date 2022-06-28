@@ -13,6 +13,7 @@ using Xamarin.Forms;
 using Newtonsoft.Json.Linq;
 using Xamarin;
 using Mobile;
+using Mobile.Services;
 
 namespace Sandbox
 {
@@ -35,6 +36,7 @@ namespace Sandbox
         // Google data
         private readonly IGoogleManager googleManager;
         GoogleUser GoogleUser = new GoogleUser();
+        private bool gooleRegistration;
 
         // API
         private string ApiUrl { get; set; }
@@ -68,17 +70,18 @@ namespace Sandbox
             ApiUrl = "https://stirred-eagle-95.hasura.app/api/rest/";
 
             // Create Commands
-            Registration = new Command(RegistrationFunc);
+            Registration = new Command(RegistrationFuncAsync);
 
             // Create Google Commands
             googleSignIn = new Command(GoogleRegistration);
+            gooleRegistration = false;
 
             // Load Data
             LoadAsync();
         }
 
         // Add navigation to one of the main pages!!!
-        public void RegistrationFunc()
+        public void RegistrationFuncAsync()
         {
             // Check if there are no users with such email
             if (!isRegistered)
@@ -86,27 +89,40 @@ namespace Sandbox
                 // Check if password in field 1 and password in field 2 same
                 if (PasswordsSame)
                 {
-                    // 1) Add Member + user + Profile to database !!!
+                    // If registration by google then password in user can be null
+                    if(gooleRegistration && !member.hasNull)
+                    {
+                        PostData();
+                        CreateProfile();
+                        App.Current.MainPage = new MainPage();
+                        return;
+                    }
+                    // 1) Add Member + user + Profile to database
                     // Check data != null
                     if (!member.hasNull && !user.hasNull)
                     {
                         PostData();
                         CreateProfile();
+                        App.Current.MainPage = new MainPage();
+                        return;
                     }
-
-                    // 2) Add navigation to the main page!!!
-                    //Navigation.PushAsync();
-                    return;
+                    App.Current.MainPage.DisplayAlert("Message", "Not all data is filled", "OK");
                 }
-                App.Current.MainPage.DisplayAlert("Message", "Passwords in two fields are not the same", "Ok");
-
+                App.Current.MainPage.DisplayAlert("Message", "Passwords in two fields are not the same", "OK");
             }
-            App.Current.MainPage.DisplayAlert("Message", "You are already registered", "Ok");
+            App.Current.MainPage.DisplayAlert("Message", "You are already registered", "OK");
         }
-        // Need to be done
+
         private void CreateProfile()
         {
-            throw new NotImplementedException();
+            CreateProfileAsync();
+        }
+
+        private async Task CreateProfileAsync()
+        {
+            AppProfile prof = AppProfile.Instance;
+            await prof.LoadAsyncPM(user.Login);
+            await prof.LoadAsync(prof.Profile.Id);
         }
 
         // Google Registration
@@ -120,7 +136,8 @@ namespace Sandbox
             {
                 GoogleUser = googleUser;
                 user.Email = GoogleUser.Email;
-                RegistrationFunc();
+                gooleRegistration = true;
+                RegistrationFuncAsync();
             }
             else
             {
@@ -337,9 +354,68 @@ namespace Sandbox
             //user.Login = "test";
             //user.Password = "test";
             //PostUser();
+            await PostInformationNeededForProfile();
+            await PostProfile();
+            // Post AchivementAcquirement!!! (needs to be developed)
+        }
+        private async Task PostInformationNeededForProfile()
+        {
+            PostUsersInformation();
+            PostInventoryDependentTables();
+        }
+        private async Task PostUsersInformation()
+        {
+            await PostMember();
+            PostUser();
+        }
+        private async Task PostInventoryDependentTables()
+        {
             await PostPremiumStatus();
             PostInventory();
+        }
 
+        // Post Profile
+        private async Task PostProfile()
+        {
+            const int startExp = 0;
+            Console.WriteLine("~~~~~~~~~~");
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+                //!!!
+                string address = 
+                    "postProfile?Exp=" + startExp
+                    + "&Inventory_ID=" + inventoryID
+                    + "&Member_ID=" + member.ID
+                    + "&Preferences=" + preferences;
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+
+                    res = GetArrayStringResponce(res, "insert_Inventory");
+                    res = GetArrayStringResponce(res, "returning");
+
+                    // temp value to get ID from new PremiumStatus
+                    // Member is just a good container for ID
+                    // (Can be changed to Models.Inventory)
+                    List<Member> temp = new List<Member>();
+                    temp = JsonSerializer.Deserialize<List<Member>>(res);
+
+                    inventoryID = temp[0].ID;
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
         }
         // Post Inventory
         private async Task PostInventory()
