@@ -265,7 +265,7 @@ namespace Sandbox
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
 
-                    res = GetArrayStringResponce(res);
+                    res = GetArrayStringResponce(res, "User");
 
                     List<User> temp = null;
 
@@ -294,10 +294,10 @@ namespace Sandbox
             }
 
         }
-        private string GetArrayStringResponce(string jsonResult)
+        private string GetArrayStringResponce(string jsonResult, string token)
         {
             JObject o = JObject.Parse(jsonResult);
-            var result = o.SelectToken("User");
+            var result = o.SelectToken(token);
 
             return result.ToString();
         }
@@ -327,7 +327,7 @@ namespace Sandbox
             member.Weight = 15;
             member.Height = 15;
             member.Goal = "Less";
-            member.Birthday = null;
+            member.Birthday = DateTime.Today.AddYears(-20);
             member.RegistrationDate = DateTime.Now;
             member.Gender = "Male";
             PostMember();
@@ -338,8 +338,15 @@ namespace Sandbox
             Console.WriteLine("~~~~~~~~~~");
             using (var client = new HttpClient())
             {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
                 DateTime date = (DateTime)member.Birthday;
-                string address = 
+
+                string address =
                     "postMember?Birthday=" + date.ToString("G")
                     + "&Gender=" + member.Gender
                     + "&Goal=" + member.Goal
@@ -347,22 +354,25 @@ namespace Sandbox
                     + "&RegistrationDate=" + DateTime.Now.ToString("G")
                     + "&Weight=" + member.Weight;
 
-                client.BaseAddress = new Uri(ApiUrl);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                Console.WriteLine("~~~~~~~~");
-
                 HttpResponseMessage response = await client.PostAsync(address, null);
-                //Console.WriteLine(response);
+
+                
 
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
-                    
+
+                    List<Member> temp = new List<Member>();
+
+                    Console.WriteLine(res);
+                    res = GetArrayStringResponce(res, "insert_Member");
+                    Console.WriteLine(res);
+                    res = GetArrayStringResponce(res, "returning");
                     Console.WriteLine(res);
 
+                    temp = JsonSerializer.Deserialize<List<Member>>(res);
+                    
                 }
                 else
                 {

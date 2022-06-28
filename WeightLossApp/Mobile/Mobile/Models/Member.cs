@@ -10,7 +10,7 @@ namespace Mobile.Models
         {
            
         }
-        public int Id { get; set; }
+        public int ID { get; set; }
         public double Weight { get; set; }
         public double Height { get; set; }
         public string Goal { get; set; }
