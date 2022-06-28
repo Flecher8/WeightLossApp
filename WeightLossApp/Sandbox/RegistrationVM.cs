@@ -20,8 +20,10 @@ namespace Sandbox
     {
         // Data
         private List<User> users;
-        Member member;
-        User user;
+        private Member member;
+        private User user;
+        private int premiumStatusID;
+        private int inventoryID;
 
         private string passwordAgain;
         private string preferences;
@@ -322,15 +324,127 @@ namespace Sandbox
             get => (user.Password == passwordAgain);
         }
         // Пробная функция!!!
-        public void PostData()
+        public async void PostData()
         {
-            member.Weight = 15;
-            member.Height = 15;
-            member.Goal = "Less";
-            member.Birthday = DateTime.Today.AddYears(-20);
-            member.RegistrationDate = DateTime.Now;
-            member.Gender = "Male";
-            PostMember();
+            //member.Weight = 15;
+            //member.Height = 15;
+            //member.Goal = "Less";
+            //member.Birthday = DateTime.Today.AddYears(-20);
+            //member.RegistrationDate = DateTime.Now;
+            //member.Gender = "Male";
+            //await PostMember();
+            //user.Email = "test@gmail.com";
+            //user.Login = "test";
+            //user.Password = "test";
+            //PostUser();
+            await PostPremiumStatus();
+            PostInventory();
+
+        }
+        // Post Inventory
+        private async Task PostInventory()
+        {
+            Console.WriteLine("~~~~~~~~~~");
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                string address = "postInventory?PremiumStatus_ID=" + premiumStatusID;
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+
+                    res = GetArrayStringResponce(res, "insert_Inventory");
+                    res = GetArrayStringResponce(res, "returning");
+
+                    // temp value to get ID from new PremiumStatus
+                    // Member is just a good container for ID
+                    // (Can be changed to Models.Inventory)
+                    List<Member> temp = new List<Member>();
+                    temp = JsonSerializer.Deserialize<List<Member>>(res);
+
+                    inventoryID = temp[0].ID;
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
+        // Post PremiumStatus
+        private async Task PostPremiumStatus()
+        {
+            Console.WriteLine("~~~~~~~~~~");
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                string address = "postPremiumStatusNulls";
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+
+                    res = GetArrayStringResponce(res, "insert_PremiumStatus");
+                    res = GetArrayStringResponce(res, "returning");
+
+                    // temp value to get ID from new PremiumStatus
+                    List<Member> temp = new List<Member>();
+                    temp = JsonSerializer.Deserialize<List<Member>>(res);
+
+                    premiumStatusID = temp[0].ID;
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
+        // Post User
+        private async Task PostUser()
+        {
+            Console.WriteLine("~~~~~~~~~~");
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                string address =
+                    "postUser?Email=" + user.Email
+                    + "&Login=" + user.Login
+                    + "&Member_ID=" + member.ID
+                    + "&Password=" + user.Password;
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
         }
         // Post Member
         private async Task PostMember()
