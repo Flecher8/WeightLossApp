@@ -7,7 +7,6 @@ using Mobile.Helpers;
 using Mobile.Models;
 using Mobile.Services;
 using Xamarin.Forms;
-using Command = DevExpress.Utils.Commands.Command;
 
 namespace Mobile.ViewModels
 {

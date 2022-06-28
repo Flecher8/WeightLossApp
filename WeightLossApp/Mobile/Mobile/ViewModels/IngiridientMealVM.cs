@@ -81,10 +81,11 @@ namespace Mobile.ViewModels
             }
         }
 
-        private void OnRemoveIngridientClick(object obj)
+        private async void OnRemoveIngridientClick(object obj)
         {
             var ingridientMeal = obj as IngridientMeal;
             _mealIngridients.Remove(ingridientMeal);
+            await _mealIngridientsService.DeleteAsync(ingridientMeal);
         }
     }
 }
