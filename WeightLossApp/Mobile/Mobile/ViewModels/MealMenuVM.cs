@@ -38,10 +38,11 @@ namespace Mobile.ViewModels
             }
         }
 
-        private void OnRemoveClick(object obj)
+        private async void OnRemoveClick(object obj)
         {
             var meal = obj as Meal;
             _meals.Remove(meal);
+            await _mealService.DeleteAsync(meal);
         }
     }
 }
