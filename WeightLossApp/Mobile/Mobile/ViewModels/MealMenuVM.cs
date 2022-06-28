@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Mobile.Helpers;
 using Mobile.Models;
 using Mobile.Services;
+using Xamarin.Forms;
+using Command = DevExpress.Utils.Commands.Command;
 
 namespace Mobile.ViewModels
 {
@@ -15,6 +18,11 @@ namespace Mobile.ViewModels
 
         // data
         private ObservableCollection<Meal> _meals;
+
+        // commands
+        public Command CreateMealCommand;
+        public Command<Meal> EditMealCommand;
+        public Command<Meal> DeleteMealCommand;
 
         public MealMenuVM()
         {
