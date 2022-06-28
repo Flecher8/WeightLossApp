@@ -394,17 +394,6 @@ namespace Sandbox
                 {
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
-
-                    res = GetArrayStringResponce(res, "insert_Inventory");
-                    res = GetArrayStringResponce(res, "returning");
-
-                    // temp value to get ID from new PremiumStatus
-                    // Member is just a good container for ID
-                    // (Can be changed to Models.Inventory)
-                    List<Member> temp = new List<Member>();
-                    temp = JsonSerializer.Deserialize<List<Member>>(res);
-
-                    inventoryID = temp[0].ID;
                 }
                 else
                 {
