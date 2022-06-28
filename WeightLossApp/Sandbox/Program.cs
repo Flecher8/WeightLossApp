@@ -14,7 +14,7 @@ namespace Sandbox
             LoadProfile(appProfile);
             
             Console.WriteLine(123);
-            
+   
             Console.ReadLine();
         }
         private static async void  LoadProfile(AppProfile appProfile)
