@@ -5538,25 +5538,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vl\\.nuget\\packages\\": {},
-
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
       "projectName": "Mobile.Android",
-      "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
-      "packagesPath": "C:\\Users\\Vl\\.nuget\\packages\\",
-      "outputPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
+      "projectPath": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -5571,8 +5570,8 @@
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
-              "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
+            "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+              "projectPath": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
             }
           }
         }
