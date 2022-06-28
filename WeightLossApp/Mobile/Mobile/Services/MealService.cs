@@ -26,5 +26,21 @@ namespace Mobile.Services
                 }
             }
         }
+
+        public async Task DeleteAsync(Meal meal)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync($"meal?id={meal.Id}");
+                if (response.StatusCode is HttpStatusCode.Created)
+                {
+                    Console.WriteLine("Meal created." + response.StatusCode);
+                }
+            }
+        }
     }
 }
