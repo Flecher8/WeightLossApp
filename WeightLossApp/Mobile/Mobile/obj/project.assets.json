@@ -1456,16 +1456,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
       "projectName": "Mobile",
-      "projectPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
-      "packagesPath": "C:\\Users\\Vl\\.nuget\\packages\\",
-      "outputPath": "C:\\Games\\ХНУРЕ\\1\\4 семестр\\ПрП\\Project\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\obj\\",
+      "projectPath": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Source\\Repos\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
+
         "C:\\Users\\Vl\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
