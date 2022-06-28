@@ -18,20 +18,22 @@ namespace Mobile.ViewModels
     public class AddMealVM : PropertyChangedIpmlementator
     {
         // services
-        private readonly IngiridentMealService _mealService;
+        private readonly IngiridentMealService _mealIngridientsService;
+        private readonly MealService _mealService;
 
         // data fields
         private ObservableCollection<IngridientMeal> _mealIngridients;
         private string _mealName;
 
         // commands properties
-        public Command CreateMeal;
+        public Command CreateMeal => new Command(OnMealCreate);
         public Command AddIngredient => new Command(OnAddClick);
         public Command<IngridientMeal> RemoveIngredientCommand => new Command<IngridientMeal>(OnRemoveClick);
 
         public AddMealVM()
         {
-            _mealService = new IngiridentMealService();
+            _mealService = new MealService();
+            _mealIngridientsService = new IngiridentMealService();
             _mealIngridients = new ObservableCollection<IngridientMeal>();
         }
 
@@ -58,13 +60,14 @@ namespace Mobile.ViewModels
 
         private async void OnMealCreate()
         {
-            await _mealService.PostAsync(_mealIngridients);
+            await _mealService.PostAsync(MealName);
+            await _mealIngridientsService.PostAsync(_mealIngridients);
         }
 
         private void OnAddClick()
         {
-            IEnumerable<IngridientMeal> filtered = _mealService.GetOnlyUnknownIngredients(MealIngridients,
-                _mealService.ConvertIngredientDataToMealParts(new List<IngridientData>()));
+            IEnumerable<IngridientMeal> filtered = _mealIngridientsService.GetOnlyUnknownIngredients(MealIngridients,
+                _mealIngridientsService.ConvertIngredientDataToMealParts(new List<IngridientData>()));
             foreach (var ingridientMeal in filtered)
             {
                 _mealIngridients.Add(ingridientMeal);
