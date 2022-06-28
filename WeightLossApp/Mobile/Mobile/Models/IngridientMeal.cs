@@ -8,8 +8,7 @@ namespace Mobile.Models
     {
         public string IngridientName { get; set; }
         public string DayActivityMeal { get; set; }
-        public string IngridientId { get; set; }
-
-        public double Weight { get; set; }
+        public int IngridientId { get; set; }
+        public string Weight { get; set; }
     }
 }

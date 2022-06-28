@@ -19,7 +19,6 @@ namespace Mobile.ViewModels
         private Command _loadMoreCommand;
         private bool _isLoading;
 
-
         public ObservableCollection<IngridientData> Ingridients
         {
             get => _ingridients;
