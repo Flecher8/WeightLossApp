@@ -38,5 +38,11 @@ namespace Mobile.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private void OnRemoveClick(object obj)
+        {
+            var meal = obj as Meal;
+            _meals.Remove(meal);
+        }
     }
 }
