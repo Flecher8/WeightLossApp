@@ -22,7 +22,7 @@ namespace Mobile.ViewModels
         private Command _loadMoreCommand;
         private bool _isLoading;
 
-        public ObservableCollection<IngridientData> Ingridients
+        public ObservableCollection<IngridientData> Ingridients;
         private ObservableCollection<Food> foods;
         private Command loadMoreCommand;
         private Command addCommand;

@@ -109,7 +109,7 @@ namespace Mobile.ViewModels
                 Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 
                 LogOut();
-                App.Current.MainPage = new MainPage();
+                App.Current.MainPage = new NavigationPage(new MainPage());
 
             }
             else
@@ -123,7 +123,6 @@ namespace Mobile.ViewModels
         }
         public void GoogleLogin()
         {
-            googleManager.Logout();
             googleManager.Login(OnLoginComplete);
         }
         private void OnLoginComplete(GoogleUser googleUser, string message)
@@ -140,7 +139,8 @@ namespace Mobile.ViewModels
 
                     Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 
-                    App.Current.MainPage = new MainPage();
+                    App.Current.MainPage = new NavigationPage(new MainPage());
+                    googleManager.Logout();
                 }
                 else
                 {

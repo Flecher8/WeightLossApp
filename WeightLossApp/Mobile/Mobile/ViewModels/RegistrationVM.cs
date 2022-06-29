@@ -165,7 +165,7 @@ namespace Sandbox
                 OnPropertyChanged();
             }
         }
-        public DateTime? Birthday
+        public DateTime Birthday
         {
             get => member.Birthday;
             set
