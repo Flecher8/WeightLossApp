@@ -22,23 +22,7 @@ namespace Mobile.Services
             MealRepository = new ObservableCollection<Meal>();
         }
 
-        public async Task GetAsync(int profileId)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = await client.GetAsync($"meal?profileId={profileId}");
-                if (response.StatusCode is HttpStatusCode.Created)
-                {
-                    Console.WriteLine("Meal retrieved." + response.StatusCode);
-                }
-            }
-        }
-
-        public async Task LoadAsync()
+        public async Task GetAsync()
         {
             MealRepository.Clear();
             using (var client = new HttpClient())
@@ -94,6 +78,41 @@ namespace Mobile.Services
                 if (response.StatusCode is HttpStatusCode.Created) 
                 { 
                     Console.WriteLine("Meal created." + response.StatusCode);
+                }
+            }
+        }
+
+        private async Task PostInventory(Meal meal)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                string address = "meal?name=" + meal.Name;
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+
+                    res = GetArrayStringResponce(res, "insert_Inventory");
+                    res = GetArrayStringResponce(res, "returning");
+                    
+                    List<Meal> temp = new List<Meal>();
+                    temp = JsonSerializer.Deserialize<List<Meal>>(res);
+
+                    // WARNING possible bug_ due to lower register WARNING  
+                    meal.Id = temp[0].Id;
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
                 }
             }
         }
