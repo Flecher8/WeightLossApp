@@ -1,4 +1,5 @@
 ﻿using DevExpress.XamarinForms.Scheduler;
+using Mobile.Services;
 using Mobile.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,7 @@ namespace Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShedulePageContent : ContentView
     {
-        //readonly RemindersNotificationCenter remindersNotificationCenter =
-        //                                        new RemindersNotificationCenter();
+        readonly RemindersNotificationCenter remindersNotificationCenter = new RemindersNotificationCenter();
 
         public SheduleVM ViewModel { get; set; } 
 
@@ -44,7 +44,6 @@ namespace Mobile.Views
         private void ShowAppointmentEditPage(AppointmentItem appointment)
         {
             var vm = new CustomAppointmentVM(appointment, this.storage);
-            vm.IsUpdate = true;
 
             AppointmentEditPage appEditPage = new AppointmentEditPage(vm);
             Navigation.PushAsync(appEditPage);
@@ -55,6 +54,11 @@ namespace Mobile.Views
             AppointmentEditPage appEditPage = new AppointmentEditPage(
                 new CustomAppointmentVM(info.Start, info.End, info.AllDay, this.storage));
             Navigation.PushAsync(appEditPage);
+        }
+
+        void OnRemindersChanged(object sender, EventArgs e)
+        {
+            remindersNotificationCenter.UpdateNotifications(storage);
         }
     }
 

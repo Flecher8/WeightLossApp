@@ -22,7 +22,6 @@ namespace Mobile.Views
             base.OnAppearing();
 
 			SheduleComponentPage.ViewModel.data.LoadEvents();
-			//SheduleComponentPage.ViewModel.data.test();
 		}
     }
 }

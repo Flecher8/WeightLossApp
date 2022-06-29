@@ -5,10 +5,13 @@
              xmlns:dxsch="http://schemas.devexpress.com/xamarin/2014/forms/scheduler"
              xmlns:views="clr-namespace:Mobile.Views">
   <ContentView.Content>
-        <StackLayout>
-            <dxsch:WeekView Tap="OnTap">
+            <dxsch:WeekView Tap="OnTap"
+                            FirstDayOfWeek="Monday"
+                            WorkTime="6:00:00-22:00:00"
+                            ShowWorkTimeOnly="True">
                 <dxsch:WeekView.DataStorage>
-                    <dxsch:SchedulerDataStorage x:Name="storage">
+                    <dxsch:SchedulerDataStorage x:Name="storage"
+                                                RemindersChanged="OnRemindersChanged">
                         <dxsch:SchedulerDataStorage.DataSource>
                             <dxsch:DataSource AppointmentsSource="{Binding EventRepository}" >
                                 <dxsch:DataSource.AppointmentMappings>
@@ -27,8 +30,5 @@
                     </dxsch:SchedulerDataStorage>
                 </dxsch:WeekView.DataStorage>
             </dxsch:WeekView>
-            <Button Style="{StaticResource ButtonRegular}" 
-                    Text="Add new event"/>
-        </StackLayout>
   </ContentView.Content>
 </ContentView>

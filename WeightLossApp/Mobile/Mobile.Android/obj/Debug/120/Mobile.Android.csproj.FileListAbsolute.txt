@@ -936,3 +936,4 @@ D:\NURE\Assistant\WeightLossApp\Mobile\Mobile.Android\obj\Debug\120\stamp\_CopyI
 D:\NURE\Assistant\WeightLossApp\Mobile\Mobile.Android\obj\Debug\120\stamp\_GenerateJavaStubs.stamp
 D:\NURE\Assistant\WeightLossApp\Mobile\Mobile.Android\obj\Debug\120\stamp\_GeneratePackageManagerJava.stamp
 D:\NURE\Assistant\WeightLossApp\Mobile\Mobile.Android\obj\Debug\120\stamp\_ResolveLibraryProjectImports.stamp
+D:\NURE\Assistant\WeightLossApp\Mobile\Mobile.Android\obj\Debug\120\android\src\crc64016b7bd4896e8d5e\NotificationAlarmHandler.java
