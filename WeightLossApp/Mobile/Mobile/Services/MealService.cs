@@ -121,14 +121,14 @@ namespace Mobile.Services
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.BaseAddress = new Uri(ApiUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync($"meal?id={meal.Id}");
+                HttpResponseMessage response = await client.DeleteAsync($"meal?id={meal.Id}");
                 if (response.StatusCode is HttpStatusCode.NoContent)
                 {
-                    Console.WriteLine("Meal deleted." + response.StatusCode);
+                    Console.WriteLine("Ingridient of meal deleted." + response.StatusCode);
                 }
             }
         }
