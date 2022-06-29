@@ -154,13 +154,15 @@ namespace Mobile.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Console.WriteLine("~~~~~~~~");
+                Console.WriteLine("appprofile");
                 HttpResponseMessage response = await client.GetAsync("ProfileData?login=" + login);
+                Console.WriteLine(response);
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
 
                     Console.WriteLine("----------------------------");
+                    Console.WriteLine(res);
 
                     string memberStr;
                     string profileStr;
