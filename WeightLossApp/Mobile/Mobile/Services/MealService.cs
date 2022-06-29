@@ -11,6 +11,22 @@ namespace Mobile.Services
 {
     public class MealService
     {
+        public async Task GetAsync(int profileId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync($"meal?profileId={profileId}");
+                if (response.StatusCode is HttpStatusCode.Created)
+                {
+                    Console.WriteLine("Meal retrieved." + response.StatusCode);
+                }
+            }
+        }
+
         public async Task PostAsync(string mealName)
         {
             using (var client = new HttpClient())
@@ -36,9 +52,9 @@ namespace Mobile.Services
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 HttpResponseMessage response = await client.GetAsync($"meal?id={meal.Id}");
-                if (response.StatusCode is HttpStatusCode.Created)
+                if (response.StatusCode is HttpStatusCode.NoContent)
                 {
-                    Console.WriteLine("Meal created." + response.StatusCode);
+                    Console.WriteLine("Meal deleted." + response.StatusCode);
                 }
             }
         }
