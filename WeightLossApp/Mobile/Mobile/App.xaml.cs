@@ -14,7 +14,7 @@ namespace Mobile
             DevExpress.XamarinForms.Navigation.Initializer.Init();
             DevExpress.XamarinForms.Charts.Initializer.Init();
             DevExpress.XamarinForms.Scheduler.Initializer.Init();
-            string login = Xamarin.Essentials.Preferences.Get("UserLogin", "empty");
+            string login = Xamarin.Essentials.Preferences.Get("UerLogin", "empty");
 
             if (login != "empty")
             {

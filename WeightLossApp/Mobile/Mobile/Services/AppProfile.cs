@@ -79,8 +79,11 @@ namespace Mobile.Services
 
         public long Experience 
         { 
-            get => Profile.Exp; 
-            set => Profile.Exp = value;
+            get => Profile.Exp;
+            set {
+                if (Profile != null) 
+                    Profile.Exp = value;
+            }
         }
 
         public List<string> Preferences { get; set; }
@@ -196,6 +199,16 @@ namespace Mobile.Services
 
         }
 
+        public void LogOut()
+        {
+            Member = null;
+            Profile = null;
+            Id = -1;
+            Experience = -1;
+            Preferences = null;
+            DayActivityMealList = null;
+        }
+
         private string GetArrayStringFromResponce(string hasuraJsonResult)
         {
             string result = hasuraJsonResult;
@@ -206,5 +219,3 @@ namespace Mobile.Services
 
     }
 }
-
-

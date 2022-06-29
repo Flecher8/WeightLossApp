@@ -32,29 +32,6 @@ namespace Mobile.ViewModels
 
         public override Task<bool> SaveChanges()
         {
-            //var _event = new Models.Event()
-            //{
-            //    AllDay = AllDay,
-            //    EndTime = End,
-            //    LabelID = Labels.IndexOf(Label),
-            //    StartTime = Start,
-            //    RecurrenceInfo = "",
-            //    ReminderInfo = "",
-            //    StatusID = Statuses.IndexOf(Status),
-            //    Subject = Subject,
-            //};
-
-            //if (IsUpdate)
-            //{
-            //    _event.Id = (appointment.SourceObject as Models.Event).Id;
-            //    EventService.UpdateEvent(_event);
-            //}
-            //else
-            //{
-            //    EventService.AddEvent(_event);
-            //}
-
-
             Task<bool> res = base.SaveChanges();
             IList<Event> events = (_storage.DataSource.AppointmentsSource as IList<Event>);
 

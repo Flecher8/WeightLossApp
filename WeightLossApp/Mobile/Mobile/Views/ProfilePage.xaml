@@ -28,7 +28,7 @@
                     </Frame>
                 </dxn:TabViewItem.HeaderContent>
                 <dxn:TabViewItem.Content>
-                    <views:NutrientsStateView></views:NutrientsStateView>
+                    <views:ProfileMainContent x:Name="ProfileInfoPage"></views:ProfileMainContent>
                 </dxn:TabViewItem.Content>
             </dxn:TabViewItem>
             <dxn:TabViewItem>

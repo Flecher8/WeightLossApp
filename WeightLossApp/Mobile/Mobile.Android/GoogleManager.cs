@@ -54,7 +54,15 @@ namespace Mobile.Droid
 
 		public async void Logout()
 		{
-			await Auth.GoogleSignInApi.SignOut(_googleApiClient);
+			try
+            {
+				Auth.GoogleSignInApi.SignOut(_googleApiClient);
+			}
+			catch (Exception e)
+            {
+				Console.WriteLine(e.Message);
+            }
+
 
 		}
 

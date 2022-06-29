@@ -70,8 +70,8 @@ namespace Mobile.ViewModels
             // Load Data
             LoadAsync();
 
-            Password = "pass";
-            Email = "mail";
+            Password = "";
+            Email = "";
         }
 
         public void LogOut()
@@ -108,7 +108,9 @@ namespace Mobile.ViewModels
 
                 Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 
+                LogOut();
                 App.Current.MainPage = new MainPage();
+
             }
             else
             {
@@ -121,6 +123,7 @@ namespace Mobile.ViewModels
         }
         public void GoogleLogin()
         {
+            googleManager.Logout();
             googleManager.Login(OnLoginComplete);
         }
         private void OnLoginComplete(GoogleUser googleUser, string message)

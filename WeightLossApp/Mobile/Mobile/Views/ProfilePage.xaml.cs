@@ -20,7 +20,7 @@ namespace Mobile.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+			ProfileInfoPage.BindingContext = ProfileInfoPage;
 			SheduleComponentPage.ViewModel.data.LoadEvents();
 		}
     }
