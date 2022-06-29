@@ -89,13 +89,13 @@ namespace Mobile.Services
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.BaseAddress = new Uri(ApiUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 foreach (var ingirident in ingiridents)
                 {
-                    HttpResponseMessage response = await client.GetAsync($"ingridient?ingridientDataId={ingirident.IngridientId}&weight={ingirident.Weight}");
+                    HttpResponseMessage response = await client.GetAsync($"ingridients?id={ingirident.Id}&weight={ingirident.Weight}");
                     if (response.StatusCode is HttpStatusCode.Created)
                     {
                         Console.WriteLine("Ingridient of meal created." + response.StatusCode);
