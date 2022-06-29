@@ -8,13 +8,13 @@ namespace Sandbox
 
         static void Main(string[] args)
         {
+
             var loginVM = new LoginVM();
             var appProfile = AppProfile.Instance;
 
             LoadProfile(appProfile);
             
             Console.WriteLine(123);
-   
             Console.ReadLine();
         }
         private static async void  LoadProfile(AppProfile appProfile)
