@@ -66,23 +66,7 @@ namespace Mobile.Services
             }
         }
 
-        public async Task PostAsync(string mealName)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                
-                HttpResponseMessage response = await client.GetAsync($"meal?name={mealName}");
-                if (response.StatusCode is HttpStatusCode.Created) 
-                { 
-                    Console.WriteLine("Meal created." + response.StatusCode);
-                }
-            }
-        }
-
-        private async Task PostInventory(Meal meal)
+        private async Task PostAsync(Meal meal)
         {
             using (var client = new HttpClient())
             {
@@ -114,6 +98,22 @@ namespace Mobile.Services
                 {
                     Console.WriteLine("Internal server Error");
                 }
+            }
+        }
+
+        public async Task PutAsync(Meal meal)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string adress = "meal?id=" + meal.Id + "&name=" + meal.Name; 
+
+                HttpResponseMessage response = await client.PutAsync(adress, null);
+                Console.WriteLine(adress);
+                Console.WriteLine(response.ToString());
             }
         }
 
