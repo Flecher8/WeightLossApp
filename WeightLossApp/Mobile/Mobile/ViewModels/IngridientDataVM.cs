@@ -18,6 +18,11 @@ namespace Mobile.ViewModels
 {
     public class IngridientsDataVM : PropertyChangedIpmlementator
     {
+        private ObservableCollection<IngridientData> _ingridients;
+        private Command _loadMoreCommand;
+        private bool _isLoading;
+
+        public ObservableCollection<IngridientData> Ingridients
         private ObservableCollection<Food> foods;
         private Command loadMoreCommand;
         private Command addCommand;
