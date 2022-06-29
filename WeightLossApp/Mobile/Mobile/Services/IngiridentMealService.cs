@@ -96,8 +96,20 @@ namespace Mobile.Services
                 {
                     string address = "ingridients?id=" + ingirident.IngridientData_ID + "&mealid=" + ingirident.Meal_ID + "&weight=" + ingirident.Weight.ToString();
                     HttpResponseMessage response = await client.PostAsync(address, null);
-                    if (response.StatusCode is HttpStatusCode.Created)
+
+                    if (response.IsSuccessStatusCode)
                     {
+                        string res = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine("----------------------------");
+
+                        res = GetArrayStringResponce(res, "insert_Inventory");
+                        res = GetArrayStringResponce(res, "returning");
+                        
+                        List<IngridientMeal> temp = new List<IngridientMeal>();
+                        temp = JsonSerializer.Deserialize<List<IngridientMeal>>(res);
+                        
+                        ingirident.ID = temp[0].ID;
+                    
                         Console.WriteLine("Ingridient of meal created." + response.StatusCode);
                     }
                 }
