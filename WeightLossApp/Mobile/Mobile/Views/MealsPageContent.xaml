@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.MealsPageContent"
+             xmlns:comp="clr-namespace:Mobile.UIComponents"
+             xmlns:model="clr-namespace:Mobile.Models"
+             xmlns:fa="clr-namespace:FontAwesome" >
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Meals" Style="{StaticResource HeaderLabel}"></Label>
+                        <ListView ItemsSource="{Binding Meals}"
+                                  HasUnevenRows="True"
+                                  SeparatorVisibility="None"
+                                  BackgroundColor="Transparent"
+                                  ItemTapped="ListView_ItemTapped"
+                                  ItemSelected="ListView_ItemSelected"
+                                  HeightRequest="100">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Meal">
+                                    <ViewCell>
+                                        <Grid>
+                                            <Frame Style="{StaticResource OuterFrame}">
+                                                <Frame Style="{StaticResource InnerFrame}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="5*"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Style="{StaticResource HeaderLabel}"
+                                                               Text="{Binding Name}"
+                                                               Grid.Column="0"
+                                                               Margin="0"/>
+                                                        <Button BackgroundColor="{StaticResource BlockBackgroundColor}"
+                                                    Grid.Column="1">
+                                                            <Button.ImageSource>
+                                                                <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.TrashCan}" Color="{StaticResource TextColorDark}"/>
+                                                            </Button.ImageSource>
+                                                        </Button>
+                                                    </Grid>
+                                                </Frame>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                <Button Style="{StaticResource ButtonRegular}" Text="Add new meal"
+                        Clicked="Button_Clicked"></Button>
+            </StackLayout>
+        </ScrollView> 
+    </ContentView.Content>
+</ContentView>

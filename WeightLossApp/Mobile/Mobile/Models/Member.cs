@@ -17,7 +17,7 @@ namespace Mobile.Models
         public DateTime Birthday { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string Gender { get; set; }
-
         public bool hasNull => Weight == 0 || Height == 0 || Goal == null || Birthday == null || RegistrationDate == null || Gender == null;
+
     }
 }

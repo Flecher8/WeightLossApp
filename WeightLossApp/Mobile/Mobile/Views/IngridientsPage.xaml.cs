@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Mobile.ViewModels;
-using System.Globalization;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FoodPage : ContentPage, INotifyPropertyChanged
+    public partial class IngridientsPage : ContentPage
     {
-        public FoodPage()
+
+        public IngridientsDataVM ViewModel { get; set; }
+
+        public IngridientsPage()
         {
+            ViewModel = new IngridientsDataVM(this);
             InitializeComponent();
-
-            BindingContext = this;
+            BindingContext = ViewModel;
         }
-
     }
-
 }

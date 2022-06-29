@@ -75,10 +75,15 @@ namespace Mobile.Services
 
         public string Login { get; set; }
 
+        public int Id { get; set; }
+
         public long Experience 
         { 
-            get => Profile.Exp; 
-            set => Profile.Exp = value;
+            get => Profile.Exp;
+            set {
+                if (Profile != null) 
+                    Profile.Exp = value;
+            }
         }
 
         public List<string> Preferences { get; set; }
@@ -89,7 +94,7 @@ namespace Mobile.Services
 
         public async Task LoadAsync(int profileId)
         {
-            Console.WriteLine("~~~~~~~~~~");
+            Id = profileId;
             using (var client = new HttpClient())
             {
                 string address = "https://stirred-eagle-95.hasura.app/api/rest/";
@@ -97,13 +102,10 @@ namespace Mobile.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Console.WriteLine("~~~~~~~~");
                 HttpResponseMessage response = await client.GetAsync("DayActivityMeal?id=" + profileId);
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
-
-                    Console.WriteLine("----------------------------");
 
                     res = GetArrayStringFromResponce(res);
                    
@@ -166,6 +168,7 @@ namespace Mobile.Services
                     string profileStr;
                     JObject member = JObject.Parse(res);
                     JObject memberS = (JObject)member.First.First.First.First.First;
+                    Console.WriteLine(memberS.ToString());
                     memberStr = memberS.ToString();
 
                     JObject profile = (JObject)memberS.Last.First.First;
@@ -183,6 +186,7 @@ namespace Mobile.Services
 
                         Member = JsonSerializer.Deserialize<Member>(memberStr, options);
                         Profile = JsonSerializer.Deserialize<Profile>(profileStr, options);
+                        Id = Profile.Id;
                     }
                     catch (Exception ex)
                     {
@@ -197,6 +201,16 @@ namespace Mobile.Services
 
         }
 
+        public void LogOut()
+        {
+            Member = null;
+            Profile = null;
+            Id = -1;
+            Experience = -1;
+            Preferences = null;
+            DayActivityMealList = null;
+        }
+
         private string GetArrayStringFromResponce(string hasuraJsonResult)
         {
             string result = hasuraJsonResult;
@@ -207,5 +221,3 @@ namespace Mobile.Services
 
     }
 }
-
-

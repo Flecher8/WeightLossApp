@@ -6,11 +6,19 @@ namespace Mobile.Models
 {
     public class Event
     {
-        public int ID { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public bool SendNotification { get; set; }
-        public int Schedule_ID { get; set; }
-        public DateTime DateTime { get; set; }
+        public int Id { get; set; }
+        public bool AllDay { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string Subject { get; set; }
+        public int LabelID { get; set; }
+        public int StatusID { get; set; }
+        public string RecurrenceInfo { get; set; }
+        public string ReminderInfo { get; set; }
+
+        public Event()
+        {
+
+        }
     }
 }

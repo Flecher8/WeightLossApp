@@ -22,5 +22,11 @@ namespace Mobile.Views
             BindingContext = ViewModel;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //ViewModel.LogOut();
+        }
+
     }
 }

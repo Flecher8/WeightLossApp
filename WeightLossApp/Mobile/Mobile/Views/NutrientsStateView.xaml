@@ -2,9 +2,44 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mobile.Views.NutrientsStateView">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Style="{StaticResource HeaderLabel}" 
+                       Text="Nutrients data" />
+                <Frame Style="{StaticResource OuterFrame}">
+                    <Frame Style="{StaticResource InnerFrame}">
+                        <StackLayout>
+                            <Label Style="{StaticResource HeaderLabel}"
+                                   Text="Daily nutrients"/>
+                            <Label Style="{StaticResource MediumTextLabel}" 
+                                   Text="Callories"/>
+                            <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
+                                         Progress="0.45"/>
+                            <Label Style="{StaticResource MediumTextLabel}" 
+                                   Text="Proteins"/>
+                            <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
+                                         Progress="0.45"/>
+                            <Label Style="{StaticResource MediumTextLabel}" 
+                                   Text="Fats"/>
+                            <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
+                                         Progress="0.45"/>
+                            <Label Style="{StaticResource MediumTextLabel}" 
+                                   Text="Carbohydrates"/>
+                            <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
+                                         Progress="0.45"/>
+                            
+                        </StackLayout>
+                    </Frame>
+                </Frame>
+
+                <Label Style="{StaticResource HeaderLabel}" 
+                       Text="Recomendations" />
+                <Frame Style="{StaticResource OuterFrame}">
+                    <Frame Style="{StaticResource InnerFrame}">
+                    </Frame>
+                </Frame>
+            </StackLayout>
+    </ScrollView>
+</ContentView.Content>
 </ContentView>
