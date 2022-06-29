@@ -16,5 +16,10 @@ namespace Mobile.Models
         public double? FAT { get; set; }
         public double? CHOCDF { get; set; }
         public double? FIBTG { get; set; }
+
+        public override string ToString()
+        {
+            return "Callories: " + ENERC_KCAL + " Proteines: " + PROCNT + "\nFats: " + FAT + " Carbs: " + CHOCDF;
+        }
     }
 }

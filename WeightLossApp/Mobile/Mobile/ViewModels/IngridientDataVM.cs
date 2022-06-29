@@ -9,103 +9,171 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Mobile.Helpers;
 using Mobile.Models;
+using Mobile.Views;
 using Xamarin.Forms;
+using Newtonsoft.Json.Linq;
+
 
 namespace Mobile.ViewModels
 {
-    public class IngridientDataVM : PropertyChangedIpmlementator
+    public class IngridientsDataVM : PropertyChangedIpmlementator
     {
         private ObservableCollection<IngridientData> _ingridients;
         private Command _loadMoreCommand;
         private bool _isLoading;
 
         public ObservableCollection<IngridientData> Ingridients
+        private ObservableCollection<Food> foods;
+        private Command loadMoreCommand;
+        private Command addCommand;
+        private string searchlineValue;
+        private ObservableCollection<object> categoryChosen;
+        private IngridientsPage currentPage;
+
+        public string ApiUrl { get; set; }
+        public string SearchlineValue
         {
-            get => _ingridients;
+            get => searchlineValue;
             set
             {
-                _ingridients = value;
+                searchlineValue = value;
                 OnPropertyChanged();
             }
         }
+        public ObservableCollection<object> CategoryChosen
+        {
+            get => categoryChosen;
+            set
+            {
+                categoryChosen = value;
+                OnPropertyChanged();
+            }
+        }
+        public List<string> Suggestions { get; set; }
+        public ObservableCollection<Food> Foods
+        {
+            get => foods;
+            set
+            {
+                foods = value;
+                OnPropertyChanged();
+            }
+        } 
 
+        // List of chosen foods on current page 
+        public List<Food> ChosenFood { get; set; }
+        public List<string> Categories { get; set; }
         public Command LoadCommand
         {
-            get => _loadMoreCommand;
+            get => loadMoreCommand;
             set
             {
-                _loadMoreCommand = value;
+                loadMoreCommand = value;
                 OnPropertyChanged();
             }
         }
-
-        public bool IsLoading
+        public Command AddCommand
         {
-            get => _isLoading;
+            get => addCommand;
             set
             {
-                _isLoading = value;
+                addCommand = value;
                 OnPropertyChanged();
             }
         }
-
-        public IngridientDataVM()
+        public IngridientsDataVM(IngridientsPage page)
         {
-            Ingridients = new ObservableCollection<IngridientData>();
-            Ingridients.Add(new IngridientData
+            Foods = new ObservableCollection<Food>();
+            ApiUrl = "https://api.edamam.com/api/food-database/v2/";
+            Categories = new List<string>()
             {
-                Name = "test",
-                Calories = 0,
-                Carbohydrates = 0,
-                Fats = 0,
-                Proteins = 0,
-                ImageName = "test",
-                ID = 0,
-            });
+                "alcohol-free",
+                "celery-free",
+                "crustacean-free",
+                "dairy-free",
+                "egg-free",
+                "fish-free",
+                "fodmap-free",
+                "gluten-free",
+                "immuno-supportive",
+                "keto-friendly",
+                "kidney-friendly",
+                "kosher",
+                "low-fat-abs",
+                "low-potassium",
+                "low-sugar",
+                "luoine-free",
+                "mustard-free",
+                "no-oil-added",
+                "paleo",
+                "peanut-free",
+                "pescatarian",
+                "pork-free",
+                "read-meat-free",
+                "sesame-free",
+                "soy-free",
+                "sugar-conscious",
+                "tree-nut-free",
+                "vegan",
+                "vegetarian",
+                "wheat-free"
+            };
+            CategoryChosen = new ObservableCollection<object>();
+            Suggestions = new List<string>() { "Bread", "Meat", "Butter", "Potato", "Tomato", "Cheese", "Pork", "Chicken" };
             LoadCommand = new Command(() => LoadAsync());
+            AddCommand = new Command((label) => AddIngridient(label));
+            ChosenFood = new List<Food> {};
+            currentPage = page;
+
+            LoadAsync();
         }
 
-        public async Task LoadAsync()
+
+        private async Task LoadAsync()
         {
-            Console.WriteLine("~~~~~~~~~~");
+            Foods.Clear();
+            Console.WriteLine("~~~");
+
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                string ingridient = (searchlineValue == null) ? "bread" : searchlineValue;
+                StringBuilder address = new StringBuilder("parser?app_id=56b78e71&app_key=288e1610b3ea253b871e2409c6e712d9&ingr=" + ingridient);
+                // https://api.edamam.com/api/food-database/v2/parser?app_id=56b78e71&app_key=288e1610b3ea253b871e2409c6e712d9&ingr=bread
+                foreach (string category in categoryChosen)
+                {
+                    address.Append("&health=" + category);
+                }
+                
+
+
+                client.BaseAddress = new Uri(ApiUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Console.WriteLine("~~~~~~~~");
-                HttpResponseMessage response = await client.GetAsync("ingridientsData");
+                HttpResponseMessage response = await client.GetAsync(address.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
-
-                    Console.WriteLine("----------------------------");
-                    res = GetArrayStringFromResponce(res);
-                    List<IngridientData> temp = null;
+                    res = GetArrayStringResponce(res);
+                    List<Food> temp = null;
 
                     try
                     {
                         JsonSerializerOptions options = new JsonSerializerOptions
                         {
                             PropertyNameCaseInsensitive = true,
-                            
                         };
 
-                        Console.WriteLine(res);
-                        temp = JsonSerializer.Deserialize<List<IngridientData>>(res, options);
-                        
-                        
+                        temp = JsonSerializer.Deserialize<List<Food>>(res, options);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(" ~~~~~ " + ex.Message);
                     }
 
-                    foreach (IngridientData el in temp)
+                    foreach (Food el in temp)
                     {
-                        Ingridients.Add(el);
-                        Console.WriteLine("Value:  " + el.Name);
+                        Foods.Add(el);
                     }
                 }
                 else
@@ -115,12 +183,40 @@ namespace Mobile.ViewModels
             }
         }
 
-        private string GetArrayStringFromResponce(string hasuraJsonResult)
+        private string GetArrayStringResponce(string jsonResult)
         {
-            string result = hasuraJsonResult;
+            JObject jo = JObject.Parse(jsonResult);
+            jo.Property("text").Remove();
+            jsonResult = jo.ToString();
 
-            result = result.Remove(0, result.IndexOf("["));
-            return result.Remove(result.LastIndexOf("]") + 1);
+            JObject jobj = JObject.Parse(jsonResult);
+            jobj.Property("parsed").Remove();
+            jsonResult = jobj.ToString();
+
+            JObject job = JObject.Parse(jsonResult);
+            JObject header = (JObject)job.First.First.First;
+            JArray arr = new JArray();
+            while (header != null)
+            {
+
+                arr.Add(header.Property("food").First);
+
+                header = (JObject)header.Next;
+
+            }
+            jsonResult = arr.ToString();
+
+            return jsonResult;
+        }
+
+        private async void AddIngridient(object label)
+        {
+            Food selected = Foods.Where(i => i.Label == label.ToString()).FirstOrDefault(); 
+            if (!ChosenFood.Contains(selected))
+            {
+                ChosenFood.Add(selected);
+                await currentPage.DisplayAlert("Success!", "Ingridient added " + ChosenFood.Count(), "OK");
+            }
         }
     }
 }

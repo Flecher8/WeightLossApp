@@ -76,6 +76,8 @@
   <ItemGroup>
     <Compile Include="GoogleManager.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="NotificationAlarmHandler.cs" />
+    <Compile Include="NotificationCenter.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

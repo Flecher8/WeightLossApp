@@ -73,14 +73,11 @@
     
     <dxn:TabPageItem >
         <dxn:TabPageItem.Content>
-            <NavigationPage>
-                <x:Arguments>
-                    <views:ProfilePage></views:ProfilePage>
-                </x:Arguments>
-                <NavigationPage.IconImageSource>
+            <views:ProfilePage>
+                <ContentPage.IconImageSource>
                     <FontImageSource FontFamily="IconsSolid" Glyph="{Static fa:FontAwesomeIcons.User}"></FontImageSource>
-                </NavigationPage.IconImageSource>
-            </NavigationPage>
+                </ContentPage.IconImageSource>
+            </views:ProfilePage>
         </dxn:TabPageItem.Content>
     </dxn:TabPageItem>
 </dxn:TabPage>

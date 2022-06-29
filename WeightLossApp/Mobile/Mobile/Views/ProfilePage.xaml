@@ -1,12 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mobile.Views.ProfilePage">
+             x:Class="Mobile.Views.ProfilePage"
+             xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
+             xmlns:local="clr-namespace:Mobile"
+             xmlns:views="clr-namespace:Mobile.Views"
+             xmlns:fa="clr-namespace:FontAwesome">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Yea, it is profile"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <dxn:TabView
+            HeaderPanelHeight="60"
+            HeaderPanelContentAlignment="Start"
+            SelectedItemIndicatorColor="{StaticResource PrimaryColor}"
+            SelectedItemHeaderTextColor="{StaticResource PrimaryColor}"
+            ItemHeaderTextColor="{StaticResource TextColorLight}"
+            SelectedItemIndicatorHeight="5">
+
+            <dxn:TabViewItem>
+                <dxn:TabViewItem.HeaderContent>
+                    <Frame Style="{StaticResource NavTabTop}">
+                        <Label Text="Profile data"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="{StaticResource TextColorLight}"
+                               BackgroundColor="Transparent"
+                               FontSize="16"
+                               FontFamily="Comfortaa"/>
+                    </Frame>
+                </dxn:TabViewItem.HeaderContent>
+                <dxn:TabViewItem.Content>
+                    <views:ProfileMainContent x:Name="ProfileInfoPage"></views:ProfileMainContent>
+                </dxn:TabViewItem.Content>
+            </dxn:TabViewItem>
+            <dxn:TabViewItem>
+                <dxn:TabViewItem.HeaderContent>
+                    <Frame Style="{StaticResource NavTabTop}">
+                        <Label Text="Shedule"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="{StaticResource TextColorLight}"
+                               BackgroundColor="Transparent"
+                               FontSize="16"
+                               FontFamily="Comfortaa"/>
+                    </Frame>
+                </dxn:TabViewItem.HeaderContent>
+                <dxn:TabViewItem.Content>
+                    <views:ShedulePageContent x:Name="SheduleComponentPage"></views:ShedulePageContent>
+                </dxn:TabViewItem.Content>
+            </dxn:TabViewItem>
+        </dxn:TabView>
     </ContentPage.Content>
 </ContentPage>

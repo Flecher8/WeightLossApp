@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.ProfileMainContent"
+             xmlns:fa="clr-namespace:FontAwesome"
+             xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors">
+    <ContentView.Content>
+        
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="140" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Style="{StaticResource HeaderLabel}" 
+                       Text="Profile"
+                           VerticalOptions="Center"></Label>
+                    <Label Style="{StaticResource RegularTextLabel}"
+                           Text="{Binding LevelText}"
+                           Grid.Row="1"
+                           Margin="30,0"></Label>
+                    <ProgressBar Progress="0.1"
+                                 ProgressColor="{StaticResource PrimaryColor}"
+                                 Grid.Row="2"
+                                 Margin="30,0"></ProgressBar>
+                    <Frame CornerRadius="50"
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           Grid.RowSpan="3"
+                           HasShadow="True"
+                           Padding="5"
+                           Margin="15">
+                        <Image >
+                            <Image.Source>
+                                <FontImageSource FontFamily="IconsSolid" Color="{StaticResource SecondaryColor}" Glyph="{Static fa:FontAwesomeIcons.UserLarge}"></FontImageSource>
+                            </Image.Source>
+                        </Image>
+                    </Frame>
+                </Grid>
+                <Frame Style="{StaticResource OuterFrame}">
+                    <Frame Style="{StaticResource InnerFrame}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label Style="{StaticResource MediumTextLabel}" Text="Name" Grid.Row="0" VerticalOptions="Center"></Label>
+                            <Label Style="{StaticResource MediumTextLabel}" Text="Birth Date" Grid.Row="1" VerticalOptions="Center"></Label>
+                            <Label Style="{StaticResource MediumTextLabel}" Text="Weight (kg)" Grid.Row="2" VerticalOptions="Center"></Label>
+                            <Label Style="{StaticResource MediumTextLabel}" Text="Height (m)" Grid.Row="3" VerticalOptions="Center"></Label>
+                            <Label Style="{StaticResource MediumTextLabel}" Text="Age" Grid.Row="4" VerticalOptions="Center"></Label>
+                            <Label Style="{StaticResource MediumTextLabel}" Text="Gender" Grid.Row="5" VerticalOptions="Center"></Label>
+
+                            <dxe:TextEdit Style="{StaticResource TextEditRegular}" 
+                                          Grid.Column="1" 
+                                          Grid.Row="0" 
+                                          Text="{Binding Login}"
+                                          LabelText="Name"
+                                          IsEnabled="False"
+                                          Margin="0,10"></dxe:TextEdit>
+                            <dxe:DateEdit Style="{StaticResource DateEditRegular}" 
+                                          Grid.Column="1" 
+                                          Grid.Row="1" 
+                                          LabelText="Birth date"
+                                          Date="{Binding BirthDate}"
+                                          IsEnabled="False"
+                                          Margin="0,10"
+                                          DisplayFormat="d"></dxe:DateEdit>
+                            <dxe:NumericEdit Style="{StaticResource NumericEditRegular}" 
+                                          Grid.Column="1" 
+                                          Grid.Row="2" 
+                                          LabelText="Weight"
+                                          Value="{Binding Weight}"
+                                             IsEnabled="False"
+                                             Margin="0,10"></dxe:NumericEdit>
+                            <dxe:NumericEdit Style="{StaticResource NumericEditRegular}" 
+                                          Grid.Column="1" 
+                                          Grid.Row="3" 
+                                          LabelText="Height"
+                                          Value="{Binding Height_}"
+                                             IsEnabled="False"
+                                             Margin="0,10"></dxe:NumericEdit>
+                            <dxe:NumericEdit Style="{StaticResource NumericEditRegular}" 
+                                          Grid.Column="1" 
+                                          Grid.Row="4" 
+                                          LabelText="Age"
+                                          Value="{Binding Age}"
+                                             IsEnabled="False"
+                                             Margin="0,10"></dxe:NumericEdit>
+                            <dxe:TextEdit Style="{StaticResource TextEditRegular}" 
+                                          Grid.Column="1" 
+                                          Grid.Row="5" 
+                                          LabelText="Gender"
+                                          Text="{Binding Gender}"
+                                          IsEnabled="False"
+                                          Margin="0,10"></dxe:TextEdit>
+
+                        </Grid>
+                    </Frame>
+                </Frame>
+                <Button x:Name="LogOut"
+                        Style="{StaticResource ButtonOutlined}"
+                        Text="Log Out"
+                        Clicked="LogOut_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>
