@@ -73,16 +73,15 @@ namespace Mobile.Services
         {
             return rawIngredientData.Select(ingredientData => new IngridientMeal()
             {
-                IngridientDataId = ingredientData.ID,
+                IngridientData_ID = ingredientData.ID.ToString(),
                 IngridientName = ingredientData.Name,
-                // beware, maybe it should store double instead of string.... 
-                Weight = "100"
+                Weight = 100
             }).ToList();
         }
 
         public IEnumerable<IngridientMeal> GetOnlyUnknownIngredients(IEnumerable<IngridientMeal> initMealIngredients, IEnumerable<IngridientMeal> newMealIngredients)
         {
-            return initMealIngredients.Where(i => !newMealIngredients.Any(ni => ni.IngridientDataId.Equals(i.IngridientDataId)));
+            return initMealIngredients.Where(i => !newMealIngredients.Any(ni => ni.IngridientData_ID.Equals(i.IngridientData_ID)));
         }
 
         public async Task PostAsync(IEnumerable<IngridientMeal> ingiridents)
@@ -95,7 +94,8 @@ namespace Mobile.Services
 
                 foreach (var ingirident in ingiridents)
                 {
-                    HttpResponseMessage response = await client.GetAsync($"ingridients?id={ingirident.Id}&weight={ingirident.Weight}");
+                    string address = "ingridients?id=" + ingirident.IngridientData_ID + "&mealid=" + ingirident.Meal_ID + "&weight=" + ingirident.Weight.ToString();
+                    HttpResponseMessage response = await client.PostAsync(address, null);
                     if (response.StatusCode is HttpStatusCode.Created)
                     {
                         Console.WriteLine("Ingridient of meal created." + response.StatusCode);
@@ -108,11 +108,13 @@ namespace Mobile.Services
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.BaseAddress = new Uri(ApiUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                
-                HttpResponseMessage response = await client.GetAsync($"ingridient?id={ingridient.ID}&weight={ingridient.Weight}");
+
+                string address = "ingridients?id=" + ingridient.ID + "&weight" + ingridient.Weight;
+
+                                 HttpResponseMessage response = await client.PutAsync(address, null);
                 if (response.StatusCode is HttpStatusCode.Created) 
                 { 
                     Console.WriteLine("Ingridient of meal modified." + response.StatusCode);
@@ -124,14 +126,14 @@ namespace Mobile.Services
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.BaseAddress = new Uri(ApiUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync($"ingridient?id={ingridient.ID}");
-                if (response.StatusCode is HttpStatusCode.Created)
+                HttpResponseMessage response = await client.DeleteAsync($"ingridients?id={ingridient.ID}");
+                if (response.StatusCode is HttpStatusCode.NoContent)
                 {
-                    Console.WriteLine("Ingridient of meal modified." + response.StatusCode);
+                    Console.WriteLine("Ingridient of meal deleted." + response.StatusCode);
                 }
             }
         }
