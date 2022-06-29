@@ -154,24 +154,14 @@ namespace Mobile.Services
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 Console.WriteLine("~~~~~~~~");
-
-                string address = "dam?date=" + DateTime.Now.ToString("s") + "&mealid=" + meal.Id + "&profileid" + Profile.Id;
+                DateTime now = DateTime.Now;
+                string address = "dam?date=" + now.ToString("s") + "&mealid=" + meal.Id + "&profileid" + Profile.Id;
 
                 HttpResponseMessage response = await client.PostAsync(address, null);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string res = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine("----------------------------");
-
-                    res = GetArrayStringResponce(res, "insert_Inventory");
-                    res = GetArrayStringResponce(res, "returning");
-
-                    List<Meal> temp = new List<Meal>();
-                    temp = JsonSerializer.Deserialize<List<Meal>>(res);
-
-                    // WARNING possible bug_ due to lower register WARNING  
-                    meal.Id = temp[0].Id;
+                    DayActivityMealList.Add(new DayActivityMeal{Datetime = now, Meal_ID = meal.Id, Profile_ID = Profile.Id});
                 }
                 else
                 {
@@ -179,6 +169,24 @@ namespace Mobile.Services
                 }
             }
         }
+
+        public async Task DeleteAsync(DayActivityMeal dam)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.DeleteAsync("dam?mealid=" + dam.Meal_ID + "&profileid=" + Profile.Id );
+                if (response.StatusCode is HttpStatusCode.NoContent)
+                {
+                    Console.WriteLine("deleted" + response.StatusCode);
+                }
+            }
+        }
+
+
 
         public async Task LoadAsyncPM(string login)
         {
