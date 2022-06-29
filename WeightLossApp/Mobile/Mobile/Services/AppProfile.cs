@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -144,6 +145,41 @@ namespace Mobile.Services
 
         }
 
+        private async Task PostDayActivityMealAsync(Meal meal)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+
+                string address = "dam?date=" + DateTime.Now.ToString("s") + "&mealid=" + meal.Id + "&profileid" + Profile.Id;
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("----------------------------");
+
+                    res = GetArrayStringResponce(res, "insert_Inventory");
+                    res = GetArrayStringResponce(res, "returning");
+
+                    List<Meal> temp = new List<Meal>();
+                    temp = JsonSerializer.Deserialize<List<Meal>>(res);
+
+                    // WARNING possible bug_ due to lower register WARNING  
+                    meal.Id = temp[0].Id;
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
+
         public async Task LoadAsyncPM(string login)
         {
             Console.WriteLine("~~~~~~~~~~");
@@ -219,5 +255,12 @@ namespace Mobile.Services
             return result.Remove(result.LastIndexOf("]") + 1);
         }
 
+        private string GetArrayStringResponce(string jsonResult, string token)
+        {
+            JObject o = JObject.Parse(jsonResult);
+            var result = o.SelectToken(token);
+
+            return result.ToString();
+        }
     }
 }
