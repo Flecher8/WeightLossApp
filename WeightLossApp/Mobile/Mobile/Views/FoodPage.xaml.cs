@@ -22,6 +22,13 @@ namespace Mobile.Views
             BindingContext = this;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            MealsPage.Refresh();
+        }
+
     }
 
 }

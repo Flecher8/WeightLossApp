@@ -15,6 +15,7 @@ namespace Mobile.Models
         public string Category { get; set; }
         public string CategoryLabel { get; set; }
         public string Image { get; set; }
+        public int Weight { get; set; }
         public Nutrients Nutrients { get; set; }
 
     }

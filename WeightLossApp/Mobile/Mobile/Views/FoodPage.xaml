@@ -44,7 +44,7 @@
                     </Frame>
                 </dxn:TabViewItem.HeaderContent>
                 <dxn:TabViewItem.Content>
-                    <views:MealsPageContent></views:MealsPageContent>
+                    <views:MealsPageContent x:Name="MealsPage"></views:MealsPageContent>
                 </dxn:TabViewItem.Content>
             </dxn:TabViewItem>
         </dxn:TabView>

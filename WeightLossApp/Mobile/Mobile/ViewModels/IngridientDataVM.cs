@@ -61,7 +61,7 @@ namespace Mobile.ViewModels
         } 
 
         // List of chosen foods on current page 
-        public List<Food> ChosenFood { get; set; }
+        public ObservableCollection<Food> ChosenFood { get; set; }
         public List<string> Categories { get; set; }
         public Command LoadCommand
         {
@@ -81,7 +81,7 @@ namespace Mobile.ViewModels
                 OnPropertyChanged();
             }
         }
-        public IngridientsDataVM(IngridientsPage page)
+        public IngridientsDataVM(IngridientsPage page, ObservableCollection<Food> chosen)
         {
             Foods = new ObservableCollection<Food>();
             ApiUrl = "https://api.edamam.com/api/food-database/v2/";
@@ -122,12 +122,11 @@ namespace Mobile.ViewModels
             Suggestions = new List<string>() { "Bread", "Meat", "Butter", "Potato", "Tomato", "Cheese", "Pork", "Chicken" };
             LoadCommand = new Command(() => LoadAsync());
             AddCommand = new Command((label) => AddIngridient(label));
-            ChosenFood = new List<Food> {};
+            ChosenFood = chosen;
             currentPage = page;
 
             LoadAsync();
         }
-
 
         private async Task LoadAsync()
         {
@@ -215,7 +214,7 @@ namespace Mobile.ViewModels
             if (!ChosenFood.Contains(selected))
             {
                 ChosenFood.Add(selected);
-                await currentPage.DisplayAlert("Success!", "Ingridient added " + ChosenFood.Count(), "OK");
+                await currentPage.DisplayAlert("Success!", "Ingridient added. Total count: " + ChosenFood.Count(), "OK");
             }
         }
     }

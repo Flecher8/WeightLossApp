@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Mobile.ViewModels;
+using System.Collections.ObjectModel;
+using Mobile.Models;
 
 namespace Mobile.Views
 {
@@ -16,9 +18,9 @@ namespace Mobile.Views
 
         public IngridientsDataVM ViewModel { get; set; }
 
-        public IngridientsPage()
+        public IngridientsPage(ObservableCollection<Food> selected)
         {
-            ViewModel = new IngridientsDataVM(this);
+            ViewModel = new IngridientsDataVM(this, selected);
             InitializeComponent();
             BindingContext = ViewModel;
         }

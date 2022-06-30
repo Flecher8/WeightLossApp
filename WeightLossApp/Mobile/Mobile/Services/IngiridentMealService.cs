@@ -69,22 +69,7 @@ namespace Mobile.Services
             }
         }
         
-        public IEnumerable<IngridientMeal> ConvertIngredientDataToMealParts(IEnumerable<IngridientData> rawIngredientData)
-        {
-            return rawIngredientData.Select(ingredientData => new IngridientMeal()
-            {
-                IngridientData_ID = ingredientData.ID.ToString(),
-                IngridientName = ingredientData.Name,
-                Weight = 100
-            }).ToList();
-        }
-
-        public IEnumerable<IngridientMeal> GetOnlyUnknownIngredients(IEnumerable<IngridientMeal> initMealIngredients, IEnumerable<IngridientMeal> newMealIngredients)
-        {
-            return initMealIngredients.Where(i => !newMealIngredients.Any(ni => ni.IngridientData_ID.Equals(i.IngridientData_ID)));
-        }
-
-        public async Task PostAsync(IEnumerable<IngridientMeal> ingiridents)
+        public async Task PostAsync(IEnumerable<Food> ingiridents)
         {
             using (var client = new HttpClient())
             {
@@ -94,24 +79,32 @@ namespace Mobile.Services
 
                 foreach (var ingirident in ingiridents)
                 {
-                    string address = "ingridients?id=" + ingirident.IngridientData_ID + "&mealid=" + ingirident.Meal_ID + "&weight=" + ingirident.Weight.ToString();
+                    string address = "ingridients?id=" + ingirident.FoodId + "&mealid=" + ParentMeal.Id + "&weight=" + ingirident.Weight.ToString();
                     HttpResponseMessage response = await client.PostAsync(address, null);
 
                     if (response.IsSuccessStatusCode)
                     {
-                        string res = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine("----------------------------");
-
-                        res = GetArrayStringResponce(res, "insert_Inventory");
-                        res = GetArrayStringResponce(res, "returning");
-                        
-                        List<IngridientMeal> temp = new List<IngridientMeal>();
-                        temp = JsonSerializer.Deserialize<List<IngridientMeal>>(res);
-                        
-                        ingirident.ID = temp[0].ID;
-                    
                         Console.WriteLine("Ingridient of meal created." + response.StatusCode);
                     }
+                }
+            }
+        }
+
+        // Post DayActivityMeal
+        public async Task PostDAMAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string address = "dam?date=" + DateTime.Now.ToString("s") + "&mealid=" + ParentMeal.Id + "&profileid=" + AppProfile.Instance.Id;
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Ingridient DAM Added" + response.StatusCode);
                 }
             }
         }

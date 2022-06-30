@@ -12,18 +12,20 @@ using Mobile.Helpers;
 using Mobile.Models;
 using Mobile.Services;
 using Xamarin.Forms;
+using Mobile.Views;
 
 namespace Mobile.ViewModels
 {
     public class IngiridientMealVM : PropertyChangedIpmlementator
     {
         // services
-        private readonly IngiridentMealService _mealIngridientsService;
-        private readonly MealService _mealService;
+        private IngiridentMealService _mealIngridientsService;
+        private MealService _mealService;
 
         // data fields
-        private ObservableCollection<IngridientMeal> _mealIngridients;
-        private string _mealName;
+        private ObservableCollection<Food> _mealIngridients;
+        private Meal _meal;
+        private ObservableCollection<Meal> _parentMeals;
 
         // commands properties
         public Command CreateMeal => new Command(OnMealCreate);
@@ -31,15 +33,24 @@ namespace Mobile.ViewModels
         public Command AddIngredient => new Command(OnAddIngiridientClick);
         public Command<IngridientMeal> RemoveIngredient => new Command<IngridientMeal>(OnRemoveIngridientClick);
 
-        public IngiridientMealVM()
+        public IngiridientMealVM(ObservableCollection<Meal> meals)
         {
             _mealService = new MealService();
-            _mealIngridientsService = new IngiridentMealService();
-            _mealIngridients = new ObservableCollection<IngridientMeal>();
+            _mealIngridients = new ObservableCollection<Food>();
+            _parentMeals = meals;
+            _meal = new Meal() { Name = "TempName" };
+            _mealIngridientsService = new IngiridentMealService(_meal);
+
+        }
+
+        public async Task InitialLoad()
+        {
+
+            
         }
 
         // data properties
-        public ObservableCollection<IngridientMeal> MealIngridients
+        public ObservableCollection<Food> MealIngridients
         {
             get => _mealIngridients;
             set
@@ -51,18 +62,21 @@ namespace Mobile.ViewModels
 
         public string MealName
         {
-            get => _mealName;
+            get => _meal.Name;
             set
             {
-                _mealName = value;
+                _meal.Name = value;
                 OnPropertyChanged();
             }
         }
 
         private async void OnMealCreate()
         {
-            await _mealService.PostAsync(MealName);
+            await _mealService.PostAsync(_meal);
             await _mealIngridientsService.PostAsync(_mealIngridients);
+            await _mealIngridientsService.PostDAMAsync();
+
+            _parentMeals.Add(_meal);
         }
 
         private async void OnEditClick(object obj)
@@ -73,19 +87,13 @@ namespace Mobile.ViewModels
 
         private void OnAddIngiridientClick()
         {
-            IEnumerable<IngridientMeal> filtered = _mealIngridientsService.GetOnlyUnknownIngredients(MealIngridients,
-                _mealIngridientsService.ConvertIngredientDataToMealParts(new List<IngridientData>()));
-            foreach (var ingridientMeal in filtered)
-            {
-                _mealIngridients.Add(ingridientMeal);
-            }
+            App.Current.MainPage.Navigation.PushAsync(new IngridientsPage(MealIngridients));
         }
 
         private async void OnRemoveIngridientClick(object obj)
         {
-            var ingridientMeal = obj as IngridientMeal;
+            var ingridientMeal = obj as Food;
             _mealIngridients.Remove(ingridientMeal);
-            await _mealIngridientsService.DeleteAsync(ingridientMeal);
         }
     }
 }

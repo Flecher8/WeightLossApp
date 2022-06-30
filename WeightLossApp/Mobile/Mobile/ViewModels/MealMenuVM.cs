@@ -7,6 +7,9 @@ using Mobile.Helpers;
 using Mobile.Models;
 using Mobile.Services;
 using Xamarin.Forms;
+using Mobile.Views;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mobile.ViewModels
 {
@@ -19,13 +22,28 @@ namespace Mobile.ViewModels
         private ObservableCollection<Meal> _meals;
 
         // commands
-        public Command CreateMealCommand;
-        public Command<Meal> EditMealCommand;
-        public Command<Meal> DeleteMealCommand;
+        public Command CreateMealCommand { get; set; }
+        public Command<Meal> EditMealCommand { get; set; }
+        public Command DeleteMealCommand { get; set; }
 
         public MealMenuVM()
         {
             _mealService = new MealService();
+            CreateMealCommand = new Command(() => OnAdd());
+            DeleteMealCommand = new Command((o) => OnRemoveClick(o));
+            Meals = new ObservableCollection<Meal>();
+        }
+
+        public async Task Initialize()
+        {
+            await _mealService.GetAsync();
+
+            Meals.Clear();
+
+            foreach (Meal m in _mealService.MealRepository)
+            {
+                Meals.Add(m);
+            }
         }
 
         public ObservableCollection<Meal> Meals
@@ -40,9 +58,16 @@ namespace Mobile.ViewModels
 
         private async void OnRemoveClick(object obj)
         {
-            var meal = obj as Meal;
+            int id = int.Parse(obj.ToString());
+            Meal meal = _meals.Where(x => x.Id == id).FirstOrDefault();
             _meals.Remove(meal);
             await _mealService.DeleteAsync(meal);
+
+        }
+
+        private void OnAdd()
+        {
+            App.Current.MainPage.Navigation.PushAsync(new MealAddPage(_meals));
         }
     }
 }

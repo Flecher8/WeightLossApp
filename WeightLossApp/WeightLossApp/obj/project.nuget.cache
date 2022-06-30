@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ujo42vVqUxnMwPfmHPzHUkZfPzHc/ulM6tccGGxN1JWfAf8TmNdwvrVN7zl52secDABU6F2uQumjTI5X6Sn19Q==",
+  "dgSpecHash": "wko7Wcl2iHT2X0L90vO7OUAv4AUMiZ1oJwzGwxM9ZpYq2YTV4PpjL4zAl8+kP+ZcrKJVg7ZMxdAq2YLLnmg/TQ==",
   "success": true,
-  "projectFilePath": "D:\\NURE\\assistant\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
+  "projectFilePath": "D:\\NURE\\Assistant\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vmlf\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.25\\microsoft.aspnetcore.jsonpatch.3.1.25.nupkg.sha512",
     "C:\\Users\\vmlf\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.25\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.25.nupkg.sha512",

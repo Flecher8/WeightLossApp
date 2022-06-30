@@ -16,7 +16,7 @@ namespace Mobile
             DevExpress.XamarinForms.Scheduler.Initializer.Init();
             string login = Xamarin.Essentials.Preferences.Get("UserLogin", "empty");
 
-            if (login != "empty")
+            if (login != "empty" && login != "")
             {
                 AppProfile profile = AppProfile.Instance;
 
@@ -40,7 +40,7 @@ namespace Mobile
             AppProfile profile = AppProfile.Instance;
 
             await profile.LoadAsyncPM(login);
-            profile.LoadAsync(profile.Profile.Id).Wait(1000);
+            await profile.LoadAsync(profile.Profile.Id);
         }
 
         protected override void OnStart()

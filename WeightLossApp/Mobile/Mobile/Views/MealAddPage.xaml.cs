@@ -8,39 +8,29 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Mobile.ViewModels;
 
 namespace Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MealAddPage : ContentPage
     {
-        public ObservableCollection<DataObject> Foods { get; set; }
+        private ObservableCollection<Meal> _parentsMeals;
+        public IngiridientMealVM ViewModel { get; set; }
 
-        public MealAddPage()
+        public MealAddPage(ObservableCollection<Meal> parentsMeals)
         {
-            Foods = new ObservableCollection<DataObject>()
-            {
-                new DataObject("Tomato"),
-                new DataObject("Potato"),
-            };
             InitializeComponent();
-            BindingContext = this;
+            _parentsMeals = parentsMeals;
+            ViewModel = new IngiridientMealVM(_parentsMeals);
+            load();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void load()
         {
-            Navigation.PushAsync(new IngridientsPage());
+            await ViewModel.InitialLoad();
+            BindingContext = ViewModel;
         }
-    }
 
-    public class DataObject {
-        public string Name { get; set; }
-        public double Weight { get; set; }
-
-        public DataObject(string name)
-        {
-            Name = name;
-            Weight = 100;
-        }
     }
 }

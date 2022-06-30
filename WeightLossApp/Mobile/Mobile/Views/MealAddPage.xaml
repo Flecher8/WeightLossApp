@@ -3,24 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mobile.Views.MealAddPage"
              xmlns:views="clr-namespace:Mobile.Views"
+             xmlns:models="clr-namespace:Mobile.Models"
              xmlns:fa="clr-namespace:FontAwesome" 
              xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors">
     <ContentPage.Content>
         <StackLayout>
             <Label Style="{StaticResource HeaderLabel}" Text="New Meal"/>
             <dxe:TextEdit LabelText="Meal Name" 
-                          Text="{Binding Email}"
+                          Text="{Binding MealName}"
                           Style="{StaticResource TextEditRegular}"></dxe:TextEdit>
             <Label Style="{StaticResource RegularTextLabel}" 
                    Text="Ingridients list:"
                    Margin="35,10"/>
-            <ListView ItemsSource="{Binding Foods}"
+            <ListView ItemsSource="{Binding MealIngridients}"
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"
                                   BackgroundColor="Transparent"
                       SelectionMode="None">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="views:DataObject">
+                    <DataTemplate x:DataType="models:Food">
                         <ViewCell>
                             <Grid>
                                 <Frame Style="{StaticResource InnerFrame}"
@@ -32,7 +33,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Style="{StaticResource MediumTextLabel}"
-                                               Text="{Binding Name}"
+                                               Text="{Binding Label}"
                                                Grid.Column="0"
                                                Margin="0"
                                                VerticalOptions="Center"
@@ -48,10 +49,11 @@
             </ListView>
 
             <Button Style="{StaticResource ButtonRegular}" 
-                    Text="Add new ingridient"
-                    Clicked="Button_Clicked"></Button>
+                    Text="Add ingridient"
+                    Command="{Binding AddIngredient}"></Button>
             <Button Style="{StaticResource ButtonRegular}" 
-                    Text="Confirm"></Button>
+                    Text="Confirm"
+                    Command="{Binding CreateMeal}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

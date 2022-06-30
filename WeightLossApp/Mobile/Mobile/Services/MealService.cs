@@ -66,7 +66,7 @@ namespace Mobile.Services
             }
         }
 
-        private async Task PostAsync(Meal meal)
+        public async Task PostAsync(Meal meal)
         {
             using (var client = new HttpClient())
             {
@@ -82,14 +82,19 @@ namespace Mobile.Services
 
                 if (response.IsSuccessStatusCode)
                 {
+                    var options = new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
+
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
 
-                    res = GetArrayStringResponce(res, "insert_Inventory");
+                    res = GetArrayStringResponce(res, "insert_Meal");
                     res = GetArrayStringResponce(res, "returning");
                     
                     List<Meal> temp = new List<Meal>();
-                    temp = JsonSerializer.Deserialize<List<Meal>>(res);
+                    temp = JsonSerializer.Deserialize<List<Meal>>(res, options);
 
                     // WARNING possible bug_ due to lower register WARNING  
                     meal.Id = temp[0].Id;
