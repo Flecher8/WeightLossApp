@@ -104,7 +104,7 @@ namespace Mobile.ViewModels
         {
             if(isDataCorrect)
             {
-                App.LoadProfile(user.Login);
+                //App.LoadProfile(user.Login);
 
                 Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 
@@ -135,7 +135,7 @@ namespace Mobile.ViewModels
                 IsLogedIn = true;
                 if(isRegistered)
                 {
-                    App.LoadProfile(user.Login);
+                    //App.LoadProfile(user.Login);
 
                     Xamarin.Essentials.Preferences.Set("UserLogin", user.Login);
 

@@ -13,21 +13,21 @@
                             <Label Style="{StaticResource HeaderLabel}"
                                    Text="Daily nutrients"/>
                             <Label Style="{StaticResource MediumTextLabel}" 
-                                   Text="Callories"/>
+                                   Text="Calories"/>
                             <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
-                                         Progress="0.45"/>
+                                         Progress="{Binding Calories}"/>
                             <Label Style="{StaticResource MediumTextLabel}" 
                                    Text="Proteins"/>
                             <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
-                                         Progress="0.45"/>
+                                         Progress="{Binding Proteines}"/>
                             <Label Style="{StaticResource MediumTextLabel}" 
                                    Text="Fats"/>
                             <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
-                                         Progress="0.45"/>
+                                         Progress="{Binding Fats}"/>
                             <Label Style="{StaticResource MediumTextLabel}" 
                                    Text="Carbohydrates"/>
                             <ProgressBar ProgressColor="{StaticResource PrimaryColor}" 
-                                         Progress="0.45"/>
+                                         Progress="{Binding Carbs}"/>
                             
                         </StackLayout>
                     </Frame>

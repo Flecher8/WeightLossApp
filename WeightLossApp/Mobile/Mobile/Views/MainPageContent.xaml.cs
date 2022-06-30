@@ -14,11 +14,14 @@ namespace Mobile.Views
 	public partial class MainPageContent : ContentPage
 	{
 
-		
+		public MainPageVM ViewModel { get; set; }
 
 		public MainPageContent ()
 		{
+			ViewModel = new MainPageVM();
 			InitializeComponent ();
+
+			BindingContext = ViewModel;
 		}
 	}
 }
