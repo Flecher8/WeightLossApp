@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -144,6 +145,49 @@ namespace Mobile.Services
 
         }
 
+        private async Task PostDayActivityMealAsync(Meal meal)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Console.WriteLine("~~~~~~~~");
+                DateTime now = DateTime.Now;
+                string address = "dam?date=" + now.ToString("s") + "&mealid=" + meal.Id + "&profileid" + Profile.Id;
+
+                HttpResponseMessage response = await client.PostAsync(address, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    DayActivityMealList.Add(new DayActivityMeal{Datetime = now, Meal_ID = meal.Id, Profile_ID = Profile.Id});
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
+
+        public async Task DeleteAsync(DayActivityMeal dam)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://stirred-eagle-95.hasura.app/api/rest/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.DeleteAsync("dam?mealid=" + dam.Meal_ID + "&profileid=" + Profile.Id );
+                if (response.StatusCode is HttpStatusCode.NoContent)
+                {
+                    Console.WriteLine("deleted" + response.StatusCode);
+                }
+            }
+        }
+
+
+
         public async Task LoadAsyncPM(string login)
         {
             Console.WriteLine("~~~~~~~~~~");
@@ -221,5 +265,12 @@ namespace Mobile.Services
             return result.Remove(result.LastIndexOf("]") + 1);
         }
 
+        private string GetArrayStringResponce(string jsonResult, string token)
+        {
+            JObject o = JObject.Parse(jsonResult);
+            var result = o.SelectToken(token);
+
+            return result.ToString();
+        }
     }
 }
