@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { constants } from "../../Constants";
 import { MultiSelect } from "react-multi-select-component";
-import { Button, Table, InputGroup, FormControl} from "react-bootstrap";
+import { Button, Table, InputGroup, FormControl } from "react-bootstrap";
 
 // Component for IngridientData page
 export class IngridientsData extends Component {
@@ -38,7 +38,7 @@ export class IngridientsData extends Component {
 			// Options for multiselect
 			selectOptions: [],
 			// Data to display as multiselect selected
-			categoryNames: [], 
+			categoryNames: [],
 			HTTPMethod: "",
 			searchLine: ""
 		};
@@ -58,7 +58,7 @@ export class IngridientsData extends Component {
 			itemCategories: [],
 			itemImageName: "",
 			selectOptions: this.getMultiSelectOptions(),
-			categoryNames: [], 
+			categoryNames: [],
 			HTTPMethod: "POST"
 		});
 	}
@@ -68,46 +68,45 @@ export class IngridientsData extends Component {
 		if (!form.checkValidity()) {
 			event.preventDefault();
 			event.stopPropagation();
-		} 
-		else {
+		} else {
 			console.log(this.state.HTTPMethod);
 			event.preventDefault();
 			let ingridientCategories = [];
 
-		for (let category of this.state.itemCategories) {
-			ingridientCategories.push({IngridientId: this.state.itemID, CategoryId: category.value});
-		}
+			for (let category of this.state.itemCategories) {
+				ingridientCategories.push({ IngridientId: this.state.itemID, CategoryId: category.value });
+			}
 
-		let method = this.state.HTTPMethod;
+			let method = this.state.HTTPMethod;
 
-		fetch(constants.API_URL + "IngridientData", {
-			method: method,
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				Id: this.state.itemID,
-				Name: this.state.itemName,
-				Calories: this.state.itemCalories,
-				Proteins: this.state.itemProteins,
-				Carbohydrates: this.state.itemCarbohydrates,
-				Fats: this.state.itemFats,
-				ImageName: this.state.itemImageName,
-				ingridientCategory: ingridientCategories,
-			})
-		})
-			.then(res => res.json())
-			.then(
-				result => {
-					console.log(this.state.itemImageName,);
-					this.refreshList();
+			fetch(constants.API_URL + "IngridientData", {
+				method: method,
+				headers: {
+					"Content-Type": "application/json"
 				},
-				error => {
-					alert("Failed");
-				}
-			);
+				body: JSON.stringify({
+					Id: this.state.itemID,
+					Name: this.state.itemName,
+					Calories: this.state.itemCalories,
+					Proteins: this.state.itemProteins,
+					Carbohydrates: this.state.itemCarbohydrates,
+					Fats: this.state.itemFats,
+					ImageName: this.state.itemImageName,
+					ingridientCategory: ingridientCategories
+				})
+			})
+				.then(res => res.json())
+				.then(
+					result => {
+						console.log(this.state.itemImageName);
+						this.refreshList();
+					},
+					error => {
+						alert("Failed");
+					}
+				);
 		}
-	}
+	};
 
 	// Save img in imgur and write img to object
 	saveImg(ev) {
@@ -126,20 +125,18 @@ export class IngridientsData extends Component {
 			.then(data => {
 				console.log(data.data.link);
 				this.setState({
-					itemImageName: data.data.link,
+					itemImageName: data.data.link
 				});
 			});
 
-			console.log(this.state.itemImageName);
+		console.log(this.state.itemImageName);
 	}
 
 	editClick(row) {
+		let rowCategories = this.state.ingridientsData.find(i => i.Id === row.Id).IngridientCategory.map(i => i.Category);
+		let temp = [];
 
-		let rowCategories = this.state.ingridientsData.find(i => i.Id === row.Id)
-			.IngridientCategory.map(i => i.Category);
-		let temp = []
-
-		for(let category of rowCategories) {
+		for (let category of rowCategories) {
 			temp.push({ label: category.Name, value: category.Id });
 		}
 
@@ -205,18 +202,17 @@ export class IngridientsData extends Component {
 	}
 
 	changeCategory = e => {
-		this.setState({ 
+		this.setState({
 			itemCategories: e,
-			categoryNames: e.map(e => e.label),
+			categoryNames: e.map(e => e.label)
 		});
-
 	};
 
 	getMultiSelectOptions() {
 		let res = [];
 
 		for (let category of this.state.categories) {
-			res.push({label: category.Name, value: category.Id });
+			res.push({ label: category.Name, value: category.Id });
 		}
 
 		return res;
@@ -400,7 +396,7 @@ export class IngridientsData extends Component {
 		return (
 			<div className="container">
 				<div style={{ width: 80 + "vw" }}>
-					<h3 className="m-5">This is Categories page</h3>
+					<h3 className="m-5">This is Ingridients page</h3>
 
 					{/* Main table */}
 					<div className="container mt-5">
@@ -409,20 +405,30 @@ export class IngridientsData extends Component {
 								aria-label="Default"
 								placeholder="Search"
 								value={this.state.searchLine}
-								onChange={e => this.setState( { searchLine: e.target.value }) }
+								onChange={e => this.setState({ searchLine: e.target.value })}
 								aria-describedby="inputGroup-sizing-default"
 							/>
-							<Button className="btn-dark" onClick={ () =>  { 
-								this.setState({
-									ingridientsData: this.state.ingridientsData
-										.filter(i => i.Name.includes(this.state.searchLine))
-								});
-							}}>Search</Button>
-							<Button className="btn-dark" onClick={() => this.refreshList()}>Cancel</Button>
+							<Button
+								className="btn-dark"
+								onClick={() => {
+									this.setState({
+										ingridientsData: this.state.ingridientsData.filter(i =>
+											i.Name.includes(this.state.searchLine)
+										)
+									});
+								}}>
+								Search
+							</Button>
+							<Button className="btn-dark" onClick={() => this.refreshList()}>
+								Cancel
+							</Button>
 						</InputGroup>
-						<Table 
-							className="table table-striped table-bordered table-sm text-center" 
-							striped bordered hover size="lg"
+						<Table
+							className="table table-striped table-bordered table-sm text-center"
+							striped
+							bordered
+							hover
+							size="lg"
 							id="dtBasicExample">
 							<thead>
 								<tr>
@@ -438,9 +444,7 @@ export class IngridientsData extends Component {
 											<i className="fa-solid fa-arrows-up-down"></i>
 										</Button>
 									</th>
-									<th>
-										Image
-									</th>
+									<th>Image</th>
 									<th class="th-sm">
 										Calories
 										<Button className="btn-light" onClick={() => this.sortByCalories()}>
@@ -473,21 +477,26 @@ export class IngridientsData extends Component {
 									<tr key={e.Id}>
 										<td>{e.Id}</td>
 										<td>{e.Name}</td>
-										<td><img src={e.ImageName} alt="img" width="100px" /></td>
+										<td>
+											<img src={e.ImageName} alt="img" width="100px" />
+										</td>
 										<td>{e.Calories}</td>
 										<td>{e.Proteins}</td>
 										<td>{e.Fats}</td>
 										<td>{e.Carbohydrates}</td>
 										<td>
-											<Button 
-												className="m-2" 
+											<Button
+												className="m-2"
 												variant="outline-dark"
 												onClick={() => this.editClick(e)}
 												data-bs-toggle="modal"
 												data-bs-target="#exampleModal">
 												Edit
 											</Button>
-											<Button className="m-2" onClick={() => this.deleteClick(e.Id)} variant="outline-danger">
+											<Button
+												className="m-2"
+												onClick={() => this.deleteClick(e.Id)}
+												variant="outline-danger">
 												Delete
 											</Button>
 										</td>
@@ -523,7 +532,7 @@ export class IngridientsData extends Component {
 								</div>
 								<div className="modal-body">
 									<form class="needs-validation" id="modalForm" noValidate onSubmit={this.handleSubmit}>
-									{/* Inputs for item properties
+										{/* Inputs for item properties
                                     value: assigns data from component state
                                     onChange: calls specified function to update state */}
 										<div className="form-group mb-3">
@@ -535,7 +544,7 @@ export class IngridientsData extends Component {
 												pattern="^([A-ZА-ЯЁ]||[a-zа-яё])*$"
 												className="form-control"
 												value={this.state.itemName}
-												onChange={e => this.setState({ itemName: e.target.value }) }
+												onChange={e => this.setState({ itemName: e.target.value })}
 											/>
 										</div>
 										<div className="form-group mb-3">
@@ -547,7 +556,7 @@ export class IngridientsData extends Component {
 												pattern="^[1-9][0-9]*$"
 												className="form-control"
 												value={this.state.itemCalories}
-												onChange={e => this.setState({ itemCalories: e.target.value }) }
+												onChange={e => this.setState({ itemCalories: e.target.value })}
 											/>
 										</div>
 										<div className="form mb-3">
@@ -559,7 +568,7 @@ export class IngridientsData extends Component {
 												pattern="^[1-9][0-9]*$"
 												className="form-control"
 												value={this.state.itemCarbohydrates}
-												onChange={e => this.setState({ itemCarbohydrates: e.target.value }) }
+												onChange={e => this.setState({ itemCarbohydrates: e.target.value })}
 											/>
 										</div>
 										<div className="form mb-3">
@@ -571,7 +580,7 @@ export class IngridientsData extends Component {
 												pattern="^[1-9][0-9]*$"
 												className="form-control"
 												value={this.state.itemFats}
-												onChange={e => this.setState({ itemFats: e.target.value }) }
+												onChange={e => this.setState({ itemFats: e.target.value })}
 											/>
 										</div>
 										<div className="form mb-3">
@@ -583,12 +592,12 @@ export class IngridientsData extends Component {
 												pattern="^[1-9][0-9]*$"
 												className="form-control"
 												value={this.state.itemProteins}
-												onChange={e => this.setState({ itemProteins: e.target.value }) }
+												onChange={e => this.setState({ itemProteins: e.target.value })}
 											/>
 										</div>
 										<div className="form mb-3">
 											{/* <span className="form-text">Ingridient Category</span> */}
-											
+
 											<MultiSelect
 												className="form-label"
 												options={this.state.selectOptions}
@@ -624,20 +633,14 @@ export class IngridientsData extends Component {
 
 										{/* If selected item id == 0 Than we need to add new item */}
 										{this.state.itemID === 0 ? (
-											<button
-												type="submit"
-												className="btn btn-dark float-end"
-												>
+											<button type="submit" className="btn btn-dark float-end">
 												Create
 											</button>
 										) : null}
 
 										{/* If selected item id !== 0 Than we need to updating existing item */}
 										{this.state.itemID !== 0 ? (
-											<button
-												type="submit"
-												className="btn btn-dark float-end"
-												>
+											<button type="submit" className="btn btn-dark float-end">
 												Update
 											</button>
 										) : null}
