@@ -98,7 +98,6 @@ function ChangeAchievement(props) {
 							<Form.Label className="ms-1">Description</Form.Label>
 							<Form.Control
 								required
-								pattern="^[A-ZА-ЯЁ][a-zа-яё]*$"
 								type="text"
 								maxLength="150"
 								placeholder="Description"
