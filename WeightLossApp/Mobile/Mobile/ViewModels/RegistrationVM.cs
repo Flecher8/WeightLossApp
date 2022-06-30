@@ -14,8 +14,10 @@ using Newtonsoft.Json.Linq;
 using Xamarin;
 using Mobile;
 using Mobile.Services;
+using DevExpress.XamarinForms.Editors;
+using System.Threading;
 
-namespace Sandbox
+namespace Mobile.ViewModels
 {
     public class RegistrationVM : PropertyChangedIpmlementator
     {
@@ -25,7 +27,7 @@ namespace Sandbox
         private User user;
         private int premiumStatusID;
         private int inventoryID;
-        private ObservableCollection<string> preferences;
+        private List<string> preferences;
 
         private string passwordAgain;
 
@@ -33,6 +35,7 @@ namespace Sandbox
         private bool ragioButtonLoose;
         private bool ragioButtonGain;
 
+        private IList<object> selectedPrefs;
         // Google data
         private readonly IGoogleManager googleManager;
         GoogleUser GoogleUser = new GoogleUser();
@@ -41,11 +44,14 @@ namespace Sandbox
         // API
         private string ApiUrl { get; set; }
 
+        // Preference items
+        public List<string> Items { get; set; }
+
         // Commands
         public Command Registration { get; private set; }
 
         // Google commands
-        public Command googleSignIn { get; private set; }
+        public Command GoogleSignUp { get; private set; }
 
         // Navigation
         public INavigation Navigation { get; set; }
@@ -55,13 +61,47 @@ namespace Sandbox
          *  Functions
          */
 
-        public RegistrationVM()
+        public RegistrationVM(IList<object> selectedPrefs_)
         {
-
             // Create Data
             users = new List<User>();
-            member = new Member();
+            member = new Member() { Birthday = DateTime.Now };
             user = new User();
+            selectedPrefs = selectedPrefs_;
+            Items = new List<string>()
+            {
+                "alcohol-free",
+                "celery-free",
+                "crustacean-free",
+                "dairy-free",
+                "egg-free",
+                "fish-free",
+                "fodmap-free",
+                "gluten-free",
+                "immuno-supportive",
+                "keto-friendly",
+                "kidney-friendly",
+                "kosher",
+                "low-fat-abs",
+                "low-potassium",
+                "low-sugar",
+                "luoine-free",
+                "mustard-free",
+                "no-oil-added",
+                "paleo",
+                "peanut-free",
+                "pescatarian",
+                "pork-free",
+                "read-meat-free",
+                "sesame-free",
+                "soy-free",
+                "sugar-conscious",
+                "tree-nut-free",
+                "vegan",
+                "vegetarian",
+                "wheat-free"
+            };
+            preferences = new List<string>();
 
             // Set Google variables
             googleManager = DependencyService.Get<IGoogleManager>();
@@ -73,7 +113,7 @@ namespace Sandbox
             Registration = new Command(RegistrationFuncAsync);
 
             // Create Google Commands
-            googleSignIn = new Command(GoogleRegistration);
+            GoogleSignUp = new Command(GoogleRegistration);
             gooleRegistration = false;
 
             // Load Data
@@ -83,6 +123,11 @@ namespace Sandbox
         // Add navigation to one of the main pages!!!
         public void RegistrationFuncAsync()
         {
+            if (selectedPrefs.Count > 0)
+            {
+                selectedPrefs.Select(c => c.ToString()).ToList().ForEach(s => preferences.Add(s));
+            }
+
             // Check if there are no users with such email
             if (!isRegistered)
             {
@@ -93,8 +138,7 @@ namespace Sandbox
                     if(gooleRegistration && !member.hasNull)
                     {
                         PostData();
-                        CreateProfile();
-                        App.Current.MainPage = new MainPage();
+                        
                         return;
                     }
                     // 1) Add Member + user + Profile to database
@@ -106,11 +150,18 @@ namespace Sandbox
                         App.Current.MainPage = new MainPage();
                         return;
                     }
-                    App.Current.MainPage.DisplayAlert("Message", "Not all data is filled", "OK");
+                    else if (user.Login == null || user.Password == null)
+                    {
+                        App.Current.MainPage.DisplayAlert("Message", "Please specify your login and password, so that you will be able to enter this app even without google account!", "OK");
+                    }
+                    else
+                        App.Current.MainPage.DisplayAlert("Message", "Not all data is filled", "OK");
                 }
-                App.Current.MainPage.DisplayAlert("Message", "Passwords in two fields are not the same", "OK");
+                else
+                    App.Current.MainPage.DisplayAlert("Message", "Passwords in two fields are not the same", "OK");
             }
-            App.Current.MainPage.DisplayAlert("Message", "You are already registered", "OK");
+            else
+                App.Current.MainPage.DisplayAlert("Message", "You are already registered", "OK");
         }
 
         private void CreateProfile()
@@ -137,12 +188,15 @@ namespace Sandbox
                 GoogleUser = googleUser;
                 user.Email = GoogleUser.Email;
                 gooleRegistration = true;
+                googleManager.Logout();
                 RegistrationFuncAsync();
             }
             else
             {
+                googleManager.Logout();
                 App.Current.MainPage.DisplayAlert("Message", message, "Ok");
             }
+ 
         }
 
         // Input fields
@@ -165,7 +219,7 @@ namespace Sandbox
                 OnPropertyChanged();
             }
         }
-        public DateTime? Birthday
+        public DateTime Birthday
         {
             get => member.Birthday;
             set
@@ -184,14 +238,22 @@ namespace Sandbox
             }
         }
 
-        // User preferences
-        public ObservableCollection<string> Preferences
+        public int GenderIndex
         {
-            get => preferences;
+            get 
+            {
+                return (Gender == "Male") ? 0
+                    : (Gender == "Female") ? 1
+                    : (Gender == "Other") ? 2
+                    : -1;
+            }
+
             set
             {
-                preferences = value;
-                OnPropertyChanged();
+                Gender = (value == 0) ? "Male" 
+                    : (value == 1) ? "Female" 
+                    : (value == 2) ? "Other" 
+                    : null;
             }
         }
 
@@ -235,34 +297,36 @@ namespace Sandbox
         }
 
         // RagioButtons
-        public bool RagioButtonKeep
+        public bool RadioButtonKeep
         {
             get => ragioButtonKeep;
             set
             {
                 ragioButtonKeep = value;
+                member.Goal = "Keep";
                 OnPropertyChanged();
             }
         }
-        public bool RagioButtonLoose
+        public bool RadioButtonLoose
         {
             get => ragioButtonLoose;
             set
             {
                 ragioButtonLoose = value;
+                member.Goal = "Loose";
                 OnPropertyChanged();
             }
         }
-        public bool RagioButtonGain
+        public bool RadioButtonGain
         {
             get => ragioButtonGain;
             set
             {
                 ragioButtonGain = value;
+                member.Goal = "Gain"; 
                 OnPropertyChanged();
             }
         }
-
         
         public async Task LoadAsync()
         {
@@ -321,7 +385,6 @@ namespace Sandbox
             return result.ToString();
         }
 
-
         private bool isRegistered
         {
             get
@@ -343,7 +406,11 @@ namespace Sandbox
         
         public async void PostData()
         {
-            await PostInformationNeededForProfile();
+            //await PostInformationNeededForProfile();
+            await PostMember();
+            await PostUser();
+            await PostPremiumStatus();
+            await PostInventory();
             await PostProfile();
             // Post AchivementAcquirement!!! (needs to be developed)
         }
@@ -375,12 +442,13 @@ namespace Sandbox
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Console.WriteLine("~~~~~~~~");
+                Console.WriteLine("Profile ~~~~~~~~");
                 string prefs = "";
                 foreach (string elm in preferences)
                 {
-                    prefs += elm + " ";
+                    prefs += elm + ",";
                 }
+                if (prefs == "") prefs = "none";
 
                 string address = 
                     "postProfile?Exp=" + startExp
@@ -389,22 +457,27 @@ namespace Sandbox
                     + "&Preferences=" + prefs;
 
                 HttpResponseMessage response = await client.PostAsync(address, null);
+                Console.WriteLine(response);
+                Console.WriteLine(address);
+
 
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("----------------------------");
+                    OnRegistrationSucceful();
                 }
                 else
                 {
-                    Console.WriteLine("Internal server Error");
+                    Console.WriteLine("Internal server Error, trying Again");
+                    PostProfile();
                 }
             }
         }
         // Post Inventory
         private async Task PostInventory()
         {
-            Console.WriteLine("~~~~~~~~~~");
+            Console.WriteLine("00000000000000000 Inventory ~~~~~~~~~~");
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ApiUrl);
@@ -521,14 +594,16 @@ namespace Sandbox
                 DateTime date = (DateTime)member.Birthday;
 
                 string address =
-                    "postMember?Birthday=" + date.ToString("G")
+                    "postMember?Birthday=" + date.ToString("s")
                     + "&Gender=" + member.Gender
                     + "&Goal=" + member.Goal
                     + "&Height=" + member.Height
-                    + "&RegistrationDate=" + DateTime.Now.ToString("G")
+                    + "&RegistrationDate=" + DateTime.Now.ToString("s")
                     + "&Weight=" + member.Weight;
 
                 HttpResponseMessage response = await client.PostAsync(address, null);
+                Console.WriteLine(response);
+                Console.WriteLine(address);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -550,6 +625,12 @@ namespace Sandbox
                     Console.WriteLine("Internal server Error");
                 }
             }
+        }
+
+        private void OnRegistrationSucceful()
+        {
+            CreateProfile();
+            App.Current.MainPage = new MainPage();
         }
     }
 }

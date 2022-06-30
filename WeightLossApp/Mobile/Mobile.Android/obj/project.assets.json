@@ -5538,24 +5538,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Human\\.nuget\\packages\\": {},
+    "C:\\Users\\vmlf\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\CSharp\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "projectUniqueName": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
       "projectName": "Mobile.Android",
-      "projectPath": "D:\\Projects\\CSharp\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
-      "packagesPath": "C:\\Users\\Human\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\CSharp\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
+      "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile.Android\\Mobile.Android.csproj",
+      "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
+      "outputPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Human\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vmlf\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5565,13 +5565,13 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.devexpress.com/7TOhbXjueJ7TqODTj2PZzGfWI687idzLux6QKMeFEW6EBQlnco/api": {}
+        "https://nuget.devexpress.com/W4CQYn1mwm6cLgRjflSgJmo9dUVSRUnnv8otF3kM5JfdD5NriO/api": {}
       },
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "D:\\Projects\\CSharp\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
-              "projectPath": "D:\\Projects\\CSharp\\WeightLossApp\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
+            "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj": {
+              "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Mobile\\Mobile\\Mobile.csproj"
             }
           }
         }
@@ -5613,7 +5613,7 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: Xamarin.GooglePlayServices.Basement from 117.2.1 to 71.1620.4. Reference the package directly from the project to select a different version. \r\n Mobile.Android -> Xamarin.GooglePlayServices.Auth 118.1.0 -> Xamarin.GooglePlayServices.Basement (>= 117.2.1) \r\n Mobile.Android -> Xamarin.GooglePlayServices.Basement (>= 71.1620.4)",
+      "message": "Обнаружено понижение версии пакета Xamarin.GooglePlayServices.Basement с 117.2.1 на 71.1620.4. Чтобы выбрать другую версию, создайте ссылку на пакет напрямую из проекта. \r\n Mobile.Android -> Xamarin.GooglePlayServices.Auth 118.1.0 -> Xamarin.GooglePlayServices.Basement (>= 117.2.1) \r\n Mobile.Android -> Xamarin.GooglePlayServices.Basement (>= 71.1620.4)",
       "libraryId": "Xamarin.GooglePlayServices.Basement",
       "targetGraphs": [
         "MonoAndroid,Version=v12.0"

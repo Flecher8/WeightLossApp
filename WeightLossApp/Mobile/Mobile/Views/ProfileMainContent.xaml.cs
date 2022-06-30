@@ -38,7 +38,7 @@ namespace Mobile.Views
 
         public int Age
         {
-            get { return (profile.Member.Birthday - DateTime.Now).Value.Days / -365; }
+            get { return (profile.Member.Birthday - DateTime.Now).Days / -365; }
         }
 
         public string Gender

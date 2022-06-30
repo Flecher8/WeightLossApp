@@ -19,12 +19,12 @@ namespace Mobile.Views
     {
         readonly RemindersNotificationCenter remindersNotificationCenter = new RemindersNotificationCenter();
 
-        public SheduleVM ViewModel { get; set; } 
+        public ScheduleVM ViewModel { get; set; } 
 
         public ShedulePageContent()
         {
             DevExpress.XamarinForms.Scheduler.Initializer.Init();
-            ViewModel = new SheduleVM();
+            ViewModel = new ScheduleVM();
             InitializeComponent();
 
             BindingContext = ViewModel;

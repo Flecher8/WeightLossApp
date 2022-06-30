@@ -13,9 +13,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Forms;
 using Mobile.Droid;
 using Mobile.Models;
-using Xamarin.Forms;
+using Xamarin.Android;
 
 [assembly: Dependency(typeof(GoogleManager))]
 namespace Mobile.Droid

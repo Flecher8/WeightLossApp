@@ -12,7 +12,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <comp:TabsHeaderPanell Grid.Row="0" PanellTitle="Hi, Vlad!"/>
+            <comp:TabsHeaderPanell Grid.Row="0" PanellTitle="{Binding Title}"/>
 
             <Frame Style="{StaticResource OuterFrame}"
                    Grid.Row="1">

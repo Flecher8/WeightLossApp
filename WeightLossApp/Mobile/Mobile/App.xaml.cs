@@ -14,13 +14,11 @@ namespace Mobile
             DevExpress.XamarinForms.Navigation.Initializer.Init();
             DevExpress.XamarinForms.Charts.Initializer.Init();
             DevExpress.XamarinForms.Scheduler.Initializer.Init();
-            string login = Xamarin.Essentials.Preferences.Get("UerLogin", "empty");
+            string login = Xamarin.Essentials.Preferences.Get("UserLogin", "empty");
 
             if (login != "empty")
             {
                 AppProfile profile = AppProfile.Instance;
-
-                LoadProfile(login);
 
                 var navigationPage = new NavigationPage(new MainPage());
 
