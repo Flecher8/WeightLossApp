@@ -13,35 +13,94 @@ using Xamarin.Forms;
 using Newtonsoft.Json.Linq;
 using Mobile.Services;
 using System.Threading;
-namespace Sandbox
+namespace Mobile.ViewModels
 {
-    public class FoodProgressPageVM : PropertyChangedIpmlementator
+    public class MainPageVM : PropertyChangedIpmlementator
     {
+        private ObservableCollection<DonutChartPiece> mainChartValues;
         private List<Food> foods;
-
-
-        //here are stored progress values by categories for this specific user after initialize function
-        public float caloriesProgress;
-        public float fatsProgress;
-        public float procntsProgress;
-        public float CHOCDFProgress;
-       
-        //here are stored planed quantities by categories for this specific user after initialize function
+        private float nutritionProgress;
+        private float sportProgress;
         private Nutrients planNutrients;
-        private List<Mobile.Models.Ingridient> ingridients;
+        private List<Ingridient> ingridients;
+        private string title;
         private string ApiUrl { get; set; }
         private string FoodApiUrl { get; set; }
 
-
-        public FoodProgressPageVM()
+        // Property for PieChart, should contain 2 values 
+        // First Progress in %
+        // Second 100% - Progress
+        public ObservableCollection<DonutChartPiece> MainChartValues
         {
+            get => mainChartValues;
+            set
+            {
+                mainChartValues = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Progress by nutrition
+        public float NutritionProgress
+        {
+            get => nutritionProgress;
+            set
+            {
+                nutritionProgress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public float SportProgress
+        {
+            get => sportProgress;
+            set
+            {
+                sportProgress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Title
+        {
+            get => title;
+            set
+            {
+                title = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Color palette for chart
+        public Color[] Palette { get; set; }
+
+        public  MainPageVM()
+        {
+            // This initialization should be replaced by calculated values
+            MainChartValues = new ObservableCollection<DonutChartPiece>();
             ApiUrl = "https://stirred-eagle-95.hasura.app/api/rest/";
             FoodApiUrl = "https://api.edamam.com/api/food-database/v2/";
+            NutritionProgress = 0.45f;
+            SportProgress = 0.60f;
+
+            // Initialization of color Palette for chart
+            Palette = new Color[2];
+            Palette[0] = (Color)Application.Current.Resources["PrimaryColor"];
+            Palette[1] = (Color)Application.Current.Resources["SecondaryColor"];
+
+            initialize(AppProfile.Instance);
+
+            Title = (AppProfile.Instance.Login != null) ? "Hi, " + AppProfile.Instance.Login + "!" : "Welcome back!";
+            
         }
-        public void initialize(AppProfile appProfile)
+        public async void initialize(AppProfile appProfile)
         {
+            var t = DateTime.Now;
+            await App.LoadProfile(Xamarin.Essentials.Preferences.Get("UserLogin", "empty"));
+            await LoadAsync();
+
             string NutritionKey = "";
-            NutritionKey += appProfile.Member.Gender;
+            NutritionKey += (appProfile.Member.Gender == "Male") ? "Male" : "Female";
             DateTime now = DateTime.Today;
             int age = now.Year - appProfile.Member.Birthday.Year;
             if (appProfile.Member.Birthday > now.AddYears(-age)) age--;
@@ -56,7 +115,7 @@ namespace Sandbox
             List<Mobile.Models.Ingridient> resultIngridients = new List<Ingridient>();
             foreach (Ingridient ingridient in ingridients)
             {
-                foreach (Mobile.Models.DayActivityMeal dayActivityMeal in appProfile.DayActivityMealList)
+                foreach (DayActivityMeal dayActivityMeal in appProfile.DayActivityMealList)
                 {
                     if (ingridient.Meal_ID == dayActivityMeal.Meal_ID)
                         resultIngridients.Add(ingridient);
@@ -64,11 +123,15 @@ namespace Sandbox
             }
             foods = new List<Food>();
 
-            LoadFoodsAndCountCalories(resultIngridients);
-            Thread.Sleep(2000);
-            
+            await LoadFoodsAndCountCalories(resultIngridients);
+            //Thread.Sleep(2000);
+            //MainChartValues.Clear();
+            MainChartValues.Add(new DonutChartPiece("Progress", (int)((NutritionProgress + SportProgress) * 50)));
+            MainChartValues.Add(new DonutChartPiece("Empty", 100 - (int)((NutritionProgress + SportProgress) * 50)));
+
+            Console.WriteLine("Time: " + (DateTime.Now - t));
         }
-        private async void LoadFoodsAndCountCalories(List<Ingridient> resultIngridients)
+        private async Task LoadFoodsAndCountCalories(List<Ingridient> resultIngridients)
         {
             await LoadFoods(resultIngridients);
             Console.WriteLine("Before counting");
@@ -82,7 +145,7 @@ namespace Sandbox
                 await LoadAsyncFoods(ingr.IngridientData_ID);
             }
         }
-        private async Task CountCalories(List<Ingridient> resultIngridients)
+        private async Task CountCalories (List<Ingridient> resultIngridients)
         {
             Console.WriteLine("Started counting");
             double calories = 0, procnts = 0, fats = 0, CHOCDFs = 0;
@@ -93,11 +156,9 @@ namespace Sandbox
                 fats += foods[i].Nutrients.FAT.GetValueOrDefault(0) * resultIngridients[i].Weight / 100;
                 CHOCDFs += foods[i].Nutrients.CHOCDF.GetValueOrDefault(0) * resultIngridients[i].Weight / 100;
             }
-            caloriesProgress = (float)(calories / planNutrients.ENERC_KCAL.GetValueOrDefault(2500));
-            procntsProgress = (float)(procnts / planNutrients.PROCNT.GetValueOrDefault(96));
-            fatsProgress = (float)(fats / planNutrients.FAT.GetValueOrDefault(440));
-            CHOCDFProgress = (float) (CHOCDFs / planNutrients.CHOCDF.GetValueOrDefault(117));
-            
+            double nutritionProgressNumber = (calories / planNutrients.ENERC_KCAL.GetValueOrDefault(2500) + procnts / planNutrients.PROCNT.GetValueOrDefault(96) +
+                fats / planNutrients.FAT.GetValueOrDefault(440) + CHOCDFs / planNutrients.CHOCDF.GetValueOrDefault(117)) / 4;
+            NutritionProgress = (float)nutritionProgressNumber;
         }
         public async Task LoadAsync()
         {
@@ -157,7 +218,7 @@ namespace Sandbox
         }
         public async Task LoadAsyncFoods(string FoodId)
         {
-
+            
             Console.WriteLine("~~~~~~~~~~");
             using (var client = new HttpClient())
             {
@@ -225,7 +286,6 @@ namespace Sandbox
             while (header != null)
             {
 
-                //header.Property("measures").Remove();
                 arr.Add(header.Property("food").First);
 
                 header = (JObject)header.Next;
@@ -233,14 +293,8 @@ namespace Sandbox
             }
             jsonResult = arr.ToString();
 
-            //JObject jobje = JObject.Parse(jsonResult);
-            //jobje.Property("_links").Remove();
-            //jsonResult = jobje.ToString();
-
-            //jsonResult = jsonResult.Remove(0, jsonResult.IndexOf("["));
-            //return jsonResult.Remove(jsonResult.LastIndexOf("]") + 1);
-
             return jsonResult;
         }
     }
 }
+

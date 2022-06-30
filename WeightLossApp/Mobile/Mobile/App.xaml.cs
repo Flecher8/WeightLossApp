@@ -20,8 +20,6 @@ namespace Mobile
             {
                 AppProfile profile = AppProfile.Instance;
 
-                LoadProfile(login);
-
                 var navigationPage = new NavigationPage(new MainPage());
 
                 MainPage = navigationPage;

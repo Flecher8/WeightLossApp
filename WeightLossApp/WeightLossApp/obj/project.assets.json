@@ -5119,11 +5119,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NURE\\Assistant\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
+      "projectUniqueName": "D:\\NURE\\assistant\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
       "projectName": "WeightLossApp",
-      "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
+      "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\WeightLossApp\\WeightLossApp.csproj",
       "packagesPath": "C:\\Users\\vmlf\\.nuget\\packages\\",
-      "outputPath": "D:\\NURE\\Assistant\\WeightLossApp\\WeightLossApp\\obj\\",
+      "outputPath": "D:\\NURE\\assistant\\WeightLossApp\\WeightLossApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -5146,8 +5146,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\NURE\\Assistant\\WeightLossApp\\Model\\Model.csproj": {
-              "projectPath": "D:\\NURE\\Assistant\\WeightLossApp\\Model\\Model.csproj"
+            "D:\\NURE\\assistant\\WeightLossApp\\Model\\Model.csproj": {
+              "projectPath": "D:\\NURE\\assistant\\WeightLossApp\\Model\\Model.csproj"
             }
           }
         }

@@ -34,19 +34,24 @@
                         <dxe:NumericEdit Style="{StaticResource NumericEditRegular}"
                                          LabelText="Weight"
                                          Suffix="Kilograms"
-                                         TextFontFamily="Comfortaa" />
+                                         TextFontFamily="Comfortaa"
+                                         Value="{Binding Weight}"/>
 
                         <dxe:NumericEdit Style="{StaticResource NumericEditRegular}"
                                          LabelText="Height"
                                          Suffix="Meters"
                                          TextFontFamily="Comfortaa"
-                                         MaxDecimalDigitCount="2"/>
+                                         MaxDecimalDigitCount="2"
+                                         Value="{Binding Height}"/>
 
                         <dxe:DateEdit Style="{StaticResource DateEditRegular}"
-                                      LabelText="Date of birth"/>
+                                      LabelText="Date of birth"
+                                      DisplayFormat="d"
+                                      Date="{Binding Birthday}"/>
 
                         <dxe:ComboBoxEdit Style="{StaticResource ComboEditRegular}" 
-                                          LabelText="Gender">
+                                          LabelText="Gender"
+                                          SelectedItem="{Binding Gender}">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>Male</x:String>
@@ -71,11 +76,14 @@
                                Margin="20" />
 
                         <RadioButton Content="Loose weight"
-                                     Style="{StaticResource RadioButtonRegular}"/>
+                                     Style="{StaticResource RadioButtonRegular}"
+                                     IsChecked="{Binding RadioButtonLoose}"/>
                         <RadioButton Content="Keep weght"
-                                     Style="{StaticResource RadioButtonRegular}"/>
+                                     Style="{StaticResource RadioButtonRegular}"
+                                     IsChecked="{Binding RadioButtonKeep}"/>
                         <RadioButton Content="Gain weight"
-                                     Style="{StaticResource RadioButtonRegular}"/>
+                                     Style="{StaticResource RadioButtonRegular}"
+                                     IsChecked="{Binding RadioButtonGain}"/>
                     </StackLayout>
                 </dxn:TabViewItem.Content>
             </dxn:TabViewItem>
@@ -127,16 +135,16 @@
 
 
                         <dxe:TextEdit LabelText="Login" 
-                                      Text=""
+                                      Text="{Binding Login}"
                                       Style="{StaticResource TextEditRegular}"></dxe:TextEdit>
                         <dxe:TextEdit LabelText="Email" 
-                                      Text=""
+                                      Text="{Binding Email}"
                                       Style="{StaticResource TextEditRegular}"></dxe:TextEdit>
                         <dxe:PasswordEdit LabelText="Password" 
-                                          Text=""
+                                          Text="{Binding Password}"
                                           Style="{StaticResource PasswordEditRegular}"></dxe:PasswordEdit>
                         <dxe:PasswordEdit LabelText="Password check" 
-                                          Text=""
+                                          Text="{Binding PasswordAgain}"
                                           Style="{StaticResource PasswordEditRegular}"></dxe:PasswordEdit>
 
                         <Grid x:Name="ApiLoginButtons">
@@ -151,7 +159,8 @@
                                     BorderRadius="50"
                                     BackgroundColor="{StaticResource BackgroundColor}"
                                     BorderColor="{StaticResource SecondaryColor}"
-                                    BorderWidth="2">
+                                    BorderWidth="2"
+                                    Command="{Binding GoogleSignUp}">
                                 <Button.ImageSource>
                                     <FontImageSource FontFamily="BrandsSolid" Color="{StaticResource SecondaryColor}" Glyph="{Static fa:FontAwesomeIcons.Google}"></FontImageSource>
                                 </Button.ImageSource>
@@ -168,7 +177,8 @@
                         </Grid>
 
                         <Button Style="{StaticResource ButtonRegular}"
-                                Text="Sign up">
+                                Text="Sign up"
+                                Command="{Binding Registration}">
                         </Button>
                     </StackLayout>
                     </ScrollView>

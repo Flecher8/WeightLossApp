@@ -26,13 +26,13 @@ namespace Sandbox
             mainPageVM.initialize(appProfile);
             Console.WriteLine(mainPageVM.NutritionProgress);
 
-            var foodmainPageVM = new FoodProgressPageVM();
+            var foodmainPageVM = new NutrientsStatePageVM();
             await foodmainPageVM.LoadAsync();
             foodmainPageVM.initialize(appProfile);
-            Console.WriteLine(foodmainPageVM.caloriesProgress);
-            Console.WriteLine(foodmainPageVM.procntsProgress);
-            Console.WriteLine(foodmainPageVM.fatsProgress);
-            Console.WriteLine(foodmainPageVM.CHOCDFProgress);
+            Console.WriteLine(foodmainPageVM.calories);
+            Console.WriteLine(foodmainPageVM.proteins);
+            Console.WriteLine(foodmainPageVM.fats);
+            Console.WriteLine(foodmainPageVM.carbs);
 
         }
     }

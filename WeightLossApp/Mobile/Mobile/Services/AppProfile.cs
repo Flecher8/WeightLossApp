@@ -25,30 +25,30 @@ namespace Mobile.Services
         {
             nutrition = new Dictionary<string, Nutrients>
             {
-                {"ManChildKeep", new Nutrients{ ENERC_KCAL = 2500, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"ManChildLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"ManChildGain", new Nutrients{ ENERC_KCAL = 3200, PROCNT = 96, CHOCDF = 117, FAT = 440 }},
-                {"ManYoungKeep", new Nutrients{ ENERC_KCAL = 2750, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"ManYoungLoose", new Nutrients{ ENERC_KCAL = 2400, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"ManYoungGain", new Nutrients{ ENERC_KCAL = 3000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"ManAdultKeep", new Nutrients{ ENERC_KCAL = 2600, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
-                {"ManAdultLoose", new Nutrients{ ENERC_KCAL = 2200, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
-                {"ManAdultGain", new Nutrients{ ENERC_KCAL = 3000, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
-                {"ManOldKeep", new Nutrients{ ENERC_KCAL = 2250, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
-                {"ManOldLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
-                {"ManOldGain", new Nutrients{ ENERC_KCAL = 2600, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
-                {"WomanChildKeep", new Nutrients{ ENERC_KCAL = 2500, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"WomanChildLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"WomanChildGain", new Nutrients{ ENERC_KCAL = 3200, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"WomanYoungKeep", new Nutrients{ ENERC_KCAL = 2200, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"WomanYoungLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"WomanYoungGain", new Nutrients{ ENERC_KCAL = 2400, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
-                {"WomanAdultKeep", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
-                {"WomanAdultLoose", new Nutrients{ ENERC_KCAL = 1800, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
-                {"WomanAdultGain", new Nutrients{ ENERC_KCAL = 2200, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
-                {"WomanOldKeep", new Nutrients{ ENERC_KCAL = 1900, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
-                {"WomanOldLoose", new Nutrients{ ENERC_KCAL = 1600, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
-                {"WomanOldGain", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 88, CHOCDF = 108, FAT = 406 } }
+                {"MaleChildKeep", new Nutrients{ ENERC_KCAL = 2500, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"MaleChildLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"MaleChildGain", new Nutrients{ ENERC_KCAL = 3200, PROCNT = 96, CHOCDF = 117, FAT = 440 }},
+                {"MaleYoungKeep", new Nutrients{ ENERC_KCAL = 2750, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"MaleYoungLoose", new Nutrients{ ENERC_KCAL = 2400, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"MaleYoungGain", new Nutrients{ ENERC_KCAL = 3000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"MaleAdultKeep", new Nutrients{ ENERC_KCAL = 2600, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
+                {"MaleAdultLoose", new Nutrients{ ENERC_KCAL = 2200, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
+                {"MaleAdultGain", new Nutrients{ ENERC_KCAL = 3000, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
+                {"MaleOldKeep", new Nutrients{ ENERC_KCAL = 2250, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
+                {"MaleOldLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
+                {"MaleOldGain", new Nutrients{ ENERC_KCAL = 2600, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
+                {"FemaleChildKeep", new Nutrients{ ENERC_KCAL = 2500, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"FemaleChildLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"FemaleChildGain", new Nutrients{ ENERC_KCAL = 3200, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"FemaleYoungKeep", new Nutrients{ ENERC_KCAL = 2200, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"FemaleYoungLoose", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"FemaleYoungGain", new Nutrients{ ENERC_KCAL = 2400, PROCNT = 96, CHOCDF = 117, FAT = 440 } },
+                {"FemaleAdultKeep", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
+                {"FemaleAdultLoose", new Nutrients{ ENERC_KCAL = 1800, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
+                {"FemaleAdultGain", new Nutrients{ ENERC_KCAL = 2200, PROCNT = 93, CHOCDF = 114, FAT = 426 } },
+                {"FemaleOldKeep", new Nutrients{ ENERC_KCAL = 1900, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
+                {"FemaleOldLoose", new Nutrients{ ENERC_KCAL = 1600, PROCNT = 88, CHOCDF = 108, FAT = 406 } },
+                {"FemaleOldGain", new Nutrients{ ENERC_KCAL = 2000, PROCNT = 88, CHOCDF = 108, FAT = 406 } }
             };
             DayActivityMealList = new List<DayActivityMeal>();
         }
@@ -156,7 +156,7 @@ namespace Mobile.Services
 
                 Console.WriteLine("appprofile");
                 HttpResponseMessage response = await client.GetAsync("ProfileData?login=" + login);
-                Console.WriteLine(response);
+                //Console.WriteLine(response);
                 if (response.IsSuccessStatusCode)
                 {
                     string res = await response.Content.ReadAsStringAsync();
@@ -209,6 +209,8 @@ namespace Mobile.Services
             Experience = -1;
             Preferences = null;
             DayActivityMealList = null;
+
+            Xamarin.Essentials.Preferences.Remove("UserLogin");
         }
 
         private string GetArrayStringFromResponce(string hasuraJsonResult)
